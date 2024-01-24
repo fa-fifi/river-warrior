@@ -11,5 +11,13 @@ void main() async {
 
   final game = RiverWarrior();
 
-  runApp(GameWidget(game: game));
+  runApp(GameWidget(
+    game: game,
+    backgroundBuilder: (context) => Container(
+      decoration: const BoxDecoration(
+        image: DecorationImage(
+            image: AssetImage('assets/images/bg.png'), fit: BoxFit.cover),
+      ),
+    ),
+  ));
 }

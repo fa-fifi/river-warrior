@@ -2,7 +2,6 @@ import 'dart:math';
 
 import 'package:flame/game.dart';
 
-import 'src/components/background.dart';
 import 'src/utils.dart/app_config.dart';
 import 'src/overlays/game_over.dart';
 import 'src/overlays/game.dart';
@@ -15,7 +14,6 @@ class RiverWarrior extends FlameGame with SingleGameInstance {
 
   @override
   void onLoad() async {
-    final background = Background();
     router = RouterComponent(initialRoute: 'home', routes: {
       'home': Route(HomePage.new),
       'game-page': Route(GamePage.new),
@@ -24,7 +22,7 @@ class RiverWarrior extends FlameGame with SingleGameInstance {
     });
     images.loadAllImages();
 
-    addAll([background, router]);
+    addAll([router]);
 
     super.onLoad();
   }

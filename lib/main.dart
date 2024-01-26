@@ -4,6 +4,7 @@ import 'package:flame/game.dart';
 
 import 'river_warrior.dart';
 
+// TODO: Add support for desktops → flutter create --platforms=windows,macos,linux .
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Flame.device.fullScreen();

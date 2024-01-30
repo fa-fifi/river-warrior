@@ -1,7 +1,8 @@
 import 'package:flame/components.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:river_warrior/river_warrior.dart';
-import 'package:river_warrior/src/components/simple_button.dart';
+
+import '../../river_warrior.dart';
+import 'simple_button.dart';
 
 class BackButton extends SimpleButton with HasGameReference<RiverWarrior> {
   BackButton({VoidCallback? onPressed})

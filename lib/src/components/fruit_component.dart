@@ -5,10 +5,10 @@ import 'package:flame/image_composition.dart' as composition;
 import 'package:flutter/material.dart';
 
 import '../models/rock.dart';
-import '../utils/constants.dart';
-import '../utils/helpers.dart';
 import '../models/throwable.dart';
 import '../overlays/game.dart';
+import '../utils/constants.dart';
+import '../utils/helpers.dart';
 
 class FruitComponent extends SpriteComponent {
   Vector2 velocity;

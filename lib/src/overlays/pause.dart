@@ -3,7 +3,8 @@ import 'package:flame/effects.dart';
 import 'package:flame/events.dart';
 import 'package:flame/game.dart' hide Game;
 import 'package:flame/rendering.dart';
-import 'package:river_warrior/river_warrior.dart';
+
+import '../../river_warrior.dart';
 
 class PauseRoute extends Route {
   PauseRoute() : super(PausePage.new, transparent: true);

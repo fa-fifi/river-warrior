@@ -1,6 +1,7 @@
 import 'package:flame/components.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:river_warrior/river_warrior.dart';
+
+import '../../river_warrior.dart';
 import 'simple_button.dart';
 
 class PauseButton extends SimpleButton with HasGameReference<RiverWarrior> {

@@ -3,16 +3,16 @@ import 'dart:math';
 import 'package:flame/components.dart';
 import 'package:flame/events.dart';
 import 'package:flame/extensions.dart';
-import 'package:river_warrior/river_warrior.dart';
-import 'package:river_warrior/src/components/back_button.dart';
-import 'package:river_warrior/src/components/dojo.dart';
-import 'package:river_warrior/src/components/pause_button.dart';
-import 'package:river_warrior/src/utils/constants.dart';
 
+import '../../river_warrior.dart';
+import '../components/back_button.dart';
+import '../components/dojo.dart';
 import '../components/fruit_component.dart';
+import '../components/pause_button.dart';
 import '../models/plastic.dart';
 import '../models/rock.dart';
 import '../models/throwable.dart';
+import '../utils/constants.dart';
 
 class GamePage extends Dojo with HasGameReference<RiverWarrior> {
   final Random random = Random();

@@ -2,8 +2,7 @@ import 'package:flame/components.dart';
 import 'package:flame/events.dart';
 import 'package:flutter/material.dart';
 
-
-class RoundedButton extends PositionComponent with TapCallbacks{
+class RoundedButton extends PositionComponent with TapCallbacks {
   final String text;
   final VoidCallback onPressed;
   final TextPainter _textDrawable;
@@ -12,19 +11,19 @@ class RoundedButton extends PositionComponent with TapCallbacks{
   late final Paint _borderPaint;
   late final Paint _bgPaint;
 
-  RoundedButton({
-    required this.text,
-    required this.onPressed,
-    required Color color,
-    required Color borderColor,
-    super.anchor = Anchor.center
-})  : _textDrawable = TextPaint(
-    style: const TextStyle(
-      fontSize: 20,
-      color: Color(0xFF000000),
-      fontWeight: FontWeight.w800,
-    ),
-  ).toTextPainter(text) {
+  RoundedButton(
+      {required this.text,
+      required this.onPressed,
+      required Color color,
+      required Color borderColor,
+      super.anchor = Anchor.center})
+      : _textDrawable = TextPaint(
+          style: const TextStyle(
+            fontSize: 20,
+            color: Color(0xFF000000),
+            fontWeight: FontWeight.w800,
+          ),
+        ).toTextPainter(text) {
     size = Vector2(150, 40);
     _textOffset = Offset(
       (size.x - _textDrawable.width) / 2,

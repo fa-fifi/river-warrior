@@ -1,10 +1,11 @@
 import 'package:flame/components.dart';
 import 'package:flutter/material.dart';
 import 'package:river_warrior/river_warrior.dart';
+import 'package:river_warrior/src/components/dojo.dart';
 
 import '../components/rounded_button.dart';
 
-class HomePage extends Component with HasGameReference<RiverWarrior> {
+class HomePage extends Dojo with HasGameReference<RiverWarrior> {
   late final RoundedButton _button1;
 
   @override

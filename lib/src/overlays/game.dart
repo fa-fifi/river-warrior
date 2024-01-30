@@ -5,16 +5,16 @@ import 'package:flame/events.dart';
 import 'package:flame/extensions.dart';
 import 'package:river_warrior/river_warrior.dart';
 import 'package:river_warrior/src/components/back_button.dart';
+import 'package:river_warrior/src/components/dojo.dart';
 import 'package:river_warrior/src/components/pause_button.dart';
-import 'package:river_warrior/src/utils.dart/app_config.dart';
+import 'package:river_warrior/src/utils/constants.dart';
 
 import '../components/fruit_component.dart';
 import '../models/plastic.dart';
 import '../models/rock.dart';
 import '../models/throwable.dart';
 
-class GamePage extends Component
-    with DragCallbacks, HasGameReference<RiverWarrior> {
+class GamePage extends Dojo with HasGameReference<RiverWarrior> {
   final Random random = Random();
   late List<double> fruitsTime;
   late double time, countDown;
@@ -110,9 +110,9 @@ class GamePage extends Component
         add(FruitComponent(
           this,
           fruitPosition,
-          acceleration: AppConfig.acceleration,
+          acceleration: acceleration,
           fruit: randFruit,
-          size: AppConfig.shapeSize,
+          size: shapeSize,
           image: game.images.fromCache(randFruit.image),
           pageSize: gameSize,
           velocity: velocity,
@@ -129,10 +129,10 @@ class GamePage extends Component
   void onDragUpdate(DragUpdateEvent event) {
     super.onDragUpdate(event);
 
-    componentsAtPoint(event.canvasPosition).forEach((element) {
+    componentsAtPoint(event.canvasStartPosition).forEach((element) {
       if (element is FruitComponent) {
         if (element.canDragOnShape) {
-          element.touchAtPoint(event.canvasPosition);
+          element.touchAtPoint(event.canvasStartPosition);
         }
       }
     });

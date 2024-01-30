@@ -5,8 +5,8 @@ import 'package:flame/image_composition.dart' as composition;
 import 'package:flutter/material.dart';
 
 import '../models/rock.dart';
-import '../utils.dart/app_config.dart';
-import '../utils.dart/utils.dart';
+import '../utils/constants.dart';
+import '../utils/helpers.dart';
 import '../models/throwable.dart';
 import '../overlays/game.dart';
 
@@ -53,12 +53,12 @@ class FruitComponent extends SpriteComponent {
     angle += .5 * dt;
     angle %= 2 * pi;
 
-    position += Vector2(
-        velocity.x, -(velocity.y * dt - .5 * AppConfig.gravity * dt * dt));
+    position +=
+        Vector2(velocity.x, -(velocity.y * dt - .5 * gravity * dt * dt));
 
-    velocity.y += (AppConfig.acceleration + AppConfig.gravity) * dt;
+    velocity.y += (acceleration + gravity) * dt;
 
-    if ((position.y - AppConfig.objSize) > pageSize.y) {
+    if ((position.y - objSize) > pageSize.y) {
       removeFromParent();
 
       if (!divided && fruit is! Rock) {
@@ -77,8 +77,8 @@ class FruitComponent extends SpriteComponent {
     }
 
     // angleOfTouchPoint
-    final a = Utils.getAngleOfTouchPont(
-        center: position, initAngle: angle, touch: vector2);
+    final a =
+        getAngleOfTouchPont(center: position, initAngle: angle, touch: vector2);
 
     if (a < 45 || (a > 135 && a < 225) || a > 315) {
       final dividedImage1 = composition.ImageComposition()

@@ -1,46 +1,55 @@
-import 'dart:math';
-
 import 'package:flame/components.dart';
-import 'package:flutter/rendering.dart';
+import 'package:flame/extensions.dart';
+import 'package:flutter/material.dart';
+import 'package:river_warrior/river_warrior.dart';
+import 'package:river_warrior/src/utils/constants.dart';
 
-class Blade extends Component {
-  Blade(Vector2 origin)
-      : _paths = [Path()..moveTo(origin.x, origin.y)],
-        _opacities = [1],
-        _lastPoint = origin.clone(),
-        _color =
-            HSLColor.fromAHSL(1, random.nextDouble() * 360, 1, 0.8).toColor();
+class Blade extends Component with HasGameReference<RiverWarrior> {
+  final Vector2 origin;
+  final int width;
 
-  final List<Path> _paths;
-  final List<double> _opacities;
-  Color _color;
-  late final _linePaint = Paint()..style = PaintingStyle.stroke;
-  late final _circlePaint = Paint()..color = _color;
+  Blade(this.origin, {this.width = 15});
+
+  late final _paths = <Path>[Path()..moveTo(origin.x, origin.y)];
+  final _opacities = <double>[1];
+  late final _lastPoint = origin;
   bool _released = false;
   double _timer = 0;
   final _vanishInterval = 0.01;
-  final Vector2 _lastPoint;
-
-  static final random = Random();
-  static const lineWidth = 10.0;
 
   @override
   void render(Canvas canvas) {
     assert(_paths.length == _opacities.length);
+
+    final glowPaint = Paint()..style = PaintingStyle.stroke;
+    final outlinePaint = Paint()..style = PaintingStyle.stroke;
+    final linePaint = Paint()..style = PaintingStyle.stroke;
+
     for (var i = 0; i < _paths.length; i++) {
       final path = _paths[i];
       final opacity = _opacities[i];
       if (opacity > 0) {
-        _linePaint.color = _color.withOpacity(opacity);
-        _linePaint.strokeWidth = lineWidth * opacity;
-        canvas.drawPath(path, _linePaint);
+        if (game.bladeColor == gold) {
+          glowPaint
+            ..color = game.bladeColor.brighten(0.1).withOpacity(opacity)
+            ..strokeWidth = width * opacity + 4
+            ..maskFilter = const MaskFilter.blur(BlurStyle.normal, 5)
+            ..strokeJoin = StrokeJoin.bevel;
+          canvas.drawPath(path, glowPaint);
+        }
+        outlinePaint
+          ..color = game.bladeColor.darken(0.3).withOpacity(opacity)
+          ..strokeWidth = width * opacity + 2
+          ..strokeJoin = StrokeJoin.bevel;
+        canvas.drawPath(path, outlinePaint);
+        linePaint
+          ..color = game.bladeColor.withOpacity(opacity)
+          ..strokeWidth = width * opacity
+          ..strokeJoin = StrokeJoin.bevel
+          ..strokeCap = StrokeCap.round;
+        canvas.drawPath(path, linePaint);
       }
     }
-    canvas.drawCircle(
-      _lastPoint.toOffset(),
-      (lineWidth - 2) * _opacities.last + 2,
-      _circlePaint,
-    );
   }
 
   @override
@@ -50,34 +59,23 @@ class Blade extends Component {
     while (_timer > _vanishInterval) {
       _timer -= _vanishInterval;
       for (var i = 0; i < _paths.length; i++) {
-        _opacities[i] -= 0.01;
-        if (_opacities[i] <= 0) {
-          _paths[i].reset();
-        }
+        _opacities[i] -= 0.1;
       }
       if (!_released) {
         _paths.add(Path()..moveTo(_lastPoint.x, _lastPoint.y));
         _opacities.add(1);
       }
     }
-    if (_opacities.last < 0) {
-      removeFromParent();
-    }
+    if (_opacities.last <= 0) removeFromParent();
   }
 
   void addPoint(Vector2 point) {
-    if (!point.x.isNaN) {
-      for (final path in _paths) {
-        path.lineTo(point.x, point.y);
-      }
-      _lastPoint.setFrom(point);
+    if (point.x.isNaN) return;
+    for (final path in _paths) {
+      path.lineTo(point.x, point.y);
     }
+    _lastPoint.setFrom(point);
   }
 
   void end() => _released = true;
-
-  void cancel() {
-    _released = true;
-    _color = const Color(0xFFFFFFFF);
-  }
 }

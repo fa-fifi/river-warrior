@@ -1,41 +1,40 @@
 import 'dart:math';
 
 import 'package:flame/game.dart';
+import 'package:flutter/material.dart' hide Route;
 
-import 'src/utils.dart/app_config.dart';
+import 'src/utils/constants.dart';
 import 'src/overlays/game_over.dart';
 import 'src/overlays/game.dart';
 import 'src/overlays/home.dart';
 import 'src/overlays/pause.dart';
 
 class RiverWarrior extends FlameGame with SingleGameInstance {
-  late final RouterComponent router;
+  // Routes
+  final router = RouterComponent(initialRoute: 'home', routes: {
+    'home': Route(HomePage.new),
+    'game-page': Route(GamePage.new),
+    'pause': PauseRoute(),
+    'game-over': GameOverRoute(),
+  });
+
+  // Variables
   late double maxVerticalVelocity;
+
+  // Controllers
+  Color bladeColor = Colors.white;
 
   @override
   void onLoad() async {
-    router = RouterComponent(initialRoute: 'home', routes: {
-      'home': Route(HomePage.new),
-      'game-page': Route(GamePage.new),
-      'pause': PauseRoute(),
-      'game-over': GameOverRoute()
-    });
     images.loadAllImages();
-
     addAll([router]);
-
     super.onLoad();
   }
 
   @override
   void onGameResize(Vector2 size) {
+    maxVerticalVelocity =
+        sqrt(2 * (gravity.abs() + acceleration.abs()) * (size.y - objSize * 2));
     super.onGameResize(size);
-    getMaxVerticalVelocity(size);
-  }
-
-  void getMaxVerticalVelocity(Vector2 size) {
-    maxVerticalVelocity = sqrt(2 *
-        (AppConfig.gravity.abs() + AppConfig.acceleration.abs()) *
-        (size.y - AppConfig.objSize * 2));
   }
 }

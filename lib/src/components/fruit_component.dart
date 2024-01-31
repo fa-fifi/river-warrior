@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 
 import '../models/rock.dart';
 import '../models/throwable.dart';
-import '../overlays/game.dart';
+import '../pages/game.dart';
 import '../utils/constants.dart';
 import '../utils/helpers.dart';
 

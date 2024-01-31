@@ -3,17 +3,17 @@ import 'dart:math';
 import 'package:flame/game.dart';
 import 'package:flutter/material.dart' hide Route;
 
-import 'src/overlays/game.dart';
-import 'src/overlays/game_over.dart';
-import 'src/overlays/home.dart';
-import 'src/overlays/pause.dart';
+import 'src/pages/game.dart';
+import 'src/pages/game_over.dart';
+import 'src/pages/home.dart';
+import 'src/pages/pause.dart';
 import 'src/utils/constants.dart';
 
 class RiverWarrior extends FlameGame with SingleGameInstance {
   // Routes
   final router = RouterComponent(initialRoute: 'home', routes: {
     'home': Route(HomePage.new),
-    'game-page': Route(GamePage.new),
+    'game': Route(GamePage.new),
     'pause': PauseRoute(),
     'game-over': GameOverRoute(),
   });

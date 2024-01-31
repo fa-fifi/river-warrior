@@ -14,7 +14,7 @@ class HomePage extends Dojo with HasGameReference<RiverWarrior> {
 
     add(
       _button1 = RoundedButton(
-        text: "Start",
+        text: 'Start',
         onPressed: () {
           game.router.pushNamed('game-page');
         },

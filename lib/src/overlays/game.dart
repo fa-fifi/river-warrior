@@ -96,13 +96,13 @@ class GamePage extends Dojo with HasGameReference<RiverWarrior> {
         Vector2 velocity = Vector2(0, game.maxVerticalVelocity);
 
         final List<Throwable> fruits = [
-          const Plastic(image: "apple.png"),
-          const Plastic(image: "banana.png"),
-          const Plastic(image: "kiwi.png"),
-          const Plastic(image: "orange.png"),
-          const Plastic(image: "peach.png"),
-          const Plastic(image: "pineapple.png"),
-          const Rock(image: "bomb.png"),
+          const Plastic(image: 'apple.png'),
+          const Plastic(image: 'banana.png'),
+          const Plastic(image: 'kiwi.png'),
+          const Plastic(image: 'orange.png'),
+          const Plastic(image: 'peach.png'),
+          const Plastic(image: 'pineapple.png'),
+          const Rock(image: 'bomb.png'),
         ];
 
         final randFruit = fruits.random();

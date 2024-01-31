@@ -3,51 +3,53 @@ import 'package:flame/extensions.dart';
 import 'package:flutter/material.dart';
 
 import '../../river_warrior.dart';
-import '../utils/constants.dart';
 
 class Blade extends Component with HasGameReference<RiverWarrior> {
   final Vector2 origin;
   final int width;
+  final bool hasGlow;
+  final double vanishInterval;
 
-  Blade(this.origin, {this.width = 15});
+  Blade(this.origin,
+      {this.width = 15, this.hasGlow = false, this.vanishInterval = 0.01});
 
   late final _paths = <Path>[Path()..moveTo(origin.x, origin.y)];
   final _opacities = <double>[1];
   late final _lastPoint = origin;
   bool _released = false;
   double _timer = 0;
-  final _vanishInterval = 0.01;
 
   @override
   void render(Canvas canvas) {
     assert(_paths.length == _opacities.length);
 
-    final glowPaint = Paint()..style = PaintingStyle.stroke;
-    final outlinePaint = Paint()..style = PaintingStyle.stroke;
-    final linePaint = Paint()..style = PaintingStyle.stroke;
-
     for (var i = 0; i < _paths.length; i++) {
       final path = _paths[i];
       final opacity = _opacities[i];
+
       if (opacity > 0) {
-        if (game.bladeColor == gold) {
-          glowPaint
+        if (hasGlow) {
+          final glowPaint = Paint()
+            ..style = PaintingStyle.stroke
             ..color = game.bladeColor.brighten(0.1).withOpacity(opacity)
             ..strokeWidth = width * opacity + 4
-            ..maskFilter = const MaskFilter.blur(BlurStyle.normal, 5)
-            ..strokeJoin = StrokeJoin.bevel;
+            ..maskFilter = const MaskFilter.blur(BlurStyle.normal, 5);
+
           canvas.drawPath(path, glowPaint);
         }
-        outlinePaint
+        final outlinePaint = Paint()
+          ..style = PaintingStyle.stroke
           ..color = game.bladeColor.darken(0.3).withOpacity(opacity)
-          ..strokeWidth = width * opacity + 2
-          ..strokeJoin = StrokeJoin.bevel;
+          ..strokeWidth = width * opacity + 2;
+
         canvas.drawPath(path, outlinePaint);
-        linePaint
+
+        final linePaint = Paint()
+          ..style = PaintingStyle.stroke
           ..color = game.bladeColor.withOpacity(opacity)
           ..strokeWidth = width * opacity
-          ..strokeJoin = StrokeJoin.bevel
           ..strokeCap = StrokeCap.round;
+
         canvas.drawPath(path, linePaint);
       }
     }
@@ -56,9 +58,10 @@ class Blade extends Component with HasGameReference<RiverWarrior> {
   @override
   void update(double dt) {
     assert(_paths.length == _opacities.length);
+
     _timer += dt;
-    while (_timer > _vanishInterval) {
-      _timer -= _vanishInterval;
+    while (_timer > vanishInterval) {
+      _timer -= vanishInterval;
       for (var i = 0; i < _paths.length; i++) {
         _opacities[i] -= 0.1;
       }

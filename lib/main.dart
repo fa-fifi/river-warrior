@@ -26,7 +26,8 @@ void main() async {
     backgroundBuilder: (context) => Container(
       decoration: const BoxDecoration(
         image: DecorationImage(
-            image: AssetImage('assets/images/bg.png'), fit: BoxFit.cover),
+            image: AssetImage('assets/images/others/background.png'),
+            fit: BoxFit.cover),
       ),
     ),
   ));

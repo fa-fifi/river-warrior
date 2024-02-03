@@ -5,10 +5,9 @@ import 'package:flame/events.dart';
 import 'package:flame/extensions.dart';
 
 import '../../river_warrior.dart';
-import '../components/back_button.dart';
+import '../components/button.dart';
 import '../components/dojo.dart';
 import '../components/fruit_component.dart';
-import '../components/pause_button.dart';
 import '../models/plastic.dart';
 import '../models/rock.dart';
 import '../models/throwable.dart';
@@ -46,11 +45,19 @@ class GamePage extends Dojo with HasGameReference<RiverWarrior> {
     }
 
     addAll([
-      BackButton(onPressed: () {
-        removeAll(children);
-        game.router.pop();
-      }),
-      PauseButton(),
+      Button(
+          id: 4,
+          position: Vector2.all(30),
+          size: Vector2.all(50),
+          onPressed: () {
+            removeAll(children);
+            game.router.pop();
+          }),
+      Button(
+          id: 0,
+          position: Vector2(85, 30),
+          size: Vector2.all(50),
+          onPressed: () => game.router.pushNamed('pause')),
       _countdownTextComponent = TextComponent(
         text: '${countDown.toInt() + 1}',
         size: Vector2.all(50),

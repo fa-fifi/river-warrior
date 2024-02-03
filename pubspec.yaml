@@ -28,7 +28,6 @@ flutter:
   assets:
    - assets/
    - assets/images/
-   - assets/images/others/
    - assets/images/throwables/
 
 flutter_launcher_icons:

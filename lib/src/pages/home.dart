@@ -8,7 +8,7 @@ class HomePage extends Dojo with HasGameReference<RiverWarrior> {
   late final padding = game.size.y / 15;
 
   late final title = SpriteComponent.fromImage(
-      game.images.fromCache('others/title.png'),
+      game.images.fromCache('title.png'),
       anchor: Anchor.topCenter,
       priority: 1);
 

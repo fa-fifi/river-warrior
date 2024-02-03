@@ -29,6 +29,10 @@ flutter:
    - assets/
    - assets/images/
    - assets/images/throwables/
+  fonts:
+    - family: Knewave
+      fonts:
+        - asset: assets/fonts/Knewave-Regular.ttf
 
 flutter_launcher_icons:
   android: "launcher_icon"

@@ -6,13 +6,11 @@ import 'package:flame/text.dart';
 
 class OutlinedText extends TextComponent {
   final double fontSize;
-  final double thickness;
   final Color? textColor;
   final Color? outlineColor;
 
   OutlinedText(
       {this.fontSize = 50,
-      this.thickness = 1.5,
       this.textColor,
       this.outlineColor,
       required super.text,
@@ -28,16 +26,16 @@ class OutlinedText extends TextComponent {
               fontSize: fontSize,
               shadows: [
                 Shadow(
-                    offset: Offset(-thickness, -thickness),
+                    offset: Offset(-fontSize / 25, -fontSize / 25),
                     color: outlineColor ?? BasicPalette.black.color),
                 Shadow(
-                    offset: Offset(thickness, -thickness),
+                    offset: Offset(fontSize / 25, -fontSize / 25),
                     color: outlineColor ?? BasicPalette.black.color),
                 Shadow(
-                    offset: Offset(thickness, thickness),
+                    offset: Offset(fontSize / 25, fontSize / 25),
                     color: outlineColor ?? BasicPalette.black.color),
                 Shadow(
-                    offset: Offset(-thickness, thickness),
+                    offset: Offset(-fontSize / 25, fontSize / 25),
                     color: outlineColor ?? BasicPalette.black.color),
               ],
               color: textColor ?? BasicPalette.white.color,

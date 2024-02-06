@@ -16,8 +16,6 @@ class FruitComponent extends SpriteComponent {
   final double acceleration;
   final Throwable fruit;
   final composition.Image image;
-  late Vector2 _initPosition;
-  bool canDragOnShape = false;
   GamePage parentComponent;
   bool divided;
 
@@ -39,17 +37,11 @@ class FruitComponent extends SpriteComponent {
           size: size,
           anchor: anchor ?? Anchor.center,
           angle: angle,
-        ) {
-    _initPosition = p;
-    canDragOnShape = false;
-  }
+        );
 
   @override
   void update(double dt) {
     super.update(dt);
-    if (_initPosition.distanceTo(position) > 60) {
-      canDragOnShape = true;
-    }
     angle += .5 * dt;
     angle %= 2 * pi;
 
@@ -68,7 +60,7 @@ class FruitComponent extends SpriteComponent {
   }
 
   void touchAtPoint(Vector2 vector2) {
-    if (divided && !canDragOnShape) {
+    if (divided) {
       return;
     }
     if (fruit is Rock) {

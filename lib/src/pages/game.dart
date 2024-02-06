@@ -101,16 +101,22 @@ class GamePage extends Dojo with HasGameReference<RiverWarrior> {
         Vector2 velocity = Vector2(0, game.maxVerticalVelocity);
 
         final List<Throwable> fruits = [
-          const Plastic(image: 'throwables/apple.png'),
-          const Plastic(image: 'throwables/banana.png'),
-          const Plastic(image: 'throwables/kiwi.png'),
-          const Plastic(image: 'throwables/orange.png'),
-          const Plastic(image: 'throwables/peach.png'),
-          const Plastic(image: 'throwables/pineapple.png'),
-          const Rock(image: 'throwables/bomb.png'),
+          const Plastic(image: 'fork.png'),
+          const Plastic(image: 'spoon.png'),
+          const Plastic(image: 'cup.png'),
+          const Plastic(image: 'straw.png'),
+          const Plastic(image: 'cup + straw.png'),
+          const Plastic(image: 'container.png'),
+          const Plastic(image: 'rings.png'),
+          const Plastic(image: 'plastic.png'),
+          const Rock(image: 'sandstone.png'),
+          const Rock(image: 'sandstone.png'),
+          const Rock(image: 'coal.png'),
         ];
 
         final randFruit = fruits.random();
+
+        final shapeSize = Vector2.all(game.size.y / 5);
 
         add(FruitComponent(
           this,
@@ -136,9 +142,7 @@ class GamePage extends Dojo with HasGameReference<RiverWarrior> {
 
     componentsAtPoint(event.canvasStartPosition).forEach((element) {
       if (element is FruitComponent) {
-        if (element.canDragOnShape) {
-          element.touchAtPoint(event.canvasStartPosition);
-        }
+        element.touchAtPoint(event.canvasStartPosition);
       }
     });
   }

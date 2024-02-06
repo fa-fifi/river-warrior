@@ -13,7 +13,7 @@ class HomePage extends Dojo with HasGameReference<RiverWarrior> {
       priority: 1);
 
   late final playButton = SpriteComponent.fromImage(
-      game.images.fromCache('cut_to_start.png'),
+      game.images.fromCache('cup + straw.png'),
       anchor: Anchor.center,
       children: [
         RotateEffect.to(-0.1,
@@ -48,19 +48,14 @@ class HomePage extends Dojo with HasGameReference<RiverWarrior> {
   @override
   void onGameResize(Vector2 size) {
     super.onGameResize(size);
-    const maxWidth = 500.0;
-    const maxHeight = 100.0;
-    final width = size.x / 2;
-    final height = width / maxWidth * maxHeight;
 
     title
       ..position = Vector2(size.x / 2, game.size.y / 30)
-      ..size = Vector2(width > maxWidth ? maxWidth : width,
-          height > maxHeight ? maxHeight : height);
+      ..size = Vector2(size.y / 7 * 5, size.y / 7);
 
     playButton
       ..position = size / 2
-      ..size = Vector2(size.y * 0.45 * 0.6, size.y * 0.45);
+      ..size = Vector2(size.y * 0.45, size.y * 0.45);
 
     starButton.position =
         Vector2(size.x / 2 - starButton.size.x, size.y - starButton.size.y);

@@ -29,7 +29,6 @@ flutter:
   assets:
    - assets/
    - assets/images/
-   - assets/images/throwables/
   fonts:
     - family: Knewave
       fonts:

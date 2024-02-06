@@ -3,21 +3,23 @@ import 'package:flame/events.dart';
 import 'package:flame/sprite.dart';
 import 'package:flutter/material.dart';
 
-class Button extends PositionComponent with HasGameReference, TapCallbacks {
+import '../../river_warrior.dart';
+
+class Button extends PositionComponent
+    with HasGameReference<RiverWarrior>, TapCallbacks {
   final int id;
   final VoidCallback? onPressed;
-  final double scaleFactor;
 
   Button(
       {required this.id,
       this.onPressed,
-      this.scaleFactor = 0.95,
       super.position,
-      super.size,
       super.scale,
       super.angle,
       super.priority})
-      : super(anchor: Anchor.center);
+      : super(anchor: Anchor.center, size: Vector2.all(40));
+
+  final double scaleFactor = 0.95;
 
   @override
   @mustCallSuper

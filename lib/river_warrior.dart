@@ -1,7 +1,7 @@
 import 'dart:math';
 
 import 'package:flame/game.dart';
-import 'package:flutter/material.dart' hide Route;
+import 'package:flame/palette.dart';
 
 import 'src/pages/game.dart';
 import 'src/pages/game_over.dart';
@@ -12,7 +12,7 @@ import 'src/utils/constants.dart';
 class RiverWarrior extends FlameGame with SingleGameInstance {
   late final RouterComponent router;
   late double maxVerticalVelocity;
-  Color bladeColor = Colors.white;
+  Color bladeColor = BasicPalette.white.color;
 
   @override
   Future<void> onLoad() async {

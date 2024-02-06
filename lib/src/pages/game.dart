@@ -48,7 +48,6 @@ class GamePage extends Dojo with HasGameReference<RiverWarrior> {
       Button(
           id: 4,
           position: Vector2.all(30),
-          size: Vector2.all(50),
           onPressed: () {
             removeAll(children);
             game.router.pop();
@@ -56,7 +55,6 @@ class GamePage extends Dojo with HasGameReference<RiverWarrior> {
       Button(
           id: 0,
           position: Vector2(85, 30),
-          size: Vector2.all(50),
           onPressed: () => game.router.pushNamed('pause')),
       _countdownTextComponent = TextComponent(
         text: '${countDown.toInt() + 1}',

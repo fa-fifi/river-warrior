@@ -17,7 +17,7 @@ class Button extends PositionComponent
       super.scale,
       super.angle,
       super.priority})
-      : super(anchor: Anchor.center, size: Vector2.all(40));
+      : super(anchor: Anchor.center);
 
   final double scaleFactor = 0.95;
 
@@ -51,5 +51,14 @@ class Button extends PositionComponent
   void onTapCancel(TapCancelEvent event) {
     scale = Vector2.all(1 / scaleFactor);
     super.onTapCancel(event);
+  }
+
+  @override
+  void onGameResize(Vector2 size) {
+    this.size = Vector2.all((size.y / 100).roundToDouble() * 10);
+    children
+        .whereType<SpriteComponent>()
+        .forEach((component) => component.size = this.size);
+    super.onGameResize(size);
   }
 }

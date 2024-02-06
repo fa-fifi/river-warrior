@@ -47,6 +47,7 @@ class HomePage extends Dojo with HasGameReference<RiverWarrior> {
 
   @override
   void onGameResize(Vector2 size) {
+    super.onGameResize(size);
     const maxWidth = 500.0;
     const maxHeight = 100.0;
     final width = size.x / 2;
@@ -72,7 +73,5 @@ class HomePage extends Dojo with HasGameReference<RiverWarrior> {
 
     infoButton.position =
         Vector2(size.x / 2 + starButton.size.x * 3, starButton.position.y);
-
-    super.onGameResize(size);
   }
 }

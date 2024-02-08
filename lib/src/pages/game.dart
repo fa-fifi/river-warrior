@@ -105,7 +105,7 @@ class GamePage extends Dojo with HasGameReference<RiverWarrior> {
           const Plastic(image: 'spoon.png'),
           const Plastic(image: 'cup.png'),
           const Plastic(image: 'straw.png'),
-          const Plastic(image: 'cup + straw.png'),
+          const Plastic(image: 'drink.png'),
           const Plastic(image: 'container.png'),
           const Plastic(image: 'rings.png'),
           const Plastic(image: 'plastic.png'),

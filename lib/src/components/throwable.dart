@@ -4,8 +4,9 @@ import 'package:flame/components.dart';
 import 'package:flame/image_composition.dart' as composition;
 import 'package:flutter/material.dart';
 
+import '../models/coin.dart';
 import '../models/rock.dart';
-import '../models/plastic.dart';
+import '../models/trash.dart';
 import '../pages/game.dart';
 import '../utils/constants.dart';
 import '../utils/helpers.dart';
@@ -13,14 +14,14 @@ import '../utils/helpers.dart';
 class Throwable extends SpriteComponent
     with ParentIsA<GamePage>, HasGameReference {
   Vector2 velocity;
-  final Plastic litter;
+  final Trash trash;
   bool divided;
 
   Throwable(super.image,
       {super.position,
       super.size,
       required this.velocity,
-      required this.litter,
+      required this.trash,
       super.angle,
       super.anchor = Anchor.center,
       this.divided = false})
@@ -39,13 +40,13 @@ class Throwable extends SpriteComponent
 
     if ((position.y - objSize) > game.size.y) {
       removeFromParent();
-      if (!divided && litter is! Rock) parent.addMistake();
+      if (!divided && trash is! Rock && trash is! Coin) parent.addMistake();
     }
   }
 
   void touchAtPoint(Vector2 vector2) {
     if (divided) return;
-    if (litter is Rock) {
+    if (trash is Rock) {
       parent.gameOver();
       return;
     }
@@ -67,7 +68,7 @@ class Throwable extends SpriteComponent
         Throwable(dividedImage2.composeSync(),
             position: center -
                 Vector2(size.x / 2 * cos(angle), size.x / 2 * sin(angle)),
-            litter: litter,
+            trash: trash,
             velocity: Vector2(velocity.x - 2, velocity.y),
             divided: true,
             size: Vector2(size.x, size.y / 2),
@@ -80,7 +81,7 @@ class Throwable extends SpriteComponent
             size: Vector2(size.x, size.y / 2),
             angle: angle,
             anchor: Anchor.center,
-            litter: litter,
+            trash: trash,
             velocity: Vector2(velocity.x + 2, velocity.y),
             divided: true)
       ]);
@@ -101,7 +102,7 @@ class Throwable extends SpriteComponent
             size: Vector2(size.x / 2, size.y),
             angle: angle,
             anchor: Anchor.center,
-            litter: litter,
+            trash: trash,
             velocity: Vector2(velocity.x - 2, velocity.y),
             divided: true),
         Throwable(dividedImage2.composeSync(),
@@ -111,13 +112,13 @@ class Throwable extends SpriteComponent
             size: Vector2(size.x / 2, size.y),
             angle: angle,
             anchor: Anchor.topLeft,
-            litter: litter,
+            trash: trash,
             velocity: Vector2(velocity.x + 2, velocity.y),
             divided: true)
       ]);
     }
 
-    parent.addScore();
+    parent.addScore(trash.point);
     removeFromParent();
   }
 }

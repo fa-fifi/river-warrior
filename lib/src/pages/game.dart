@@ -8,8 +8,10 @@ import '../../river_warrior.dart';
 import '../components/button.dart';
 import '../components/dojo.dart';
 import '../components/throwable.dart';
+import '../models/coin.dart';
 import '../models/plastic.dart';
 import '../models/rock.dart';
+import '../models/trash.dart';
 
 class GamePage extends Dojo with HasGameReference<RiverWarrior> {
   late List<double> fruitsTime;
@@ -32,7 +34,7 @@ class GamePage extends Dojo with HasGameReference<RiverWarrior> {
     _countdownFinished = false;
 
     double initTime = 0;
-    for (int i = 0; i < 40; i++) {
+    for (int i = 0; i < 100; i++) {
       if (i != 0) initTime = fruitsTime.last;
       final millySecondTime = Random().nextInt(100) / 100;
       final componentTime = Random().nextInt(1) + millySecondTime + initTime;
@@ -95,27 +97,30 @@ class GamePage extends Dojo with HasGameReference<RiverWarrior> {
         Vector2 fruitPosition = Vector2(posX, gameSize.y);
         Vector2 velocity = Vector2(0, game.maxVerticalVelocity);
 
-        final List<Plastic> fruits = [
-          const Plastic(image: 'fork.png'),
-          const Plastic(image: 'spoon.png'),
-          const Plastic(image: 'cup.png'),
-          const Plastic(image: 'straw.png'),
-          const Plastic(image: 'drink.png'),
-          const Plastic(image: 'container.png'),
-          const Plastic(image: 'rings.png'),
-          const Plastic(image: 'plastic.png'),
-          const Rock(image: 'sandstone.png'),
-          const Rock(image: 'sandstone.png'),
-          const Rock(image: 'coal.png'),
+        final List<Trash> fruits = [
+          const Plastic(image: 'fork'),
+          const Plastic(image: 'spoon'),
+          const Plastic(image: 'cup'),
+          const Plastic(image: 'straw'),
+          const Plastic(image: 'drink'),
+          const Plastic(image: 'container'),
+          const Plastic(image: 'rings'),
+          const Plastic(image: 'plastic'),
+          Rock(image: 'sandstone', point: -3),
+          Rock(image: 'limestone', point: -6),
+          Rock(image: 'coal', point: -9),
+          Coin(image: 'copper', point: 3),
+          Coin(image: 'silver', point: 6),
+          Coin(image: 'gold', point: 9),
         ];
 
         final randFruit = fruits.random();
 
         final shapeSize = Vector2.all(game.size.y / 5);
 
-        add(Throwable(game.images.fromCache(randFruit.image),
+        add(Throwable(game.images.fromCache('${randFruit.image}.png'),
             position: fruitPosition,
-            litter: randFruit,
+            trash: randFruit,
             size: shapeSize,
             velocity: velocity));
         fruitsTime.remove(element);
@@ -141,8 +146,8 @@ class GamePage extends Dojo with HasGameReference<RiverWarrior> {
     game.router.pushNamed('game-over');
   }
 
-  void addScore() {
-    score++;
+  void addScore(int point) {
+    score = score + point;
     _scoreTextComponent?.text = 'Score: $score';
   }
 

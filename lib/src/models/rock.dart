@@ -1,5 +1,5 @@
-import 'plastic.dart';
+import 'trash.dart';
 
-class Rock extends Plastic {
-  const Rock({required super.image}) : super();
+final class Rock extends Trash {
+  Rock({required super.image, required super.point}) : assert(point.isNegative);
 }

@@ -2,10 +2,10 @@ import 'package:flame/components.dart';
 import 'package:flame/effects.dart';
 import 'package:flame/game.dart' hide Game;
 import 'package:flame/rendering.dart';
-import 'package:river_warrior/src/components/outlined_text.dart';
 
 import '../../river_warrior.dart';
 import '../components/button.dart';
+import '../components/outlined_text.dart';
 import 'game.dart';
 
 class PauseRoute extends Route {

@@ -5,7 +5,7 @@ import 'package:flame/palette.dart';
 import 'package:flame/text.dart';
 
 class OutlinedText extends TextComponent {
-  final double fontSize;
+  double fontSize;
   final Color? textColor;
   final Color? outlineColor;
 
@@ -20,25 +20,37 @@ class OutlinedText extends TextComponent {
       super.anchor,
       super.priority,
       super.children})
-      : super(
-            textRenderer: TextPaint(
-          style: TextStyle(
-              fontSize: fontSize,
-              shadows: [
-                Shadow(
-                    offset: Offset(-fontSize / 25, -fontSize / 25),
-                    color: outlineColor ?? BasicPalette.black.color),
-                Shadow(
-                    offset: Offset(fontSize / 25, -fontSize / 25),
-                    color: outlineColor ?? BasicPalette.black.color),
-                Shadow(
-                    offset: Offset(fontSize / 25, fontSize / 25),
-                    color: outlineColor ?? BasicPalette.black.color),
-                Shadow(
-                    offset: Offset(-fontSize / 25, fontSize / 25),
-                    color: outlineColor ?? BasicPalette.black.color),
-              ],
-              color: textColor ?? BasicPalette.white.color,
-              fontFamily: 'Knewave'),
-        ));
+      : super();
+
+  @override
+  void onGameResize(Vector2 size) {
+    textRenderer = titleRenderer(size);
+    super.onGameResize(size);
+  }
+
+  TextPaint titleRenderer(Vector2 size) {
+    final fontSize = size.y / 8;
+    final offset = fontSize / 25;
+
+    return TextPaint(
+      style: TextStyle(
+          fontSize: fontSize,
+          shadows: [
+            Shadow(
+                offset: Offset(-offset, -offset),
+                color: outlineColor ?? BasicPalette.black.color),
+            Shadow(
+                offset: Offset(offset, -offset),
+                color: outlineColor ?? BasicPalette.black.color),
+            Shadow(
+                offset: Offset(offset, offset),
+                color: outlineColor ?? BasicPalette.black.color),
+            Shadow(
+                offset: Offset(-offset, offset),
+                color: outlineColor ?? BasicPalette.black.color),
+          ],
+          color: textColor ?? BasicPalette.white.color,
+          fontFamily: 'Knewave'),
+    );
+  }
 }

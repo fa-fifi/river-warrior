@@ -11,7 +11,8 @@ import 'src/pages/home.dart';
 import 'src/pages/pause.dart';
 import 'src/utils/constants.dart';
 
-class RiverWarrior extends FlameGame with SingleGameInstance {
+class RiverWarrior extends FlameGame
+    with SingleGameInstance, HasCollisionDetection {
   late final router = RouterComponent(initialRoute: 'home', routes: {
     'home': Route(HomePage.new),
     'game': Route(GamePage.new),
@@ -26,6 +27,7 @@ class RiverWarrior extends FlameGame with SingleGameInstance {
   Future<void> onLoad() async {
     super.onLoad();
     FlameAudio.bgm.initialize();
+    debugMode = kDebugMode;
     if (!kIsWeb) {
       FlameAudio.bgm.play('background-music.mp3', volume: musicVolume);
     }

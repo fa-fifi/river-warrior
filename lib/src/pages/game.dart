@@ -7,14 +7,11 @@ import 'package:flame/extensions.dart';
 import '../../river_warrior.dart';
 import '../components/button.dart';
 import '../components/dojo.dart';
-import '../components/fruit_component.dart';
+import '../components/throwable.dart';
 import '../models/plastic.dart';
 import '../models/rock.dart';
-import '../models/throwable.dart';
-import '../utils/constants.dart';
 
 class GamePage extends Dojo with HasGameReference<RiverWarrior> {
-  final Random random = Random();
   late List<double> fruitsTime;
   late double time, countDown;
   TextComponent? _countdownTextComponent,
@@ -36,11 +33,9 @@ class GamePage extends Dojo with HasGameReference<RiverWarrior> {
 
     double initTime = 0;
     for (int i = 0; i < 40; i++) {
-      if (i != 0) {
-        initTime = fruitsTime.last;
-      }
-      final millySecondTime = random.nextInt(100) / 100;
-      final componentTime = random.nextInt(1) + millySecondTime + initTime;
+      if (i != 0) initTime = fruitsTime.last;
+      final millySecondTime = Random().nextInt(100) / 100;
+      final componentTime = Random().nextInt(1) + millySecondTime + initTime;
       fruitsTime.add(componentTime);
     }
 
@@ -95,12 +90,12 @@ class GamePage extends Dojo with HasGameReference<RiverWarrior> {
       fruitsTime.where((element) => element < time).toList().forEach((element) {
         final gameSize = game.size;
 
-        double posX = random.nextInt(gameSize.x.toInt()).toDouble();
+        double posX = Random().nextInt(gameSize.x.toInt()).toDouble();
 
         Vector2 fruitPosition = Vector2(posX, gameSize.y);
         Vector2 velocity = Vector2(0, game.maxVerticalVelocity);
 
-        final List<Throwable> fruits = [
+        final List<Plastic> fruits = [
           const Plastic(image: 'fork.png'),
           const Plastic(image: 'spoon.png'),
           const Plastic(image: 'cup.png'),
@@ -118,16 +113,11 @@ class GamePage extends Dojo with HasGameReference<RiverWarrior> {
 
         final shapeSize = Vector2.all(game.size.y / 5);
 
-        add(FruitComponent(
-          this,
-          fruitPosition,
-          acceleration: acceleration,
-          fruit: randFruit,
-          size: shapeSize,
-          image: game.images.fromCache(randFruit.image),
-          pageSize: gameSize,
-          velocity: velocity,
-        ));
+        add(Throwable(game.images.fromCache(randFruit.image),
+            position: fruitPosition,
+            litter: randFruit,
+            size: shapeSize,
+            velocity: velocity));
         fruitsTime.remove(element);
       });
     }
@@ -140,9 +130,9 @@ class GamePage extends Dojo with HasGameReference<RiverWarrior> {
   void onDragUpdate(DragUpdateEvent event) {
     super.onDragUpdate(event);
 
-    componentsAtPoint(event.canvasStartPosition).forEach((element) {
-      if (element is FruitComponent) {
-        element.touchAtPoint(event.canvasStartPosition);
+    componentsAtPoint(event.canvasStartPosition).forEach((component) {
+      if (component is Throwable) {
+        component.touchAtPoint(event.canvasStartPosition);
       }
     });
   }

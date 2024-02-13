@@ -1,5 +1,5 @@
-import 'throwable.dart';
+class Plastic {
+  final String image;
 
-class Plastic extends Throwable {
-  const Plastic({required super.image}) : super();
+  const Plastic({required this.image});
 }

@@ -1,5 +1,5 @@
-import 'throwable.dart';
+import 'plastic.dart';
 
-class Rock extends Throwable {
+class Rock extends Plastic {
   const Rock({required super.image}) : super();
 }

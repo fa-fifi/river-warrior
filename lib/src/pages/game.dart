@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:flame/components.dart';
 import 'package:flame/events.dart';
 import 'package:flame/extensions.dart';
+import 'package:river_warrior/src/components/cross.dart';
 import 'package:river_warrior/src/components/outlined_text.dart';
 
 import '../../river_warrior.dart';
@@ -21,20 +22,12 @@ class GamePage extends Dojo with HasGameReference<RiverWarrior> {
   late final currentScoreText = OutlinedText(text: '$currentScore');
   late final highScoreText =
       OutlinedText(text: 'BEST: $highScore', scale: Vector2.all(0.5));
-  late final counterText = OutlinedText(
-      text: 'Mistake: $mistakeCount', position: Vector2(game.size.x - 10, 10));
+  late final mistakeCounter = List<CrossComponent>.generate(game.maxMistake,
+      (i) => CrossComponent(count: i, scale: Vector2.all(1.0 + i / 8)));
 
   late List<double> fruitsTime;
   late double time, countDown;
   int mistakeCount = 0, currentScore = 0, highScore = 0;
-
-  void start() {
-    currentScore = 0;
-    currentScoreText.text = '$currentScore';
-    highScoreText.text = 'BEST: $highScore';
-    mistakeCount = 0;
-    counterText.text = 'Mistake: 0';
-  }
 
   void finish() {
     game.router.pushNamed('game-over');
@@ -49,16 +42,16 @@ class GamePage extends Dojo with HasGameReference<RiverWarrior> {
 
   void addMistake() {
     mistakeCount++;
-    counterText.text = 'Mistake: $mistakeCount';
-    if (mistakeCount >= 3) finish();
+    if (mistakeCount >= game.maxMistake) finish();
   }
 
   @override
   void onMount() {
     super.onMount();
-
-    start();
-
+    currentScore = 0;
+    currentScoreText.text = '$currentScore';
+    highScoreText.text = 'BEST: $highScore';
+    mistakeCount = 0;
     fruitsTime = [];
     countDown = 3;
     time = 0;
@@ -77,7 +70,7 @@ class GamePage extends Dojo with HasGameReference<RiverWarrior> {
   @override
   void onLoad() {
     super.onLoad();
-    addAll([pauseButton, counterText, currentScoreText, highScoreText]);
+    addAll([pauseButton, currentScoreText, highScoreText, ...mistakeCounter]);
   }
 
   @override
@@ -137,7 +130,6 @@ class GamePage extends Dojo with HasGameReference<RiverWarrior> {
   @override
   void onDragUpdate(DragUpdateEvent event) {
     super.onDragUpdate(event);
-
     componentsAtPoint(event.canvasStartPosition).forEach((component) {
       if (component is Throwable) {
         component.touchAtPoint(event.canvasStartPosition);
@@ -154,5 +146,12 @@ class GamePage extends Dojo with HasGameReference<RiverWarrior> {
     currentScoreText.position = Vector2(pauseButton.topLeftPosition.x, 0);
     highScoreText.position =
         Vector2(pauseButton.topLeftPosition.x, currentScoreText.size.y);
+    mistakeCounter.asMap().forEach((index, component) => component
+      ..size = Vector2.all(size.y / 10)
+      ..position = Vector2(
+          size.x -
+              component.size.x * (game.maxMistake - index) -
+              component.size.x / 2,
+          component.size.y / 2));
   }
 }

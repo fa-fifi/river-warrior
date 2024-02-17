@@ -22,6 +22,7 @@ class RiverWarrior extends FlameGame
   late double maxVerticalVelocity;
   double musicVolume = 1;
   Color bladeColor = BasicPalette.white.color;
+  int maxMistake = 3;
 
   @override
   Future<void> onLoad() async {

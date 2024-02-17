@@ -18,39 +18,46 @@ class GamePage extends Dojo with HasGameReference<RiverWarrior> {
   late final pauseButton =
       Button(id: 0, onPressed: () => game.router.pushNamed('pause'));
   late final countdownText = OutlinedText(text: 'Ready', anchor: Anchor.center);
-  late final scoreText = TextComponent(
-      text: 'Score: $score',
-      position: Vector2(game.size.x - 10, counterText.position.y + 40),
-      anchor: Anchor.topRight);
-  late final counterText = TextComponent(
-      text: 'Mistake: $mistakeCount',
-      position: Vector2(game.size.x - 10, 10), // 10 is padding
-      anchor: Anchor.topRight);
+  late final currentScoreText = OutlinedText(text: '$currentScore');
+  late final highScoreText =
+      OutlinedText(text: 'BEST: $highScore', scale: Vector2.all(0.5));
+  late final counterText = OutlinedText(
+      text: 'Mistake: $mistakeCount', position: Vector2(game.size.x - 10, 10));
 
   late List<double> fruitsTime;
   late double time, countDown;
-  int mistakeCount = 0, score = 0;
+  int mistakeCount = 0, currentScore = 0, highScore = 0;
+
+  void start() {
+    currentScore = 0;
+    currentScoreText.text = '$currentScore';
+    highScoreText.text = 'BEST: $highScore';
+    mistakeCount = 0;
+    counterText.text = 'Mistake: 0';
+  }
+
+  void finish() {
+    game.router.pushNamed('game-over');
+    if (currentScore > highScore) highScore = currentScore;
+    isReleased = true;
+  }
 
   void addScore(int point) {
-    score += point;
-    scoreText.text = 'Score: $score';
+    currentScore += point;
+    currentScoreText.text = '$currentScore';
   }
 
   void addMistake() {
     mistakeCount++;
     counterText.text = 'Mistake: $mistakeCount';
-    if (mistakeCount >= 3) game.router.pushNamed('game-over');
+    if (mistakeCount >= 3) finish();
   }
 
   @override
   void onMount() {
     super.onMount();
 
-    mistakeCount = 0;
-    score = 0;
-
-    counterText.text = 'Mistake: 0';
-    scoreText.text = 'Score: 0';
+    start();
 
     fruitsTime = [];
     countDown = 3;
@@ -70,7 +77,7 @@ class GamePage extends Dojo with HasGameReference<RiverWarrior> {
   @override
   void onLoad() {
     super.onLoad();
-    addAll([pauseButton, counterText, scoreText]);
+    addAll([pauseButton, counterText, currentScoreText, highScoreText]);
   }
 
   @override
@@ -144,5 +151,8 @@ class GamePage extends Dojo with HasGameReference<RiverWarrior> {
     pauseButton.position =
         Vector2(pauseButton.size.x, size.y - pauseButton.size.y);
     countdownText.position = size / 2;
+    currentScoreText.position = Vector2(pauseButton.topLeftPosition.x, 0);
+    highScoreText.position =
+        Vector2(pauseButton.topLeftPosition.x, currentScoreText.size.y);
   }
 }

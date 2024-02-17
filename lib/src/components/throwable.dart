@@ -48,7 +48,7 @@ class Throwable extends SpriteComponent
   void touchAtPoint(Vector2 vector2) {
     if (divided) return;
     if (trash is Rock) {
-      game.router.pushNamed('game-over');
+      parent.finish();
       return;
     }
 

@@ -67,9 +67,7 @@ class PausePage extends Component with HasGameReference<RiverWarrior> {
   @override
   void onGameResize(Vector2 size) {
     super.onGameResize(size);
-    text
-      ..position = Vector2(size.x / 2, size.y / 2 - retryButton.size.y)
-      ..fontSize = size.y / 5;
+    text.position = Vector2(size.x / 2, size.y / 2 - retryButton.size.y);
     retryButton.position = Vector2(size.x / 2, size.y / 2 + retryButton.size.y);
     exitButton.position =
         Vector2(size.x / 2 - retryButton.size.x * 2, retryButton.position.y);

@@ -5,17 +5,14 @@ import 'package:flame/palette.dart';
 import 'package:flame/text.dart';
 
 class OutlinedText extends TextComponent {
-  double fontSize;
   final Color? textColor;
   final Color? outlineColor;
 
   OutlinedText(
-      {this.fontSize = 50,
+      {required super.text,
       this.textColor,
       this.outlineColor,
-      required super.text,
       super.position,
-      super.size,
       super.scale,
       super.anchor,
       super.priority,

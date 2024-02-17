@@ -26,7 +26,6 @@ class HomePage extends Dojo with HasGameReference<RiverWarrior> {
   late final starButton = Button(id: 1);
   late final helpButton = Button(id: 7);
   late final infoButton = Button(id: 2);
-  bool readyToPlay = false;
 
   @override
   void onMount() async {

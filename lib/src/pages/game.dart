@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:flame/components.dart';
 import 'package:flame/events.dart';
 import 'package:flame/extensions.dart';
+import 'package:river_warrior/src/components/outlined_text.dart';
 
 import '../../river_warrior.dart';
 import '../components/button.dart';
@@ -14,24 +15,46 @@ import '../models/rock.dart';
 import '../models/trash.dart';
 
 class GamePage extends Dojo with HasGameReference<RiverWarrior> {
+  late final pauseButton =
+      Button(id: 0, onPressed: () => game.router.pushNamed('pause'));
+  late final countdownText = OutlinedText(text: 'Ready', anchor: Anchor.center);
+  late final scoreText = TextComponent(
+      text: 'Score: $score',
+      position: Vector2(game.size.x - 10, counterText.position.y + 40),
+      anchor: Anchor.topRight);
+  late final counterText = TextComponent(
+      text: 'Mistake: $mistakeCount',
+      position: Vector2(game.size.x - 10, 10), // 10 is padding
+      anchor: Anchor.topRight);
+
   late List<double> fruitsTime;
   late double time, countDown;
-  TextComponent? _countdownTextComponent,
-      _mistakeTextComponent,
-      _scoreTextComponent;
-  bool _countdownFinished = false;
-  late int mistakeCount, score;
+  int mistakeCount = 0, score = 0;
+
+  void addScore(int point) {
+    score += point;
+    scoreText.text = 'Score: $score';
+  }
+
+  void addMistake() {
+    mistakeCount++;
+    counterText.text = 'Mistake: $mistakeCount';
+    if (mistakeCount >= 3) game.router.pushNamed('game-over');
+  }
 
   @override
   void onMount() {
     super.onMount();
 
-    fruitsTime = [];
-    countDown = 3;
     mistakeCount = 0;
     score = 0;
+
+    counterText.text = 'Mistake: 0';
+    scoreText.text = 'Score: 0';
+
+    fruitsTime = [];
+    countDown = 3;
     time = 0;
-    _countdownFinished = false;
 
     double initTime = 0;
     for (int i = 0; i < 100; i++) {
@@ -41,51 +64,24 @@ class GamePage extends Dojo with HasGameReference<RiverWarrior> {
       fruitsTime.add(componentTime);
     }
 
-    addAll([
-      Button(
-          id: 4,
-          position: Vector2.all(30),
-          onPressed: () {
-            removeAll(children);
-            game.router.pop();
-          }),
-      Button(
-          id: 0,
-          position: Vector2(85, 30),
-          onPressed: () => game.router.pushNamed('pause')),
-      _countdownTextComponent = TextComponent(
-        text: '${countDown.toInt() + 1}',
-        size: Vector2.all(50),
-        position: game.size / 2,
-        anchor: Anchor.center,
-      ),
-      _mistakeTextComponent = TextComponent(
-        text: 'Mistake: $mistakeCount',
-        // 10 is padding
-        position: Vector2(game.size.x - 10, 10),
-        anchor: Anchor.topRight,
-      ),
-      _scoreTextComponent = TextComponent(
-        text: 'Score: $score',
-        position:
-            Vector2(game.size.x - 10, _mistakeTextComponent!.position.y + 40),
-        anchor: Anchor.topRight,
-      ),
-    ]);
+    addAll([pauseButton, countdownText]);
+  }
+
+  @override
+  void onLoad() {
+    super.onLoad();
+    addAll([pauseButton, counterText, scoreText]);
   }
 
   @override
   void update(double dt) {
     super.update(dt);
-    if (!_countdownFinished) {
+    if (countDown >= 0) {
       countDown -= dt;
-
-      _countdownTextComponent?.text = (countDown.toInt() + 1).toString();
-      if (countDown < 0) {
-        _countdownFinished = true;
-      }
+      countdownText.text =
+          switch (countDown.toInt()) { 1 => 'Set', 0 => 'Go', _ => 'Ready' };
     } else {
-      _countdownTextComponent?.removeFromParent();
+      countdownText.removeFromParent();
 
       time += dt;
 
@@ -142,20 +138,11 @@ class GamePage extends Dojo with HasGameReference<RiverWarrior> {
     });
   }
 
-  void gameOver() {
-    game.router.pushNamed('game-over');
-  }
-
-  void addScore(int point) {
-    score = score + point;
-    _scoreTextComponent?.text = 'Score: $score';
-  }
-
-  void addMistake() {
-    mistakeCount++;
-    _mistakeTextComponent?.text = 'Mistake: $mistakeCount';
-    if (mistakeCount >= 3) {
-      gameOver();
-    }
+  @override
+  void onGameResize(Vector2 size) {
+    super.onGameResize(size);
+    pauseButton.position =
+        Vector2(pauseButton.size.x, size.y - pauseButton.size.y);
+    countdownText.position = size / 2;
   }
 }

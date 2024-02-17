@@ -6,6 +6,7 @@ import 'package:flame/rendering.dart';
 import '../../river_warrior.dart';
 import '../components/button.dart';
 import '../components/outlined_text.dart';
+import '../components/throwable.dart';
 import 'game.dart';
 
 class PauseRoute extends Route {
@@ -36,7 +37,9 @@ class PausePage extends Component with HasGameReference<RiverWarrior> {
             game.router.currentRoute.children.whereType<GamePage>();
         final gamePage = routeChildren.first;
 
-        if (routeChildren.isNotEmpty) gamePage.removeAll(gamePage.children);
+        if (routeChildren.isNotEmpty) {
+          gamePage.removeAll(gamePage.children.whereType<Throwable>());
+        }
         game.router.pop();
       });
   late final retryButton = Button(
@@ -47,7 +50,9 @@ class PausePage extends Component with HasGameReference<RiverWarrior> {
             game.router.currentRoute.children.whereType<GamePage>();
         final gamePage = routeChildren.first;
 
-        if (routeChildren.isNotEmpty) gamePage.removeAll(gamePage.children);
+        if (routeChildren.isNotEmpty) {
+          gamePage.removeAll(gamePage.children.whereType<Throwable>());
+        }
         game.router
           ..pop()
           ..pushNamed('game');

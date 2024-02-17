@@ -4,6 +4,7 @@ import 'package:flame/components.dart';
 import 'package:flame/image_composition.dart' as composition;
 import 'package:flutter/material.dart';
 
+import '../../river_warrior.dart';
 import '../models/coin.dart';
 import '../models/rock.dart';
 import '../models/trash.dart';
@@ -12,7 +13,7 @@ import '../utils/constants.dart';
 import '../utils/helpers.dart';
 
 class Throwable extends SpriteComponent
-    with ParentIsA<GamePage>, HasGameReference {
+    with ParentIsA<GamePage>, HasGameReference<RiverWarrior> {
   Vector2 velocity;
   final Trash trash;
   bool divided;
@@ -47,7 +48,7 @@ class Throwable extends SpriteComponent
   void touchAtPoint(Vector2 vector2) {
     if (divided) return;
     if (trash is Rock) {
-      parent.gameOver();
+      game.router.pushNamed('game-over');
       return;
     }
 

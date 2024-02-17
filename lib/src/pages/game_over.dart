@@ -5,6 +5,7 @@ import 'package:flame/game.dart' hide Game;
 import 'package:flame/rendering.dart';
 
 import '../../river_warrior.dart';
+import '../components/throwable.dart';
 import 'game.dart';
 
 class GameOverRoute extends Route {
@@ -24,7 +25,7 @@ class GameOverRoute extends Route {
     final routeChildren = nextRoute.children.whereType<GamePage>();
     if (routeChildren.isNotEmpty) {
       final gamePage = routeChildren.first;
-      gamePage.removeAll(gamePage.children);
+      gamePage.removeAll(gamePage.children.whereType<Throwable>());
     }
 
     nextRoute

@@ -3,12 +3,13 @@ import 'dart:math';
 import 'package:flame/components.dart';
 import 'package:flame/events.dart';
 import 'package:flame/extensions.dart';
-import 'package:river_warrior/src/components/cross.dart';
-import 'package:river_warrior/src/components/outlined_text.dart';
 
 import '../../river_warrior.dart';
 import '../components/button.dart';
+import '../components/countdown.dart';
+import '../components/cross.dart';
 import '../components/dojo.dart';
+import '../components/scoreboard.dart';
 import '../components/throwable.dart';
 import '../models/coin.dart';
 import '../models/plastic.dart';
@@ -16,116 +17,69 @@ import '../models/rock.dart';
 import '../models/trash.dart';
 
 class GamePage extends Dojo with HasGameReference<RiverWarrior> {
-  late final pauseButton =
-      Button(id: 0, onPressed: () => game.router.pushNamed('pause'));
-  late final countdownText = OutlinedText(text: 'Ready', anchor: Anchor.center);
-  late final currentScoreText = OutlinedText(text: '$currentScore');
-  late final highScoreText =
-      OutlinedText(text: 'BEST: $highScore', scale: Vector2.all(0.5));
-  late final mistakeCounter = List<CrossComponent>.generate(game.maxMistake,
-      (i) => CrossComponent(count: i, scale: Vector2.all(1.0 + i / 8)));
-
-  late List<double> fruitsTime;
-  late double time, countDown;
-  int mistakeCount = 0, currentScore = 0, highScore = 0;
+  late final Button pauseButton;
+  late double time;
+  late int mistake, score;
 
   void finish() {
     game.router.pushNamed('game-over');
-    if (currentScore > highScore) highScore = currentScore;
     isReleased = true;
-  }
-
-  void addScore(int point) {
-    currentScore += point;
-    currentScoreText.text = '$currentScore';
-  }
-
-  void addMistake() {
-    mistakeCount++;
-    if (mistakeCount >= game.maxMistake) finish();
   }
 
   @override
   void onMount() {
     super.onMount();
-    currentScore = 0;
-    currentScoreText.text = '$currentScore';
-    highScoreText.text = 'BEST: $highScore';
-    mistakeCount = 0;
-    fruitsTime = [];
-    countDown = 3;
     time = 0;
-
-    double initTime = 0;
-    for (int i = 0; i < 100; i++) {
-      if (i != 0) initTime = fruitsTime.last;
-      final millySecondTime = Random().nextInt(100) / 100;
-      final componentTime = Random().nextInt(1) + millySecondTime + initTime;
-      fruitsTime.add(componentTime);
-    }
-
-    addAll([pauseButton, countdownText]);
+    score = 0;
+    mistake = 0;
+    add(Countdown());
   }
 
   @override
   void onLoad() {
     super.onLoad();
-    addAll([pauseButton, currentScoreText, highScoreText, ...mistakeCounter]);
+    addAll([
+      Scoreboard(),
+      ...List<Cross>.generate(game.maxMistake,
+          (n) => Cross(count: n, scale: Vector2.all(1 + n / 8))),
+      pauseButton =
+          Button(id: 0, onPressed: () => game.router.pushNamed('pause')),
+    ]);
   }
 
   @override
   void update(double dt) {
     super.update(dt);
-    if (countDown >= 0) {
-      countDown -= dt;
-      countdownText.text =
-          switch (countDown.toInt()) { 1 => 'Set', 0 => 'Go', _ => 'Ready' };
-    } else {
-      countdownText.removeFromParent();
+    time += dt;
+    if (children.whereType<Countdown>().isNotEmpty) return;
+    if ((time + dt).toInt() > time.toInt()) {
+      final List<Trash> fruits = [
+        const Plastic(image: 'fork'),
+        const Plastic(image: 'spoon'),
+        const Plastic(image: 'cup'),
+        const Plastic(image: 'straw'),
+        const Plastic(image: 'drink'),
+        const Plastic(image: 'container'),
+        const Plastic(image: 'rings'),
+        const Plastic(image: 'plastic'),
+        Rock(image: 'sandstone', point: -3),
+        Rock(image: 'limestone', point: -6),
+        Rock(image: 'coal', point: -9),
+        Coin(image: 'copper', point: 3),
+        Coin(image: 'silver', point: 6),
+        Coin(image: 'gold', point: 9),
+      ];
 
-      time += dt;
+      final randFruit = fruits.random();
 
-      fruitsTime.where((element) => element < time).toList().forEach((element) {
-        final gameSize = game.size;
-
-        double posX = Random().nextInt(gameSize.x.toInt()).toDouble();
-
-        Vector2 fruitPosition = Vector2(posX, gameSize.y);
-        Vector2 velocity = Vector2(0, game.maxVerticalVelocity);
-
-        final List<Trash> fruits = [
-          const Plastic(image: 'fork'),
-          const Plastic(image: 'spoon'),
-          const Plastic(image: 'cup'),
-          const Plastic(image: 'straw'),
-          const Plastic(image: 'drink'),
-          const Plastic(image: 'container'),
-          const Plastic(image: 'rings'),
-          const Plastic(image: 'plastic'),
-          Rock(image: 'sandstone', point: -3),
-          Rock(image: 'limestone', point: -6),
-          Rock(image: 'coal', point: -9),
-          Coin(image: 'copper', point: 3),
-          Coin(image: 'silver', point: 6),
-          Coin(image: 'gold', point: 9),
-        ];
-
-        final randFruit = fruits.random();
-
-        final shapeSize = Vector2.all(game.size.y / 5);
-
-        add(Throwable(game.images.fromCache('${randFruit.image}.png'),
-            position: fruitPosition,
-            trash: randFruit,
-            size: shapeSize,
-            velocity: velocity));
-        fruitsTime.remove(element);
-      });
+      add(Throwable(game.images.fromCache('${randFruit.image}.png'),
+          position: Vector2(
+              Random().nextInt(game.size.x.toInt()).toDouble(), game.size.y),
+          trash: randFruit,
+          size: Vector2.all(game.size.y / 5),
+          velocity: Vector2(0, game.maxVerticalVelocity)));
     }
   }
-
-  @override
-  bool containsLocalPoint(Vector2 point) => true;
 
   @override
   void onDragUpdate(DragUpdateEvent event) {
@@ -142,16 +96,5 @@ class GamePage extends Dojo with HasGameReference<RiverWarrior> {
     super.onGameResize(size);
     pauseButton.position =
         Vector2(pauseButton.size.x, size.y - pauseButton.size.y);
-    countdownText.position = size / 2;
-    currentScoreText.position = Vector2(pauseButton.topLeftPosition.x, 0);
-    highScoreText.position =
-        Vector2(pauseButton.topLeftPosition.x, currentScoreText.size.y);
-    mistakeCounter.asMap().forEach((index, component) => component
-      ..size = Vector2.all(size.y / 10)
-      ..position = Vector2(
-          size.x -
-              component.size.x * (game.maxMistake - index) -
-              component.size.x / 2,
-          component.size.y / 2));
   }
 }

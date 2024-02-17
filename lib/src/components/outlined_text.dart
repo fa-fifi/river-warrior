@@ -9,21 +9,14 @@ class OutlinedText extends TextComponent {
   final Color? outlineColor;
 
   OutlinedText(
-      {required super.text,
+      {super.text,
       this.textColor,
       this.outlineColor,
       super.position,
       super.scale,
       super.anchor,
       super.priority,
-      super.children})
-      : super();
-
-  @override
-  void onGameResize(Vector2 size) {
-    textRenderer = titleRenderer(size);
-    super.onGameResize(size);
-  }
+      super.children});
 
   TextPaint titleRenderer(Vector2 size) {
     final fontSize = size.y / 8;
@@ -49,5 +42,11 @@ class OutlinedText extends TextComponent {
           color: textColor ?? BasicPalette.white.color,
           fontFamily: 'Knewave'),
     );
+  }
+
+  @override
+  void onGameResize(Vector2 size) {
+    super.onGameResize(size);
+    textRenderer = titleRenderer(size);
   }
 }

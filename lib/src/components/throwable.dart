@@ -41,7 +41,10 @@ class Throwable extends SpriteComponent
 
     if ((position.y - objSize) > game.size.y) {
       removeFromParent();
-      if (!divided && trash is! Rock && trash is! Coin) parent.addMistake();
+      if (!divided && trash is! Rock && trash is! Coin) {
+        parent.mistake++;
+        if (parent.mistake >= game.maxMistake) parent.finish();
+      }
     }
   }
 
@@ -119,7 +122,7 @@ class Throwable extends SpriteComponent
       ]);
     }
 
-    parent.addScore(trash.point);
+    parent.score += trash.point;
     removeFromParent();
   }
 }

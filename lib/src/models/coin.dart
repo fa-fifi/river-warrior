@@ -1,12 +1,13 @@
 import 'item.dart';
 
 final class Coin extends Item {
-  Coin({required super.image, required super.point})
-      : assert(!point.isNegative);
+  Coin(super.image, {required super.point})
+      : assert(!point.isNegative),
+        super(scaleFactor: 0.6);
 }
 
 final coins = <Coin>[
-  Coin(image: 'copper', point: 3),
-  Coin(image: 'silver', point: 6),
-  Coin(image: 'gold', point: 9),
+  Coin('copper', point: 3),
+  Coin('silver', point: 6),
+  Coin('gold', point: 9),
 ];

@@ -20,11 +20,6 @@ class GamePage extends Dojo with HasGameReference<RiverWarrior> {
   late double maxVerticalVelocity;
   int mistake = 0, score = 0;
 
-  void finish() {
-    game.router.pushNamed('game-over');
-    isReleased = true;
-  }
-
   @override
   void onLoad() {
     super.onLoad();
@@ -40,12 +35,14 @@ class GamePage extends Dojo with HasGameReference<RiverWarrior> {
           autoStart: false,
           removeOnFinish: true,
           onTick: () {
-            final randomItem = items.random();
-            add(Throwable(game.images.fromCache('${randomItem.image}.png'),
+            final item = items.random();
+            add(Throwable(game.images.fromCache('${item.image}.png'),
                 position:
                     Vector2(Random().nextDouble() * game.size.x, game.size.y),
-                trash: randomItem,
-                size: Vector2.all(game.size.y / 5),
+                angle: Random().nextDouble() * 6,
+                scale: item.scale,
+                item: item,
+                size: Vector2.all(game.size.y / 6),
                 velocity: Vector2(0, maxVerticalVelocity)));
           }),
       Countdown(onCompleted: timerComponent.timer.start),

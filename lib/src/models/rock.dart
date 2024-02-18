@@ -1,11 +1,11 @@
 import 'item.dart';
 
 final class Rock extends Item {
-  Rock({required super.image, required super.point}) : assert(point.isNegative);
+  Rock(super.image, {required super.point}) : assert(point.isNegative);
 }
 
 final rocks = <Rock>[
-  Rock(image: 'sandstone', point: -3),
-  Rock(image: 'limestone', point: -6),
-  Rock(image: 'coal', point: -9),
+  Rock('sandstone', point: -3),
+  Rock('limestone', point: -6),
+  Rock('coal', point: -9),
 ];

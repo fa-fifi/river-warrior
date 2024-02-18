@@ -14,19 +14,25 @@ import '../utils/helpers.dart';
 
 class Throwable extends SpriteComponent
     with ParentIsA<GamePage>, HasGameReference<RiverWarrior> {
+  final Item item;
   Vector2 velocity;
-  final Item trash;
   bool divided;
 
   Throwable(super.image,
-      {super.position,
-      super.size,
+      {required this.item,
       required this.velocity,
-      required this.trash,
+      this.divided = false,
+      super.position,
+      super.size,
+      super.scale,
       super.angle,
-      super.anchor = Anchor.center,
-      this.divided = false})
+      super.anchor = Anchor.center})
       : super.fromImage();
+
+  void finish() {
+    game.router.pushNamed('game-over');
+    parent.isReleased = true;
+  }
 
   @override
   void update(double dt) {
@@ -41,19 +47,16 @@ class Throwable extends SpriteComponent
 
     if ((position.y - objSize) > game.size.y) {
       removeFromParent();
-      if (!divided && trash is! Rock && trash is! Coin) {
+      if (!divided && item is! Rock && item is! Coin) {
         parent.mistake++;
-        if (parent.mistake >= game.maxMistake) parent.finish();
+        if (parent.mistake >= game.maxMistake) finish();
       }
     }
   }
 
   void touchAtPoint(Vector2 vector2) {
     if (divided) return;
-    if (trash is Rock) {
-      parent.finish();
-      return;
-    }
+    if (item is Rock) return finish();
 
     final a =
         getAngleOfTouchPont(center: position, initAngle: angle, touch: vector2);
@@ -70,24 +73,25 @@ class Throwable extends SpriteComponent
 
       parent.addAll([
         Throwable(dividedImage2.composeSync(),
-            position: center -
-                Vector2(size.x / 2 * cos(angle), size.x / 2 * sin(angle)),
-            trash: trash,
+            item: item,
             velocity: Vector2(velocity.x - 2, velocity.y),
             divided: true,
+            position: center -
+                Vector2(size.x / 2 * cos(angle), size.x / 2 * sin(angle)),
             size: Vector2(size.x, size.y / 2),
+            scale: scale,
             angle: angle,
             anchor: Anchor.topLeft),
         Throwable(dividedImage1.composeSync(),
+            item: item,
+            velocity: Vector2(velocity.x + 2, velocity.y),
+            divided: true,
             position: center +
                 Vector2(size.x / 4 * cos(angle + 3 * pi / 2),
                     size.x / 4 * sin(angle + 3 * pi / 2)),
             size: Vector2(size.x, size.y / 2),
-            angle: angle,
-            anchor: Anchor.center,
-            trash: trash,
-            velocity: Vector2(velocity.x + 2, velocity.y),
-            divided: true)
+            scale: scale,
+            angle: angle)
       ]);
     } else {
       final dividedImage1 = composition.ImageComposition()
@@ -101,28 +105,29 @@ class Throwable extends SpriteComponent
 
       parent.addAll([
         Throwable(dividedImage1.composeSync(),
+            item: item,
+            velocity: Vector2(velocity.x - 2, velocity.y),
+            divided: true,
             position: center -
                 Vector2(size.x / 4 * cos(angle), size.x / 4 * sin(angle)),
             size: Vector2(size.x / 2, size.y),
-            angle: angle,
-            anchor: Anchor.center,
-            trash: trash,
-            velocity: Vector2(velocity.x - 2, velocity.y),
-            divided: true),
+            scale: scale,
+            angle: angle),
         Throwable(dividedImage2.composeSync(),
+            item: item,
+            velocity: Vector2(velocity.x + 2, velocity.y),
+            divided: true,
             position: center +
                 Vector2(size.x / 2 * cos(angle + 3 * pi / 2),
                     size.x / 2 * sin(angle + 3 * pi / 2)),
             size: Vector2(size.x / 2, size.y),
+            scale: scale,
             angle: angle,
-            anchor: Anchor.topLeft,
-            trash: trash,
-            velocity: Vector2(velocity.x + 2, velocity.y),
-            divided: true)
+            anchor: Anchor.topLeft)
       ]);
     }
 
-    parent.score += trash.point;
+    parent.score += item.point;
     removeFromParent();
   }
 }

@@ -1,13 +1,17 @@
 import 'package:flame/components.dart';
 import 'package:flame/events.dart';
+import 'package:flame/game.dart';
 import 'package:flutter/foundation.dart';
 
+import '../../river_warrior.dart';
 import 'blade.dart';
 
-class Dojo extends Component with DragCallbacks {
+class Dojo extends Component
+    with DragCallbacks, HasGameReference<RiverWarrior> {
   final trails = <int, Blade>{};
   bool isReleased = true;
-  bool isPaused = false;
+
+  bool get isDisabled => (game.router.children.last as Route).transparent;
 
   @override
   bool containsLocalPoint(Vector2 point) => true;
@@ -16,7 +20,7 @@ class Dojo extends Component with DragCallbacks {
   @mustCallSuper
   void onDragStart(DragStartEvent event) {
     super.onDragStart(event);
-    if (isPaused) return;
+    if (isDisabled) return;
     final trail = Blade(event.localPosition);
 
     trails[event.pointerId] = trail;

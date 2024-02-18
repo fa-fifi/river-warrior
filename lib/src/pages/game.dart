@@ -4,7 +4,6 @@ import 'package:flame/components.dart';
 import 'package:flame/events.dart';
 import 'package:flame/extensions.dart';
 
-import '../../river_warrior.dart';
 import '../components/button.dart';
 import '../components/countdown.dart';
 import '../components/cross.dart';
@@ -14,7 +13,7 @@ import '../components/throwable.dart';
 import '../models/item.dart';
 import '../utils/constants.dart';
 
-class GamePage extends Dojo with HasGameReference<RiverWarrior> {
+class GamePage extends Dojo {
   late final Button pauseButton;
   late final TimerComponent timerComponent;
   late double maxVerticalVelocity;
@@ -53,7 +52,7 @@ class GamePage extends Dojo with HasGameReference<RiverWarrior> {
   void onDragUpdate(DragUpdateEvent event) {
     super.onDragUpdate(event);
     componentsAtPoint(event.canvasStartPosition).forEach((component) {
-      if (component is Throwable) {
+      if (component is Throwable && !isDisabled) {
         component.touchAtPoint(event.canvasStartPosition);
       }
     });

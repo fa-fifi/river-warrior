@@ -3,11 +3,10 @@ import 'package:flame/components.dart';
 import 'package:flame/effects.dart';
 import 'package:flame/events.dart';
 
-import '../../river_warrior.dart';
 import '../components/button.dart';
 import '../components/dojo.dart';
 
-class HomePage extends Dojo with HasGameReference<RiverWarrior> {
+class HomePage extends Dojo {
   late final title = SpriteComponent.fromImage(
       game.images.fromCache('title.png'),
       anchor: Anchor.topCenter,

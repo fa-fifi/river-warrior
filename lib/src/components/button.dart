@@ -5,60 +5,55 @@ import 'package:flutter/material.dart';
 
 import '../../river_warrior.dart';
 
-class Button extends PositionComponent
+final class Button extends PositionComponent
     with HasGameReference<RiverWarrior>, TapCallbacks {
   final int id;
   final VoidCallback? onPressed;
+  final double scaleFactor;
 
   Button(
       {required this.id,
       this.onPressed,
+      this.scaleFactor = 0.95,
       super.position,
       super.scale,
       super.angle,
       super.priority})
       : super(anchor: Anchor.center);
 
-  final double scaleFactor = 0.95;
+  late final SpriteComponent sprite;
 
   @override
-  @mustCallSuper
-  void onMount() {
+  void onLoad() {
+    super.onLoad();
     final sheet = SpriteSheet.fromColumnsAndRows(
         image: game.images.fromCache('buttons.png'), columns: 3, rows: 3);
-
-    add(SpriteComponent(sprite: sheet.getSpriteById(id), size: size));
-    super.onMount();
+    add(sprite = SpriteComponent(sprite: sheet.getSpriteById(id), size: size));
   }
 
   @override
-  @mustCallSuper
   void onTapDown(TapDownEvent event) {
-    scale = Vector2.all(scaleFactor);
     super.onTapDown(event);
+    scale = Vector2.all(scaleFactor);
   }
 
   @override
-  @mustCallSuper
   void onTapUp(TapUpEvent event) {
+    super.onTapUp(event);
     scale = Vector2.all(1 / scaleFactor);
     onPressed?.call();
-    super.onTapUp(event);
   }
 
   @override
-  @mustCallSuper
   void onTapCancel(TapCancelEvent event) {
-    scale = Vector2.all(1 / scaleFactor);
     super.onTapCancel(event);
+    scale = Vector2.all(1 / scaleFactor);
   }
 
   @override
   void onGameResize(Vector2 size) {
-    this.size = Vector2.all((size.y / 100).roundToDouble() * 10);
-    children
-        .whereType<SpriteComponent>()
-        .forEach((component) => component.size = this.size);
     super.onGameResize(size);
+    this.size = Vector2.all(size.y / 10);
+    sprite.size = this.size;
   }
 }

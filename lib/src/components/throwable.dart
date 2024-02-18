@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 import '../../river_warrior.dart';
 import '../models/coin.dart';
 import '../models/rock.dart';
-import '../models/trash.dart';
+import '../models/item.dart';
 import '../pages/game.dart';
 import '../utils/constants.dart';
 import '../utils/helpers.dart';
@@ -15,7 +15,7 @@ import '../utils/helpers.dart';
 class Throwable extends SpriteComponent
     with ParentIsA<GamePage>, HasGameReference<RiverWarrior> {
   Vector2 velocity;
-  final Trash trash;
+  final Item trash;
   bool divided;
 
   Throwable(super.image,

@@ -13,7 +13,7 @@ class PauseRoute extends Route {
   @override
   void onPush(Route? previousRoute) => previousRoute!
     ..stopTime()
-    ..addRenderEffect(PaintDecorator.blur(5));
+    ..addRenderEffect(PaintDecorator.grayscale(opacity: 0.5)..addBlur(3.0));
 
   @override
   void onPop(Route nextRoute) => nextRoute

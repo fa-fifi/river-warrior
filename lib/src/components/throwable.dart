@@ -5,9 +5,9 @@ import 'package:flame/image_composition.dart' as composition;
 import 'package:flutter/material.dart';
 
 import '../../river_warrior.dart';
-import '../models/coin.dart';
-import '../models/rock.dart';
 import '../models/item.dart';
+import '../models/plastic.dart';
+import '../models/rock.dart';
 import '../pages/game.dart';
 import '../utils/constants.dart';
 import '../utils/helpers.dart';
@@ -47,7 +47,7 @@ class Throwable extends SpriteComponent
 
     if ((position.y - objSize) > game.size.y) {
       removeFromParent();
-      if (!divided && item is! Rock && item is! Coin) {
+      if (!divided && item is Plastic) {
         parent.mistake++;
         if (parent.mistake >= game.maxMistake) finish();
       }
@@ -57,6 +57,9 @@ class Throwable extends SpriteComponent
   void touchAtPoint(Vector2 vector2) {
     if (divided) return;
     if (item is Rock) return finish();
+    divided = true;
+    removeFromParent();
+    parent.score += item.point;
 
     final a =
         getAngleOfTouchPont(center: position, initAngle: angle, touch: vector2);
@@ -126,8 +129,5 @@ class Throwable extends SpriteComponent
             anchor: Anchor.topLeft)
       ]);
     }
-
-    parent.score += item.point;
-    removeFromParent();
   }
 }

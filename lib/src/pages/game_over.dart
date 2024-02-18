@@ -5,33 +5,19 @@ import 'package:flame/game.dart' hide Game;
 import 'package:flame/rendering.dart';
 
 import '../../river_warrior.dart';
-import '../components/throwable.dart';
-import 'game.dart';
 
 class GameOverRoute extends Route {
   GameOverRoute() : super(GameOverPage.new, transparent: true);
 
   @override
-  void onPush(Route? previousRoute) {
-    previousRoute!
-      ..stopTime()
-      ..addRenderEffect(
-        PaintDecorator.grayscale(opacity: 0.5)..addBlur(3.0),
-      );
-  }
+  void onPush(Route? previousRoute) => previousRoute!
+    ..stopTime()
+    ..addRenderEffect(PaintDecorator.grayscale(opacity: 0.5)..addBlur(3.0));
 
   @override
-  void onPop(Route nextRoute) {
-    final routeChildren = nextRoute.children.whereType<GamePage>();
-    if (routeChildren.isNotEmpty) {
-      final gamePage = routeChildren.first;
-      gamePage.removeAll(gamePage.children.whereType<Throwable>());
-    }
-
-    nextRoute
-      ..resumeTime()
-      ..removeRenderEffect();
-  }
+  void onPop(Route nextRoute) => nextRoute
+    ..resumeTime()
+    ..removeRenderEffect();
 }
 
 class GameOverPage extends Component
@@ -70,7 +56,5 @@ class GameOverPage extends Component
   bool containsLocalPoint(Vector2 point) => true;
 
   @override
-  void onTapUp(TapUpEvent event) => game.router
-    ..pop()
-    ..pushNamed('home', replace: true);
+  void onTapUp(TapUpEvent event) => game.router.popUntilNamed('home');
 }

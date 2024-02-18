@@ -15,7 +15,7 @@ class RiverWarrior extends FlameGame
     with SingleGameInstance, HasCollisionDetection {
   late final router = RouterComponent(initialRoute: 'home', routes: {
     'home': Route(HomePage.new),
-    'game': Route(GamePage.new),
+    'game': Route(GamePage.new, maintainState: false),
     'pause': PauseRoute(),
     'game-over': GameOverRoute(),
   });

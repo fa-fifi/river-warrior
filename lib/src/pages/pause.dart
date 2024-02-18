@@ -6,8 +6,6 @@ import 'package:flame/rendering.dart';
 import '../../river_warrior.dart';
 import '../components/button.dart';
 import '../components/outlined_text.dart';
-import '../components/throwable.dart';
-import 'game.dart';
 
 class PauseRoute extends Route {
   PauseRoute() : super(PausePage.new, transparent: true);
@@ -29,34 +27,13 @@ class PausePage extends Component with HasGameReference<RiverWarrior> {
     ScaleEffect.to(Vector2.all(1.1),
         EffectController(duration: 0.3, alternate: true, infinite: true)),
   ]);
-  late final exitButton = Button(
-      id: 3,
-      onPressed: () {
-        game.router.pop();
-        final routeChildren =
-            game.router.currentRoute.children.whereType<GamePage>();
-        final gamePage = routeChildren.first;
-
-        if (routeChildren.isNotEmpty) {
-          gamePage.removeAll(gamePage.children.whereType<Throwable>());
-        }
-        game.router.pop();
-      });
+  late final exitButton =
+      Button(id: 3, onPressed: () => game.router.popUntilNamed('home'));
   late final retryButton = Button(
       id: 5,
-      onPressed: () {
-        game.router.pop();
-        final routeChildren =
-            game.router.currentRoute.children.whereType<GamePage>();
-        final gamePage = routeChildren.first;
-
-        if (routeChildren.isNotEmpty) {
-          gamePage.removeAll(gamePage.children.whereType<Throwable>());
-        }
-        game.router
-          ..pop()
-          ..pushNamed('game');
-      });
+      onPressed: () => game.router
+        ..popUntilNamed('home')
+        ..pushNamed('game'));
   late final continueButton = Button(id: 6, onPressed: game.router.pop);
 
   @override
@@ -74,7 +51,4 @@ class PausePage extends Component with HasGameReference<RiverWarrior> {
     continueButton.position =
         Vector2(size.x / 2 + retryButton.size.x * 2, retryButton.position.y);
   }
-
-  @override
-  bool containsLocalPoint(Vector2 point) => true;
 }

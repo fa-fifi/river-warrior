@@ -20,9 +20,10 @@ class RiverWarrior extends FlameGame
     'game-over': GameOverRoute(),
   });
   late double maxVerticalVelocity;
-  double musicVolume = 1;
   Color bladeColor = BasicPalette.white.color;
   int maxMistake = 3;
+  double musicVolume = 1;
+  int highScore = 0;
 
   @override
   Future<void> onLoad() async {

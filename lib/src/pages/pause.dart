@@ -13,7 +13,7 @@ class PauseRoute extends Route {
   @override
   void onPush(Route? previousRoute) => previousRoute!
     ..stopTime()
-    ..addRenderEffect(PaintDecorator.grayscale(opacity: 0.5)..addBlur(3.0));
+    ..addRenderEffect(PaintDecorator.grayscale(opacity: 0.5)..addBlur(3));
 
   @override
   void onPop(Route nextRoute) => nextRoute
@@ -28,12 +28,12 @@ class PausePage extends Component with HasGameReference<RiverWarrior> {
         EffectController(duration: 0.3, alternate: true, infinite: true)),
   ]);
   late final exitButton =
-      Button(id: 3, onPressed: () => game.router.popUntilNamed('home'));
+      Button(id: 3, onPressed: () => game.router.popUntilNamed('start'));
   late final retryButton = Button(
       id: 5,
       onPressed: () => game.router
-        ..popUntilNamed('home')
-        ..pushNamed('game'));
+        ..popUntilNamed('start')
+        ..pushNamed('play'));
   late final continueButton = Button(id: 6, onPressed: game.router.pop);
 
   @override

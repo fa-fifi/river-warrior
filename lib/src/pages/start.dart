@@ -6,7 +6,7 @@ import 'package:flame/events.dart';
 import '../components/button.dart';
 import '../components/dojo.dart';
 
-class HomePage extends Dojo {
+class StartPage extends Dojo {
   late final title = SpriteComponent.fromImage(
       game.images.fromCache('title.png'),
       anchor: Anchor.topCenter,
@@ -37,7 +37,7 @@ class HomePage extends Dojo {
     super.onDragUpdate(event);
     if (componentsAtPoint(event.canvasStartPosition).contains(hitbox)) {
       isReleased = true;
-      game.router.pushNamed('game');
+      game.router.pushNamed('play');
     }
   }
 

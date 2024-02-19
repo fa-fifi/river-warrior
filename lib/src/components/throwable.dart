@@ -8,12 +8,12 @@ import '../../river_warrior.dart';
 import '../models/item.dart';
 import '../models/plastic.dart';
 import '../models/rock.dart';
-import '../pages/game.dart';
+import '../pages/play.dart';
 import '../utils/constants.dart';
 import '../utils/helpers.dart';
 
 class Throwable extends SpriteComponent
-    with ParentIsA<GamePage>, HasGameReference<RiverWarrior> {
+    with ParentIsA<PlayPage>, HasGameReference<RiverWarrior> {
   final Item item;
   Vector2 velocity;
   bool divided;
@@ -30,7 +30,7 @@ class Throwable extends SpriteComponent
       : super.fromImage();
 
   void finish() {
-    game.router.pushNamed('game-over');
+    game.router.pushNamed('finish');
     parent.isReleased = true;
   }
 

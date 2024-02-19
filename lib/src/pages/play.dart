@@ -13,7 +13,7 @@ import '../components/throwable.dart';
 import '../models/item.dart';
 import '../utils/constants.dart';
 
-class GamePage extends Dojo {
+class PlayPage extends Dojo {
   late final Button pauseButton;
   late final TimerComponent timerComponent;
   late double maxVerticalVelocity;

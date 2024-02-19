@@ -1,12 +1,12 @@
 import 'package:flame/components.dart';
 
 import '../../river_warrior.dart';
-import '../pages/game.dart';
+import '../pages/play.dart';
 
 enum CrossState { red, grey }
 
 class Cross extends SpriteGroupComponent<CrossState>
-    with ParentIsA<GamePage>, HasGameReference<RiverWarrior> {
+    with ParentIsA<PlayPage>, HasGameReference<RiverWarrior> {
   final int count;
 
   Cross(

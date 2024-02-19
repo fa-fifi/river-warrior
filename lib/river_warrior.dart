@@ -2,10 +2,10 @@ import 'package:flame/game.dart';
 import 'package:flame/palette.dart';
 import 'package:flutter/foundation.dart';
 
-import 'src/pages/game.dart';
-import 'src/pages/game_over.dart';
-import 'src/pages/home.dart';
+import 'src/pages/finish.dart';
 import 'src/pages/pause.dart';
+import 'src/pages/play.dart';
+import 'src/pages/start.dart';
 
 class RiverWarrior extends FlameGame
     with SingleGameInstance, HasCollisionDetection {
@@ -21,11 +21,11 @@ class RiverWarrior extends FlameGame
     super.onLoad();
     await images.loadAllImages();
     addAll([
-      router = RouterComponent(initialRoute: 'home', routes: {
-        'home': Route(HomePage.new),
-        'game': Route(GamePage.new, maintainState: false),
+      router = RouterComponent(initialRoute: 'start', routes: {
+        'start': Route(StartPage.new),
+        'play': Route(PlayPage.new, maintainState: false),
         'pause': PauseRoute(),
-        'game-over': GameOverRoute(),
+        'finish': FinishRoute(),
       })
     ]);
   }

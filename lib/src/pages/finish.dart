@@ -6,13 +6,13 @@ import 'package:flame/rendering.dart';
 
 import '../../river_warrior.dart';
 
-class GameOverRoute extends Route {
-  GameOverRoute() : super(GameOverPage.new, transparent: true);
+class FinishRoute extends Route {
+  FinishRoute() : super(FinishPage.new, transparent: true);
 
   @override
   void onPush(Route? previousRoute) => previousRoute!
     ..stopTime()
-    ..addRenderEffect(PaintDecorator.grayscale(opacity: 0.5)..addBlur(3.0));
+    ..addRenderEffect(PaintDecorator.grayscale(opacity: 0.5)..addBlur(3));
 
   @override
   void onPop(Route nextRoute) => nextRoute
@@ -20,7 +20,7 @@ class GameOverRoute extends Route {
     ..removeRenderEffect();
 }
 
-class GameOverPage extends Component
+class FinishPage extends Component
     with TapCallbacks, HasGameReference<RiverWarrior> {
   late TextComponent _textComponent;
 
@@ -56,5 +56,5 @@ class GameOverPage extends Component
   bool containsLocalPoint(Vector2 point) => true;
 
   @override
-  void onTapUp(TapUpEvent event) => game.router.popUntilNamed('home');
+  void onTapUp(TapUpEvent event) => game.router.popUntilNamed('start');
 }

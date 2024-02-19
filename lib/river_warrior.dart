@@ -23,7 +23,7 @@ class RiverWarrior extends FlameGame
   }
 
   @override
-  void onLoad() async {
+  Future<void> onLoad() async {
     super.onLoad();
     FlameAudio.bgm.initialize();
     if (!kIsWeb) FlameAudio.bgm.play('background-music.mp3', volume: bgmVolume);

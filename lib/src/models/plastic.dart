@@ -12,5 +12,5 @@ const plastics = <Plastic>[
   Plastic('plastic', scaleFactor: 1.5),
   Plastic('rings', scaleFactor: 1.2),
   Plastic('spoon', scaleFactor: 0.9),
-  Plastic('straw', scaleFactor: 1.0),
+  Plastic('straw'),
 ];

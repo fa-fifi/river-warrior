@@ -26,7 +26,7 @@ class PausePage extends Component with HasGameReference<RiverWarrior> {
   late final Button retryButton, exitButton, continueButton;
 
   @override
-  void onLoad() async {
+  Future<void> onLoad() async {
     super.onLoad();
     addAll([
       pauseText =

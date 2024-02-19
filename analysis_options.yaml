@@ -1,5 +1,70 @@
-include: package:flutter_lints/flutter.yaml
+include: package:lints/recommended.yaml
 
 linter:
   rules:
+    # Error rules: These rules identify possible errors and other mistakes in your code.
+    - avoid_print
+    - avoid_slow_async_io
+    - avoid_type_to_string
+    - avoid_web_libraries_in_flutter
+    - cancel_subscriptions
+    - close_sinks
+    - collection_methods_unrelated_type
+    - comment_references
+    - literal_only_boolean_expressions
+    - no_logic_in_create_state
+    - throw_in_finally
+    - unnecessary_statements
+    - use_key_in_widget_constructors
+
+    # Style rules: These rules identify opportunities for style improvements, largely derived from the Dart style guide.
+    - always_declare_return_types
+    - avoid_escaping_inner_quotes
+    - avoid_function_literals_in_foreach_calls
+    - avoid_js_rounded_ints
+    - avoid_redundant_argument_values
+    - avoid_returning_this
+    - avoid_setters_without_getters
+    - avoid_types_on_closure_parameters
+    - avoid_unnecessary_containers
+    - avoid_unused_constructor_parameters
+    - avoid_void_async
+    - cascade_invocations
+    - combinators_ordering
+    - dangling_library_doc_comments
+    - directives_ordering
+    - implicit_call_tearoffs
+    - join_return_with_assignment
+    - leading_newlines_in_multiline_strings
+    - missing_whitespace_between_adjacent_strings
+    - noop_primitive_operations
+    - prefer_const_constructors
+    - prefer_const_constructors_in_immutables
+    - prefer_const_declarations
+    - prefer_const_literals_to_create_immutables
+    - prefer_constructors_over_static_methods
+    - prefer_expression_function_bodies
+    - prefer_null_aware_method_calls
     - prefer_single_quotes
+    - sized_box_for_whitespace
+    - sort_child_properties_last
+    - tighten_type_of_initializing_formals
+    - type_annotate_public_apis
+    - type_literal_in_constant_pattern
+    - unnecessary_await_in_return
+    - unnecessary_lambdas
+    - unnecessary_null_aware_operator_on_extension_on_nullable
+    - unnecessary_parenthesis
+    - unnecessary_raw_strings
+    - unnecessary_to_list_in_spreads
+    - use_enums
+    - use_full_hex_values_for_flutter_colors
+    - use_if_null_to_convert_nulls_to_bools
+    - use_named_constants
+    - use_string_buffers
+    - use_super_parameters
+    - use_to_and_as_if_applicable
+    
+    # Pub rules: These rules identify possible issues around pub package setup.
+    - secure_pubspec_urls
+    - sort_pub_dependencies

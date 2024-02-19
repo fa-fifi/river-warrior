@@ -12,7 +12,7 @@ class StartPage extends Dojo {
   late final Button gearButton, starButton, helpButton, infoButton;
 
   @override
-  void onLoad() async {
+  Future<void> onLoad() async {
     super.onLoad();
     addAll([
       title = SpriteComponent.fromImage(game.images.fromCache('title.png'),

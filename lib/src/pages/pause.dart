@@ -39,8 +39,7 @@ class PausePage extends Component with HasGameReference<RiverWarrior> {
           onPressed: () => game.router
             ..popUntilNamed('start')
             ..pushNamed('play')),
-      exitButton =
-          Button(id: 3, onPressed: () => game.router.popUntilNamed('start')),
+      exitButton = Button(id: 3, onPressed: game.restart),
       continueButton = Button(id: 6, onPressed: game.router.pop)
     ]);
   }

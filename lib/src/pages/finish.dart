@@ -40,9 +40,10 @@ class FinishPage extends Component
         anchor: Anchor.center,
         children: [
           ScaleEffect.by(
-              Vector2.all(0.6),
-              EffectController(
-                  duration: 0, reverseDuration: 1, alternate: true)),
+            Vector2.all(0.6),
+            EffectController(
+                duration: 0, reverseDuration: 0.8, alternate: true),
+          ),
         ]));
   }
 
@@ -53,5 +54,5 @@ class FinishPage extends Component
   }
 
   @override
-  void onTapUp(TapUpEvent event) => game.router.popUntilNamed('start');
+  void onTapUp(TapUpEvent event) => game.restart();
 }

@@ -1,5 +1,6 @@
 import 'package:flame/game.dart';
 import 'package:flame/palette.dart';
+import 'package:flame_audio/flame_audio.dart';
 import 'package:flutter/foundation.dart';
 
 import 'src/pages/finish.dart';
@@ -13,12 +14,19 @@ class RiverWarrior extends FlameGame
   Color bladeColor = BasicPalette.white.color;
   int highScore = 0;
   int maxMistake = 3;
-  double musicVolume = kIsWeb ? 0 : 1;
-  double soundVolume = 1;
+  double bgmVolume = 1;
+  double sfxVolume = 1;
+
+  void restart() {
+    router.popUntilNamed('start');
+    FlameAudio.bgm.play('background-music.mp3', volume: bgmVolume);
+  }
 
   @override
-  Future<void> onLoad() async {
+  void onLoad() async {
     super.onLoad();
+    FlameAudio.bgm.initialize();
+    if (!kIsWeb) FlameAudio.bgm.play('background-music.mp3', volume: bgmVolume);
     await images.loadAllImages();
     addAll([
       router = RouterComponent(initialRoute: 'start', routes: {

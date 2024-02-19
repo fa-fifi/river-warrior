@@ -24,7 +24,7 @@ class OutlinedText extends TextComponent {
     final gradient = LinearGradient(
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
-            colors: <Color>[color, color.darken(0.4)])
+            colors: <Color>[color, color.darken(textColor == null ? 0.1 : 0.5)])
         .createShader(const Rect.fromLTWH(0, 0, 200, 70));
 
     return TextPaint(

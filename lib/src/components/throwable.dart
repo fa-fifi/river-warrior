@@ -27,7 +27,9 @@ class Throwable extends SpriteComponent
       super.scale,
       super.angle,
       super.anchor = Anchor.center})
-      : super.fromImage();
+      : super.fromImage() {
+    if (item is Rock) scale = Vector2.all(1 - Random().nextDouble() * 0.4);
+  }
 
   void finish() {
     game.router.pushNamed('finish');
@@ -57,9 +59,17 @@ class Throwable extends SpriteComponent
   void touchAtPoint(Vector2 vector2) {
     if (divided) return;
     if (item is Rock) return finish();
+
     divided = true;
     removeFromParent();
     parent.score += item.point;
+
+    if (parent.score >= threshold &&
+        parent.score % threshold < 10 &&
+        parent.mistake > 0 &&
+        item is! Rock) {
+      parent.mistake--;
+    }
 
     final a = getSliceAngle(center: center, initAngle: angle, touch: vector2);
 

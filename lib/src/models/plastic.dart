@@ -8,9 +8,9 @@ const plastics = <Plastic>[
   Plastic('container', scaleFactor: 1.2),
   Plastic('cup', scaleFactor: 0.8),
   Plastic('drink', scaleFactor: 1.6),
-  Plastic('fork'),
+  Plastic('fork', scaleFactor: 0.9),
   Plastic('plastic', scaleFactor: 1.5),
   Plastic('rings', scaleFactor: 1.2),
-  Plastic('spoon'),
-  Plastic('straw'),
+  Plastic('spoon', scaleFactor: 0.9),
+  Plastic('straw', scaleFactor: 1.0),
 ];

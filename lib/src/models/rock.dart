@@ -1,11 +1,11 @@
 import 'item.dart';
 
 final class Rock extends Item {
-  Rock(super.image, {required super.point}) : assert(point.isNegative);
+  const Rock(super.image, {super.scaleFactor}) : super(point: -10);
 }
 
-final rocks = <Rock>[
-  Rock('sandstone', point: -3),
-  Rock('limestone', point: -6),
-  Rock('coal', point: -9),
+const rocks = <Rock>[
+  Rock('sandstone'),
+  Rock('limestone'),
+  Rock('coal'),
 ];

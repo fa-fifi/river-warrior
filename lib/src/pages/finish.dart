@@ -38,9 +38,11 @@ class FinishPage extends Component
         textColor: BasicPalette.red.color,
         outlineColor: BasicPalette.white.color,
         anchor: Anchor.center,
-        scale: Vector2.all(0.5),
         children: [
-          ScaleEffect.to(Vector2.all(1), EffectController(duration: 1)),
+          ScaleEffect.by(
+              Vector2.all(0.6),
+              EffectController(
+                  duration: 0, reverseDuration: 1, alternate: true)),
         ]));
   }
 

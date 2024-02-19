@@ -11,7 +11,7 @@ class Dojo extends Component
   final trails = <int, Blade>{};
   bool isReleased = true;
 
-  bool get isDisabled => (game.router.children.last as Route).transparent;
+  bool get isDisabled => game.router.children.query<Route>().last.transparent;
 
   @override
   bool containsLocalPoint(Vector2 point) => true;

@@ -2,12 +2,15 @@ import 'package:flame/components.dart';
 import 'package:flame/effects.dart';
 import 'package:flame/events.dart';
 import 'package:flame/game.dart' hide Game;
+import 'package:flame/palette.dart';
 import 'package:flame/rendering.dart';
 
 import '../../river_warrior.dart';
+import '../components/outlined_text.dart';
 
 class FinishRoute extends Route {
-  FinishRoute() : super(FinishPage.new, transparent: true);
+  FinishRoute()
+      : super(FinishPage.new, transparent: true, maintainState: false);
 
   @override
   void onPush(Route? previousRoute) => previousRoute!
@@ -22,38 +25,30 @@ class FinishRoute extends Route {
 
 class FinishPage extends Component
     with TapCallbacks, HasGameReference<RiverWarrior> {
-  late TextComponent _textComponent;
+  late OutlinedText gameoverText;
 
   @override
-  Future<void> onLoad() async {
-    final game = findGame()!;
-    addAll([
-      _textComponent = TextComponent(
-        text: 'Game Over',
-        position: game.canvasSize / 2,
+  bool containsLocalPoint(Vector2 point) => true;
+
+  @override
+  void onLoad() {
+    super.onLoad();
+    add(gameoverText = OutlinedText(
+        text: 'GAME OVER',
+        textColor: BasicPalette.red.color,
+        outlineColor: BasicPalette.white.color,
         anchor: Anchor.center,
+        scale: Vector2.all(0.5),
         children: [
-          ScaleEffect.to(
-            Vector2.all(1.1),
-            EffectController(
-              duration: 0.3,
-              alternate: true,
-              infinite: true,
-            ),
-          ),
-        ],
-      ),
-    ]);
+          ScaleEffect.to(Vector2.all(1), EffectController(duration: 1)),
+        ]));
   }
 
   @override
   void onGameResize(Vector2 size) {
     super.onGameResize(size);
-    _textComponent.position = size / 2;
+    gameoverText.position = size / 2;
   }
-
-  @override
-  bool containsLocalPoint(Vector2 point) => true;
 
   @override
   void onTapUp(TapUpEvent event) => game.router.popUntilNamed('start');

@@ -22,29 +22,33 @@ class PauseRoute extends Route {
 }
 
 class PausePage extends Component with HasGameReference<RiverWarrior> {
-  late final text =
-      OutlinedText(text: 'PAUSED', anchor: Anchor.center, children: [
-    ScaleEffect.to(Vector2.all(1.1),
-        EffectController(duration: 0.3, alternate: true, infinite: true)),
-  ]);
-  late final exitButton =
-      Button(id: 3, onPressed: () => game.router.popUntilNamed('start'));
-  late final retryButton = Button(
-      id: 5,
-      onPressed: () => game.router
-        ..popUntilNamed('start')
-        ..pushNamed('play'));
-  late final continueButton = Button(id: 6, onPressed: game.router.pop);
+  late final OutlinedText pauseText;
+  late final Button retryButton, exitButton, continueButton;
 
   @override
-  Future<void> onLoad() async {
-    addAll([text, exitButton, retryButton, continueButton]);
+  void onLoad() async {
+    super.onLoad();
+    addAll([
+      pauseText =
+          OutlinedText(text: 'PAUSED', anchor: Anchor.center, children: [
+        ScaleEffect.to(Vector2.all(1.1),
+            EffectController(duration: 0.3, alternate: true, infinite: true)),
+      ]),
+      retryButton = Button(
+          id: 5,
+          onPressed: () => game.router
+            ..popUntilNamed('start')
+            ..pushNamed('play')),
+      exitButton =
+          Button(id: 3, onPressed: () => game.router.popUntilNamed('start')),
+      continueButton = Button(id: 6, onPressed: game.router.pop)
+    ]);
   }
 
   @override
   void onGameResize(Vector2 size) {
     super.onGameResize(size);
-    text.position = Vector2(size.x / 2, size.y / 2 - retryButton.size.y);
+    pauseText.position = Vector2(size.x / 2, size.y / 2 - retryButton.size.y);
     retryButton.position = Vector2(size.x / 2, size.y / 2 + retryButton.size.y);
     exitButton.position =
         Vector2(size.x / 2 - retryButton.size.x * 2, retryButton.position.y);

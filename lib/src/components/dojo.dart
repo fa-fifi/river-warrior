@@ -22,7 +22,6 @@ class Dojo extends Component
     super.onDragStart(event);
     if (isDisabled) return;
     final trail = Blade(event.localPosition);
-
     trails[event.pointerId] = trail;
     add(trail);
     isReleased = false;
@@ -31,14 +30,14 @@ class Dojo extends Component
   @override
   @mustCallSuper
   void onDragUpdate(DragUpdateEvent event) {
-    if (!isReleased) trails[event.pointerId]!.addPoint(event.localEndPosition);
+    if (!isReleased) trails[event.pointerId]?.addPoint(event.localEndPosition);
   }
 
   @override
   @mustCallSuper
   void onDragEnd(DragEndEvent event) {
     super.onDragEnd(event);
-    trails.remove(event.pointerId)!.end();
+    trails.remove(event.pointerId)?.end();
     isReleased = true;
   }
 }

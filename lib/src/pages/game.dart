@@ -35,14 +35,21 @@ class GamePage extends Dojo {
           removeOnFinish: true,
           onTick: () {
             final item = items.random();
-            add(Throwable(game.images.fromCache('${item.image}.png'),
-                position:
-                    Vector2(Random().nextDouble() * game.size.x, game.size.y),
-                angle: Random().nextDouble() * 6,
-                scale: item.scale,
-                item: item,
-                size: Vector2.all(game.size.y / 6),
-                velocity: Vector2(0, maxVerticalVelocity)));
+            final position =
+                Vector2(Random().nextDouble() * game.size.x, game.size.y);
+            add(Throwable(
+              game.images.fromCache('${item.image}.png'),
+              position: position,
+              angle: Random().nextDouble() * 6,
+              scale: item.scale,
+              item: item,
+              size: Vector2.all(game.size.y / 6),
+              velocity: Vector2(
+                  position.x < game.size.x / 2
+                      ? Random().nextDouble()
+                      : -Random().nextDouble(),
+                  maxVerticalVelocity),
+            ));
           }),
       Countdown(onCompleted: timerComponent.timer.start),
     ]);
@@ -61,8 +68,8 @@ class GamePage extends Dojo {
   @override
   void onGameResize(Vector2 size) {
     super.onGameResize(size);
-    maxVerticalVelocity =
-        sqrt(2 * (gravity.abs() + acceleration.abs()) * (size.y - objSize * 2));
+    maxVerticalVelocity = sqrt(
+        2 * (gravity.abs() + acceleration.abs()) * (size.y - size.y / 8 * 2));
     pauseButton.position =
         Vector2(pauseButton.size.x, size.y - pauseButton.size.y);
   }

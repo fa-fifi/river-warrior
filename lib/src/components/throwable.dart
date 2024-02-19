@@ -45,7 +45,7 @@ class Throwable extends SpriteComponent
 
     velocity.y += (acceleration + gravity) * dt;
 
-    if ((position.y - objSize) > game.size.y) {
+    if ((position.y - size.y) > game.size.y) {
       removeFromParent();
       if (!divided && item is Plastic) {
         parent.mistake++;
@@ -61,8 +61,7 @@ class Throwable extends SpriteComponent
     removeFromParent();
     parent.score += item.point;
 
-    final a =
-        getAngleOfTouchPont(center: position, initAngle: angle, touch: vector2);
+    final a = getSliceAngle(center: center, initAngle: angle, touch: vector2);
 
     if (a < 45 || (a > 135 && a < 225) || a > 315) {
       final dividedImage1 = composition.ImageComposition()
@@ -77,7 +76,7 @@ class Throwable extends SpriteComponent
       parent.addAll([
         Throwable(dividedImage2.composeSync(),
             item: item,
-            velocity: Vector2(velocity.x - 2, velocity.y),
+            velocity: Vector2(velocity.x - 1, velocity.y),
             divided: true,
             position: center -
                 Vector2(size.x / 2 * cos(angle), size.x / 2 * sin(angle)),
@@ -87,7 +86,7 @@ class Throwable extends SpriteComponent
             anchor: Anchor.topLeft),
         Throwable(dividedImage1.composeSync(),
             item: item,
-            velocity: Vector2(velocity.x + 2, velocity.y),
+            velocity: Vector2(velocity.x + 1, velocity.y),
             divided: true,
             position: center +
                 Vector2(size.x / 4 * cos(angle + 3 * pi / 2),
@@ -109,7 +108,7 @@ class Throwable extends SpriteComponent
       parent.addAll([
         Throwable(dividedImage1.composeSync(),
             item: item,
-            velocity: Vector2(velocity.x - 2, velocity.y),
+            velocity: Vector2(velocity.x - 1, velocity.y),
             divided: true,
             position: center -
                 Vector2(size.x / 4 * cos(angle), size.x / 4 * sin(angle)),
@@ -118,7 +117,7 @@ class Throwable extends SpriteComponent
             angle: angle),
         Throwable(dividedImage2.composeSync(),
             item: item,
-            velocity: Vector2(velocity.x + 2, velocity.y),
+            velocity: Vector2(velocity.x + 1, velocity.y),
             divided: true,
             position: center +
                 Vector2(size.x / 2 * cos(angle + 3 * pi / 2),

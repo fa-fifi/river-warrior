@@ -9,7 +9,6 @@ enum CrossState { red, grey }
 class Cross extends SpriteGroupComponent<CrossState>
     with ParentIsA<PlayPage>, HasGameReference<RiverWarrior> {
   final int count;
-  late final Effect scaleEffect;
 
   Cross(
       {required this.count,
@@ -26,9 +25,7 @@ class Cross extends SpriteGroupComponent<CrossState>
       CrossState.red: Sprite(game.images.fromCache('red cross.png')),
       CrossState.grey: Sprite(game.images.fromCache('grey cross.png')),
     };
-    current = CrossState.grey;
-    add(scaleEffect = ScaleEffect.by(
-        Vector2.all(1.2), EffectController(duration: 0.3, alternate: true)));
+    current = CrossState.red;
   }
 
   @override
@@ -36,7 +33,9 @@ class Cross extends SpriteGroupComponent<CrossState>
     super.update(dt);
     final previous = current;
     current = parent.mistake <= count ? CrossState.grey : CrossState.red;
-    if (previous != current) add(scaleEffect..reset());
+    if (previous == current) return;
+    add(ScaleEffect.by(
+        Vector2.all(1.2), EffectController(duration: 0.3, alternate: true)));
   }
 
   @override

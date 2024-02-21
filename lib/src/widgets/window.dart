@@ -28,6 +28,9 @@ class Window extends StatelessWidget {
         ),
         content: TapRegion(
             onTapOutside: (_) => game.overlays.remove(path),
-            child: SingleChildScrollView(child: Column(children: children))),
+            child: SingleChildScrollView(
+                child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: children))),
       );
 }

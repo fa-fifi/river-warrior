@@ -6,6 +6,7 @@ import 'package:window_size/window_size.dart';
 
 import 'river_warrior.dart';
 import 'src/overlays/help.dart';
+import 'src/overlays/info.dart';
 import 'src/utils/constants.dart';
 import 'src/utils/helpers.dart';
 
@@ -31,6 +32,7 @@ void main() async {
             ),
         overlayBuilderMap: const {
           'help': HelpOverlay.new,
+          'info': InfoScreen.new,
         }),
   ));
 }

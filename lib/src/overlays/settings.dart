@@ -24,7 +24,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
           Slider(
               value: widget.game.bgmVolume,
               divisions: 10,
-              label: '${widget.game.bgmVolume * 100}',
+              label: '${(widget.game.bgmVolume * 100).toInt()}',
               onChanged: (value) {
                 setState(() => widget.game.bgmVolume = value);
                 value == 0
@@ -42,7 +42,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
           Slider(
               value: widget.game.sfxVolume,
               divisions: 10,
-              label: '${widget.game.sfxVolume * 100}',
+              label: '${(widget.game.sfxVolume * 100).toInt()}',
               onChanged: (value) =>
                   setState(() => widget.game.sfxVolume = value)),
         ]),

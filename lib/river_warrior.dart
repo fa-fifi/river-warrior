@@ -14,7 +14,7 @@ class RiverWarrior extends FlameGame
   Color bladeColor = BasicPalette.white.color;
   int highScore = 0;
   int maxMistake = 3;
-  double bgmVolume = 1;
+  double bgmVolume = kIsWeb ? 0 : 1;
   double sfxVolume = 1;
 
   void restart() {

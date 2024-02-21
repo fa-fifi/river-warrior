@@ -9,7 +9,7 @@ import '../components/dojo.dart';
 
 class StartPage extends Dojo {
   late final PositionComponent title, playButton, hitbox;
-  late final Button gearButton, starButton, helpButton, infoButton;
+  late final Button settingsButton, powerupButton, helpButton, aboutButton;
 
   @override
   Future<void> onLoad() async {
@@ -27,10 +27,11 @@ class StartPage extends Dojo {
             hitbox =
                 RectangleHitbox(anchor: Anchor.center, size: Vector2.all(10))
           ]),
-      gearButton = Button(id: 8),
-      starButton = Button(id: 1),
+      settingsButton =
+          Button(id: 8, onPressed: () => game.overlays.add('settings')),
+      powerupButton = Button(id: 1),
       helpButton = Button(id: 7, onPressed: () => game.overlays.add('help')),
-      infoButton = Button(id: 2, onPressed: () => game.overlays.add('info')),
+      aboutButton = Button(id: 2, onPressed: () => game.overlays.add('about')),
     ]);
   }
 
@@ -55,13 +56,13 @@ class StartPage extends Dojo {
     hitbox
       ..position = playButton.size / 2
       ..size = Vector2(playButton.size.x * 0.1, size.y * 0.4);
-    starButton.position =
-        Vector2(size.x / 2 - starButton.size.x, size.y - starButton.size.y);
+    powerupButton.position = Vector2(
+        size.x / 2 - powerupButton.size.x, size.y - powerupButton.size.y);
     helpButton.position =
-        Vector2(size.x / 2 + starButton.size.x, starButton.position.y);
-    gearButton.position =
-        Vector2(size.x / 2 - starButton.size.x * 3, starButton.position.y);
-    infoButton.position =
-        Vector2(size.x / 2 + starButton.size.x * 3, starButton.position.y);
+        Vector2(size.x / 2 + powerupButton.size.x, powerupButton.position.y);
+    settingsButton.position = Vector2(
+        size.x / 2 - powerupButton.size.x * 3, powerupButton.position.y);
+    aboutButton.position = Vector2(
+        size.x / 2 + powerupButton.size.x * 3, powerupButton.position.y);
   }
 }

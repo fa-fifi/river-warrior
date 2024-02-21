@@ -23,7 +23,7 @@ class Window extends StatelessWidget {
         title: Container(
           color: Colors.black,
           padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-          child: Text(title ?? path,
+          child: Text(title ?? path[0].toUpperCase() + path.substring(1),
               style: Theme.of(context).primaryTextTheme.labelMedium),
         ),
         content: TapRegion(

@@ -5,8 +5,9 @@ import 'package:flutter/material.dart' hide Route;
 import 'package:window_size/window_size.dart';
 
 import 'river_warrior.dart';
+import 'src/overlays/about.dart';
 import 'src/overlays/help.dart';
-import 'src/overlays/info.dart';
+import 'src/overlays/settings.dart';
 import 'src/utils/constants.dart';
 import 'src/utils/helpers.dart';
 
@@ -20,7 +21,7 @@ void main() async {
 
   runApp(MaterialApp(
     title: title,
-    theme: ThemeData(useMaterial3: true),
+    theme: ThemeData(useMaterial3: true, colorSchemeSeed: Colors.pink),
     home: GameWidget<RiverWarrior>.controlled(
         gameFactory: RiverWarrior.new,
         backgroundBuilder: (context) => Container(
@@ -31,8 +32,9 @@ void main() async {
               ),
             ),
         overlayBuilderMap: const {
+          'about': AboutScreen.new,
           'help': HelpOverlay.new,
-          'info': InfoScreen.new,
+          'settings': SettingsScreen.new,
         }),
   ));
 }

@@ -3,15 +3,15 @@ import 'package:river_warrior/src/widgets/window.dart';
 
 import '../../river_warrior.dart';
 
-class InfoScreen extends StatelessWidget {
+class AboutScreen extends StatelessWidget {
   final BuildContext context;
   final RiverWarrior game;
 
-  const InfoScreen(this.context, this.game, {super.key});
+  const AboutScreen(this.context, this.game, {super.key});
 
   @override
   Widget build(BuildContext context) =>
-      Window('info', game: game, title: 'About This Game', children: [
+      Window('about', game: game, title: 'About This Game', children: [
         ClipRRect(
           borderRadius: BorderRadius.circular(8.0),
           child: Stack(

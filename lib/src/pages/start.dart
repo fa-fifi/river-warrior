@@ -29,7 +29,7 @@ class StartPage extends Dojo {
           ]),
       gearButton = Button(id: 8),
       starButton = Button(id: 1),
-      helpButton = Button(id: 7),
+      helpButton = Button(id: 7, onPressed: () => game.overlays.add('help')),
       infoButton = Button(id: 2),
     ]);
   }

@@ -11,6 +11,9 @@ dependencies:
   flame_audio: ^2.1.7
   flutter:
     sdk: flutter
+  flutter_localizations:
+    sdk: flutter
+  intl: ^0.18.1
   window_size:
     git:
       url: https://github.com/google/flutter-desktop-embedding.git
@@ -25,6 +28,7 @@ dev_dependencies:
     sdk: flutter
 
 flutter:
+  generate: true
   uses-material-design: true
   assets:
    - assets/

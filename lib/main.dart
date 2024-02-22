@@ -2,6 +2,7 @@ import 'package:flame/flame.dart';
 import 'package:flame/game.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart' hide Route;
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:window_size/window_size.dart';
 
 import 'river_warrior.dart';
@@ -21,6 +22,8 @@ void main() async {
 
   runApp(MaterialApp(
     title: title,
+    localizationsDelegates: AppLocalizations.localizationsDelegates,
+    supportedLocales: AppLocalizations.supportedLocales,
     theme: ThemeData(useMaterial3: true, colorSchemeSeed: Colors.pink),
     home: GameWidget<RiverWarrior>.controlled(
         gameFactory: RiverWarrior.new,

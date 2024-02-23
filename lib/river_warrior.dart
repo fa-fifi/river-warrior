@@ -2,11 +2,10 @@ import 'package:flame/game.dart';
 import 'package:flame/palette.dart';
 import 'package:flame_audio/flame_audio.dart';
 import 'package:flutter/foundation.dart';
-
-import 'src/pages/finish.dart';
-import 'src/pages/pause.dart';
-import 'src/pages/play.dart';
-import 'src/pages/start.dart';
+import 'package:river_warrior/src/pages/finish.dart';
+import 'package:river_warrior/src/pages/pause.dart';
+import 'package:river_warrior/src/pages/play.dart';
+import 'package:river_warrior/src/pages/start.dart';
 
 class RiverWarrior extends FlameGame
     with SingleGameInstance, HasCollisionDetection {
@@ -14,7 +13,7 @@ class RiverWarrior extends FlameGame
   Color bladeColor = BasicPalette.white.color;
   int highScore = 0;
   int maxMistake = 3;
-  double bgmVolume = kIsWeb ? 0 : 1;
+  double bgmVolume = 1;
   double sfxVolume = 1;
 
   void restart() {

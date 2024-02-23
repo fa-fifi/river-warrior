@@ -3,14 +3,13 @@ import 'dart:math';
 import 'package:flame/components.dart';
 import 'package:flame/image_composition.dart' as composition;
 import 'package:flutter/material.dart';
-
-import '../../river_warrior.dart';
-import '../models/item.dart';
-import '../models/plastic.dart';
-import '../models/rock.dart';
-import '../pages/play.dart';
-import '../utils/constants.dart';
-import '../utils/helpers.dart';
+import 'package:river_warrior/river_warrior.dart';
+import 'package:river_warrior/src/models/item.dart';
+import 'package:river_warrior/src/models/plastic.dart';
+import 'package:river_warrior/src/models/rock.dart';
+import 'package:river_warrior/src/pages/play.dart';
+import 'package:river_warrior/src/utils/constants.dart';
+import 'package:river_warrior/src/utils/helpers.dart';
 
 class Throwable extends SpriteComponent
     with ParentIsA<PlayPage>, HasGameReference<RiverWarrior> {
@@ -75,13 +74,13 @@ class Throwable extends SpriteComponent
 
     if (a < 45 || (a > 135 && a < 225) || a > 315) {
       final dividedImage1 = composition.ImageComposition()
-            ..add(sprite!.image, Vector2(0, 0),
-                source: Rect.fromLTWH(0, 0, sprite!.image.width.toDouble(),
-                    sprite!.image.height / 2)),
-          dividedImage2 = composition.ImageComposition()
-            ..add(sprite!.image, Vector2(0, 0),
-                source: Rect.fromLTWH(0, sprite!.image.height / 2,
-                    sprite!.image.width.toDouble(), sprite!.image.height / 2));
+        ..add(sprite!.image, Vector2(0, 0),
+            source: Rect.fromLTWH(0, 0, sprite!.image.width.toDouble(),
+                sprite!.image.height / 2));
+      final dividedImage2 = composition.ImageComposition()
+        ..add(sprite!.image, Vector2(0, 0),
+            source: Rect.fromLTWH(0, sprite!.image.height / 2,
+                sprite!.image.width.toDouble(), sprite!.image.height / 2));
 
       parent.addAll([
         Throwable(dividedImage2.composeSync(),
@@ -107,13 +106,13 @@ class Throwable extends SpriteComponent
       ]);
     } else {
       final dividedImage1 = composition.ImageComposition()
-            ..add(sprite!.image, Vector2(0, 0),
-                source: Rect.fromLTWH(0, 0, sprite!.image.width / 2,
-                    sprite!.image.height.toDouble())),
-          dividedImage2 = composition.ImageComposition()
-            ..add(sprite!.image, Vector2(0, 0),
-                source: Rect.fromLTWH(sprite!.image.width / 2, 0,
-                    sprite!.image.width / 2, sprite!.image.height.toDouble()));
+        ..add(sprite!.image, Vector2(0, 0),
+            source: Rect.fromLTWH(0, 0, sprite!.image.width / 2,
+                sprite!.image.height.toDouble()));
+      final dividedImage2 = composition.ImageComposition()
+        ..add(sprite!.image, Vector2(0, 0),
+            source: Rect.fromLTWH(sprite!.image.width / 2, 0,
+                sprite!.image.width / 2, sprite!.image.height.toDouble()));
 
       parent.addAll([
         Throwable(dividedImage1.composeSync(),

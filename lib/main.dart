@@ -3,14 +3,13 @@ import 'package:flame/game.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart' hide Route;
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:river_warrior/river_warrior.dart';
+import 'package:river_warrior/src/overlays/about.dart';
+import 'package:river_warrior/src/overlays/help.dart';
+import 'package:river_warrior/src/overlays/settings.dart';
+import 'package:river_warrior/src/utils/constants.dart';
+import 'package:river_warrior/src/utils/helpers.dart';
 import 'package:window_size/window_size.dart';
-
-import 'river_warrior.dart';
-import 'src/overlays/about.dart';
-import 'src/overlays/help.dart';
-import 'src/overlays/settings.dart';
-import 'src/utils/constants.dart';
-import 'src/utils/helpers.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

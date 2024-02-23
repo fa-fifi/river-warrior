@@ -3,13 +3,17 @@ import 'package:flame/components.dart';
 import 'package:flame/effects.dart';
 import 'package:flame/events.dart';
 import 'package:flame_audio/flame_audio.dart';
-
-import '../components/button.dart';
-import '../components/dojo.dart';
+import 'package:river_warrior/src/components/button.dart';
+import 'package:river_warrior/src/components/dojo.dart';
 
 class StartPage extends Dojo {
-  late final PositionComponent title, playButton, hitbox;
-  late final Button settingsButton, powerupButton, helpButton, aboutButton;
+  late final PositionComponent title;
+  late final PositionComponent playButton;
+  late final PositionComponent hitbox;
+  late final Button settingsButton;
+  late final Button powerupButton;
+  late final Button helpButton;
+  late final Button aboutButton;
 
   @override
   Future<void> onLoad() async {

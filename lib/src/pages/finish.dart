@@ -4,9 +4,8 @@ import 'package:flame/events.dart';
 import 'package:flame/game.dart' hide Game;
 import 'package:flame/palette.dart';
 import 'package:flame/rendering.dart';
-
-import '../../river_warrior.dart';
-import '../components/outlined_text.dart';
+import 'package:river_warrior/river_warrior.dart';
+import 'package:river_warrior/src/components/outlined_text.dart';
 
 class FinishRoute extends Route {
   FinishRoute()

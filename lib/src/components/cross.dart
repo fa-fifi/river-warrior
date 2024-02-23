@@ -1,8 +1,7 @@
 import 'package:flame/components.dart';
 import 'package:flame/effects.dart';
-
-import '../../river_warrior.dart';
-import '../pages/play.dart';
+import 'package:river_warrior/river_warrior.dart';
+import 'package:river_warrior/src/pages/play.dart';
 
 enum CrossState { red, grey }
 

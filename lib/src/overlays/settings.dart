@@ -2,9 +2,8 @@ import 'package:flame_audio/flame_audio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:river_warrior/main.dart';
+import 'package:river_warrior/river_warrior.dart';
 import 'package:river_warrior/src/widgets/window.dart';
-
-import '../../river_warrior.dart';
 
 class SettingsScreen extends StatefulWidget {
   final BuildContext context;
@@ -30,12 +29,9 @@ class _SettingsScreenState extends State<SettingsScreen> {
               label: '${(widget.game.bgmVolume * 100).toInt()}',
               onChanged: (value) {
                 setState(() => widget.game.bgmVolume = value);
-                value == 0
-                    ? FlameAudio.bgm.stop()
-                    : !FlameAudio.bgm.isPlaying
-                        ? FlameAudio.bgm
-                            .play('background-music.mp3', volume: value)
-                        : FlameAudio.bgm.audioPlayer.setVolume(value);
+                !FlameAudio.bgm.isPlaying
+                    ? FlameAudio.bgm.play('background-music.mp3', volume: value)
+                    : FlameAudio.bgm.audioPlayer.setVolume(value);
               }),
         ]),
         const SizedBox(height: 10),

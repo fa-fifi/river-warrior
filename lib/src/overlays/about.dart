@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:river_warrior/river_warrior.dart';
 import 'package:river_warrior/src/widgets/window.dart';
-
-import '../../river_warrior.dart';
 
 class AboutScreen extends StatelessWidget {
   final BuildContext context;

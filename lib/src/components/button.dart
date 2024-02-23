@@ -2,8 +2,7 @@ import 'package:flame/components.dart';
 import 'package:flame/events.dart';
 import 'package:flame/sprite.dart';
 import 'package:flutter/material.dart';
-
-import '../../river_warrior.dart';
+import 'package:river_warrior/river_warrior.dart';
 
 final class Button extends PositionComponent
     with HasGameReference<RiverWarrior>, TapCallbacks {

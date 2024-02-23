@@ -1,8 +1,7 @@
 import 'package:flame/game.dart';
-
-import 'coin.dart';
-import 'plastic.dart';
-import 'rock.dart';
+import 'package:river_warrior/src/models/coin.dart';
+import 'package:river_warrior/src/models/plastic.dart';
+import 'package:river_warrior/src/models/rock.dart';
 
 abstract class Item {
   final String image;

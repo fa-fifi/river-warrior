@@ -1,4 +1,4 @@
-import 'item.dart';
+import 'package:river_warrior/src/models/item.dart';
 
 final class Coin extends Item {
   Coin(super.image, {required super.point})

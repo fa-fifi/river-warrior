@@ -1,12 +1,12 @@
 import 'package:flame/components.dart';
-
-import '../../river_warrior.dart';
-import '../pages/play.dart';
-import 'outlined_text.dart';
+import 'package:river_warrior/river_warrior.dart';
+import 'package:river_warrior/src/components/outlined_text.dart';
+import 'package:river_warrior/src/pages/play.dart';
 
 class Scoreboard extends PositionComponent
     with ParentIsA<PlayPage>, HasGameReference<RiverWarrior> {
-  late final OutlinedText currentScoreText, highScoreText;
+  late final OutlinedText currentScoreText;
+  late final OutlinedText highScoreText;
 
   @override
   void onLoad() {

@@ -1,8 +1,7 @@
 import 'package:flame/components.dart';
 import 'package:flame/extensions.dart';
 import 'package:flutter/material.dart';
-
-import '../../river_warrior.dart';
+import 'package:river_warrior/river_warrior.dart';
 
 class Blade extends Component with HasGameReference<RiverWarrior> {
   final Vector2 origin;

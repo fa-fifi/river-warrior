@@ -3,21 +3,21 @@ import 'dart:math';
 import 'package:flame/components.dart';
 import 'package:flame/events.dart';
 import 'package:flame/extensions.dart';
-
-import '../components/button.dart';
-import '../components/countdown.dart';
-import '../components/cross.dart';
-import '../components/dojo.dart';
-import '../components/scoreboard.dart';
-import '../components/throwable.dart';
-import '../models/item.dart';
-import '../utils/constants.dart';
+import 'package:river_warrior/src/components/button.dart';
+import 'package:river_warrior/src/components/countdown.dart';
+import 'package:river_warrior/src/components/cross.dart';
+import 'package:river_warrior/src/components/dojo.dart';
+import 'package:river_warrior/src/components/scoreboard.dart';
+import 'package:river_warrior/src/components/throwable.dart';
+import 'package:river_warrior/src/models/item.dart';
+import 'package:river_warrior/src/utils/constants.dart';
 
 class PlayPage extends Dojo {
   late final Button pauseButton;
   late final TimerComponent timerComponent;
   late double maxVerticalVelocity;
-  int mistake = 0, score = 0;
+  int mistake = 0;
+  int score = 0;
 
   @override
   void onLoad() {

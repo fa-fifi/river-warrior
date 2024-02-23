@@ -1,4 +1,4 @@
-import 'item.dart';
+import 'package:river_warrior/src/models/item.dart';
 
 final class Plastic extends Item {
   const Plastic(super.image, {super.scaleFactor}) : super(point: 1);

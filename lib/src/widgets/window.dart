@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-
-import '../../river_warrior.dart';
+import 'package:river_warrior/river_warrior.dart';
 
 class Window extends StatelessWidget {
   final String path;

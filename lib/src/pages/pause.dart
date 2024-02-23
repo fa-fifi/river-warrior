@@ -2,10 +2,9 @@ import 'package:flame/components.dart';
 import 'package:flame/effects.dart';
 import 'package:flame/game.dart' hide Game;
 import 'package:flame/rendering.dart';
-
-import '../../river_warrior.dart';
-import '../components/button.dart';
-import '../components/outlined_text.dart';
+import 'package:river_warrior/river_warrior.dart';
+import 'package:river_warrior/src/components/button.dart';
+import 'package:river_warrior/src/components/outlined_text.dart';
 
 class PauseRoute extends Route {
   PauseRoute() : super(PausePage.new, transparent: true);
@@ -23,7 +22,9 @@ class PauseRoute extends Route {
 
 class PausePage extends Component with HasGameReference<RiverWarrior> {
   late final OutlinedText pauseText;
-  late final Button retryButton, exitButton, continueButton;
+  late final Button retryButton;
+  late final Button exitButton;
+  late final Button continueButton;
 
   @override
   Future<void> onLoad() async {

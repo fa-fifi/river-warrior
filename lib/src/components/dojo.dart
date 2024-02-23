@@ -2,9 +2,8 @@ import 'package:flame/components.dart';
 import 'package:flame/events.dart';
 import 'package:flame/game.dart';
 import 'package:flutter/foundation.dart';
-
-import '../../river_warrior.dart';
-import 'blade.dart';
+import 'package:river_warrior/river_warrior.dart';
+import 'package:river_warrior/src/components/blade.dart';
 
 class Dojo extends Component
     with DragCallbacks, HasGameReference<RiverWarrior> {

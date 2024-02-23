@@ -2,8 +2,7 @@ import 'dart:ui';
 
 import 'package:flame/components.dart';
 import 'package:flame/palette.dart';
-
-import 'outlined_text.dart';
+import 'package:river_warrior/src/components/outlined_text.dart';
 
 class Countdown extends OutlinedText {
   final VoidCallback? onCompleted;

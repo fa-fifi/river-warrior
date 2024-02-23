@@ -20,24 +20,46 @@ void main() async {
     if (kIsDesktop) setWindowTitle(title);
   }
 
-  runApp(MaterialApp(
-    title: title,
-    localizationsDelegates: AppLocalizations.localizationsDelegates,
-    supportedLocales: AppLocalizations.supportedLocales,
-    theme: ThemeData(useMaterial3: true, colorSchemeSeed: Colors.pink),
-    home: GameWidget<RiverWarrior>.controlled(
-        gameFactory: RiverWarrior.new,
-        backgroundBuilder: (context) => Container(
-              decoration: const BoxDecoration(
-                image: DecorationImage(
-                    image: AssetImage('assets/images/river.png'),
-                    fit: BoxFit.cover),
-              ),
-            ),
-        overlayBuilderMap: const {
-          'about': AboutScreen.new,
-          'help': HelpOverlay.new,
-          'settings': SettingsScreen.new,
-        }),
-  ));
+  runApp(const MyApp());
+}
+
+class MyApp extends StatefulWidget {
+  const MyApp({super.key});
+
+  @override
+  State<MyApp> createState() => _MyAppState();
+
+  // ignore: library_private_types_in_public_api
+  static _MyAppState of(BuildContext context) =>
+      context.findAncestorStateOfType<_MyAppState>()!;
+}
+
+class _MyAppState extends State<MyApp> {
+  Locale _locale = const Locale.fromSubtags(languageCode: 'en');
+
+  void setLocale(String code) =>
+      setState(() => _locale = Locale.fromSubtags(languageCode: code));
+
+  @override
+  Widget build(BuildContext context) => MaterialApp(
+        title: title,
+        locale: _locale,
+        localizationsDelegates: AppLocalizations.localizationsDelegates,
+        supportedLocales: AppLocalizations.supportedLocales,
+        theme: ThemeData(useMaterial3: true, colorSchemeSeed: Colors.pink),
+        home: GameWidget<RiverWarrior>.controlled(
+            gameFactory: RiverWarrior.new,
+            backgroundBuilder: (context) => Container(
+                  decoration: const BoxDecoration(
+                    image: DecorationImage(
+                        image: AssetImage('assets/images/river.png'),
+                        fit: BoxFit.cover),
+                  ),
+                ),
+            overlayBuilderMap: const {
+              'about': AboutScreen.new,
+              'help': HelpOverlay.new,
+              'settings': SettingsScreen.new,
+            }),
+      );
 }

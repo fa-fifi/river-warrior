@@ -26,7 +26,13 @@ class RiverWarrior extends FlameGame
     super.onLoad();
     FlameAudio.bgm.initialize();
     if (!kIsWeb) FlameAudio.bgm.play('background-music.mp3', volume: bgmVolume);
-    await FlameAudio.audioCache.loadAll(['countdown-start.wav']);
+    await FlameAudio.audioCache.loadAll([
+      'countdown-start.wav',
+      'game-over.wav',
+      'whip-whoosh.mp3',
+      'pickup-coin.wav',
+      'hit-rock.wav'
+    ]);
     await images.loadAllImages();
     addAll([
       router = RouterComponent(initialRoute: 'start', routes: {

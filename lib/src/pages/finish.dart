@@ -4,6 +4,7 @@ import 'package:flame/events.dart';
 import 'package:flame/game.dart' hide Game;
 import 'package:flame/palette.dart';
 import 'package:flame/rendering.dart';
+import 'package:flame_audio/flame_audio.dart';
 import 'package:river_warrior/river_warrior.dart';
 import 'package:river_warrior/src/components/outlined_text.dart';
 
@@ -32,6 +33,7 @@ class FinishPage extends Component
   @override
   void onLoad() {
     super.onLoad();
+    FlameAudio.play('game-over.wav', volume: game.sfxVolume);
     add(gameoverText = OutlinedText(
         text: 'GAME OVER',
         textColor: BasicPalette.red.color,

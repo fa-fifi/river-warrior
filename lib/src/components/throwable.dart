@@ -2,8 +2,10 @@ import 'dart:math';
 
 import 'package:flame/components.dart';
 import 'package:flame/image_composition.dart' as composition;
+import 'package:flame_audio/flame_audio.dart';
 import 'package:flutter/material.dart';
 import 'package:river_warrior/river_warrior.dart';
+import 'package:river_warrior/src/models/coin.dart';
 import 'package:river_warrior/src/models/item.dart';
 import 'package:river_warrior/src/models/plastic.dart';
 import 'package:river_warrior/src/models/rock.dart';
@@ -57,6 +59,11 @@ class Throwable extends SpriteComponent
 
   void touchAtPoint(Vector2 vector2) {
     if (divided) return;
+    if (item is Rock) FlameAudio.play('hit-rock.wav', volume: game.sfxVolume);
+    if (item is Plastic)
+      FlameAudio.play('whip-whoosh.mp3', volume: game.sfxVolume);
+    if (item is Coin)
+      FlameAudio.play('pickup-coin.wav', volume: game.sfxVolume);
     if (item is Rock) return finish();
 
     divided = true;

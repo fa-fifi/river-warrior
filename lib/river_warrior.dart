@@ -13,7 +13,7 @@ class RiverWarrior extends FlameGame
   Color bladeColor = BasicPalette.white.color;
   int highScore = 0;
   int maxMistake = 3;
-  double bgmVolume = 1;
+  double bgmVolume = 0.5;
   double sfxVolume = 1;
 
   void restart() {
@@ -26,6 +26,7 @@ class RiverWarrior extends FlameGame
     super.onLoad();
     FlameAudio.bgm.initialize();
     if (!kIsWeb) FlameAudio.bgm.play('background-music.mp3', volume: bgmVolume);
+    await FlameAudio.audioCache.loadAll(['countdown-start.wav']);
     await images.loadAllImages();
     addAll([
       router = RouterComponent(initialRoute: 'start', routes: {

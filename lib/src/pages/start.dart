@@ -25,7 +25,7 @@ class StartPage extends Dojo {
           anchor: Anchor.center,
           children: [
             RotateEffect.to(
-              .1,
+              -0.1,
               EffectController(duration: 0.5, infinite: true, alternate: true),
             ),
             hitbox =

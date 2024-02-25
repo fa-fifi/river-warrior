@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:flame/components.dart';
 import 'package:flame/events.dart';
 import 'package:flame/extensions.dart';
+import 'package:flame_audio/flame_audio.dart';
 import 'package:river_warrior/src/components/button.dart';
 import 'package:river_warrior/src/components/countdown.dart';
 import 'package:river_warrior/src/components/cross.dart';
@@ -22,6 +23,7 @@ class PlayPage extends Dojo {
   @override
   void onLoad() {
     super.onLoad();
+    FlameAudio.play('countdown-start.wav', volume: game.sfxVolume);
     addAll([
       Scoreboard(),
       ...List<Cross>.generate(game.maxMistake,

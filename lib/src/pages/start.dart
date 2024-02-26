@@ -21,7 +21,8 @@ class StartPage extends Dojo {
     addAll([
       title = SpriteComponent.fromImage(game.images.fromCache('title.png'),
           anchor: Anchor.topCenter, priority: 1),
-      playButton = SpriteComponent.fromImage(game.images.fromCache('drink.png'),
+      playButton = SpriteComponent.fromImage(
+          game.images.fromCache('cut to start.png'),
           anchor: Anchor.center,
           children: [
             RotateEffect.to(

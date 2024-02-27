@@ -31,7 +31,7 @@ class RiverWarrior extends FlameGame
       'game-over.wav',
       'whip-whoosh.mp3',
       'pickup-coin.wav',
-      'hit-rock.wav'
+      'hit-rock.mp3'
     ]);
     await images.loadAllImages();
     addAll([

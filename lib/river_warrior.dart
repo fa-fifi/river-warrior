@@ -1,3 +1,5 @@
+import 'package:flame/components.dart';
+import 'package:flame/extensions.dart';
 import 'package:flame/game.dart';
 import 'package:flame/palette.dart';
 import 'package:flame_audio/flame_audio.dart';
@@ -10,6 +12,7 @@ import 'package:river_warrior/src/pages/start.dart';
 class RiverWarrior extends FlameGame
     with SingleGameInstance, HasCollisionDetection {
   late final RouterComponent router;
+  late final SpriteComponent background;
   Color bladeColor = BasicPalette.white.color;
   int highScore = 0;
   int maxMistake = 3;
@@ -35,12 +38,25 @@ class RiverWarrior extends FlameGame
     ]);
     await images.loadAllImages();
     addAll([
+      background = SpriteComponent.fromImage(images.fromCache('river.png'),
+          anchor: Anchor.center),
       router = RouterComponent(initialRoute: 'start', routes: {
         'start': Route(StartPage.new),
         'play': Route(PlayPage.new, maintainState: false),
         'pause': PauseRoute(),
         'finish': FinishRoute(),
-      })
+      }),
     ]);
+  }
+
+  @override
+  void onGameResize(Vector2 size) {
+    super.onGameResize(size);
+    if (isMounted)
+      background
+        ..position = size / 2
+        ..size = size.x / size.y > 1.5
+            ? Vector2(size.x, size.x / 1.5)
+            : Vector2(size.y * 1.5, size.y);
   }
 }

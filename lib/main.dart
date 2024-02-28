@@ -48,13 +48,6 @@ class _MyAppState extends State<MyApp> {
         theme: ThemeData(useMaterial3: true, colorSchemeSeed: Colors.pink),
         home: GameWidget<RiverWarrior>.controlled(
             gameFactory: RiverWarrior.new,
-            backgroundBuilder: (context) => Container(
-                  decoration: const BoxDecoration(
-                    image: DecorationImage(
-                        image: AssetImage('assets/images/river.png'),
-                        fit: BoxFit.cover),
-                  ),
-                ),
             overlayBuilderMap: const {
               'about': AboutScreen.new,
               'help': HelpOverlay.new,

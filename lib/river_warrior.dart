@@ -24,6 +24,10 @@ class RiverWarrior extends FlameGame
     FlameAudio.bgm.play('background-music.mp3', volume: bgmVolume);
   }
 
+  // ignore: avoid_setters_without_getters
+  set backgroundImage(String image) =>
+      background.sprite?.image = images.fromCache('$image.png');
+
   @override
   Future<void> onLoad() async {
     super.onLoad();
@@ -34,7 +38,7 @@ class RiverWarrior extends FlameGame
       'game-over.wav',
       'whip-whoosh.mp3',
       'pickup-coin.wav',
-      'hit-rock.mp3'
+      'hit-rock.mp3',
     ]);
     await images.loadAllImages();
     addAll([

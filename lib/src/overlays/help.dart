@@ -23,8 +23,9 @@ class HelpOverlay extends StatelessWidget {
         Wrap(
             spacing: 10,
             runSpacing: 10,
-            children: List.from(plastics.map((plastic) =>
-                Image.asset('assets/images/${plastic.image}.png', width: 50)))),
+            children: List.from(plastics.map((plastic) => Image.asset(
+                'assets/images/items/${plastic.image}.png',
+                width: 50)))),
         const SizedBox(height: 20),
         const Text('Bling Bling',
             style: TextStyle(fontWeight: FontWeight.bold)),
@@ -33,8 +34,9 @@ class HelpOverlay extends StatelessWidget {
         Wrap(
             spacing: 10,
             runSpacing: 10,
-            children: List.from(coins.map((coin) =>
-                Image.asset('assets/images/${coin.image}.png', width: 50)))),
+            children: List.from(coins.map((coin) => Image.asset(
+                'assets/images/items/${coin.image}.png',
+                width: 50)))),
         const SizedBox(height: 20),
         const Text('Rocky Docky',
             style: TextStyle(fontWeight: FontWeight.bold)),
@@ -43,8 +45,9 @@ class HelpOverlay extends StatelessWidget {
         Wrap(
             spacing: 10,
             runSpacing: 10,
-            children: List.from(rocks.map((rock) =>
-                Image.asset('assets/images/${rock.image}.png', width: 50)))),
+            children: List.from(rocks.map((rock) => Image.asset(
+                'assets/images/items/${rock.image}.png',
+                width: 50)))),
         const SizedBox(height: 20),
         const Text(
             "Become the ultimate 'River Warrior' and defend the waters from plastic invaders.\nReady to make a difference? Dive in now!"),

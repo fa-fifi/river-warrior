@@ -40,7 +40,7 @@ class PlayPage extends Dojo {
             final position =
                 Vector2(Random().nextDouble() * game.size.x, game.size.y);
             add(Throwable(
-              game.images.fromCache('${item.image}.png'),
+              game.images.fromCache('items/${item.image}.png'),
               position: position,
               angle: Random().nextDouble() * 6,
               scale: item.scale,

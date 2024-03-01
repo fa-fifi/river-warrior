@@ -17,7 +17,7 @@ class RiverWarrior extends FlameGame
   int highScore = 0;
   int maxMistake = 3;
   double bgmVolume = 0.5;
-  double sfxVolume = 1;
+  double sfxVolume = 0.5;
 
   void restart() {
     router.popUntilNamed('start');
@@ -26,7 +26,7 @@ class RiverWarrior extends FlameGame
 
   // ignore: avoid_setters_without_getters
   set backgroundImage(String image) =>
-      background.sprite?.image = images.fromCache('$image.png');
+      background.sprite?.image = images.fromCache('backgrounds/$image.png');
 
   @override
   Future<void> onLoad() async {
@@ -42,7 +42,8 @@ class RiverWarrior extends FlameGame
     ]);
     await images.loadAllImages();
     addAll([
-      background = SpriteComponent.fromImage(images.fromCache('river.png'),
+      background = SpriteComponent.fromImage(
+          images.fromCache('backgrounds/river.png'),
           anchor: Anchor.center),
       router = RouterComponent(initialRoute: 'start', routes: {
         'start': Route(StartPage.new),

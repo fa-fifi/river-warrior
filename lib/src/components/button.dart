@@ -26,7 +26,9 @@ final class Button extends PositionComponent
   void onLoad() {
     super.onLoad();
     final sheet = SpriteSheet.fromColumnsAndRows(
-        image: game.images.fromCache('buttons.png'), columns: 3, rows: 3);
+        image: game.images.fromCache('others/buttons.png'),
+        columns: 3,
+        rows: 3);
     add(sprite = SpriteComponent(sprite: sheet.getSpriteById(id), size: size));
   }
 

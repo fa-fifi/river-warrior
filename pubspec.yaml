@@ -36,6 +36,9 @@ flutter:
    - assets/
    - assets/audio/
    - assets/images/
+   - assets/images/backgrounds/
+   - assets/images/items/
+   - assets/images/others/
    - assets/images/powerups/
   fonts:
     - family: Knewave

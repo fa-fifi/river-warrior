@@ -6,6 +6,7 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:river_warrior/river_warrior.dart';
 import 'package:river_warrior/src/overlays/about.dart';
 import 'package:river_warrior/src/overlays/help.dart';
+import 'package:river_warrior/src/overlays/scorecard.dart';
 import 'package:river_warrior/src/overlays/settings.dart';
 import 'package:river_warrior/src/utils/constants.dart';
 import 'package:river_warrior/src/utils/helpers.dart';
@@ -51,6 +52,7 @@ class _MyAppState extends State<MyApp> {
             overlayBuilderMap: const {
               'about': AboutScreen.new,
               'help': HelpOverlay.new,
+              'scorecard': ScorecardOverlay.new,
               'settings': SettingsScreen.new,
             }),
       );

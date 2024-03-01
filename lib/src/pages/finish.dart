@@ -55,5 +55,5 @@ class FinishPage extends Component
   }
 
   @override
-  void onTapUp(TapUpEvent event) => game.restart();
+  void onTapUp(TapUpEvent event) => game.overlays.add('scorecard');
 }

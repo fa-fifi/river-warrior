@@ -30,6 +30,8 @@ class FinishPage extends Component
   @override
   bool containsLocalPoint(Vector2 point) => true;
 
+  bool isDone = false;
+
   @override
   void onLoad() {
     super.onLoad();
@@ -44,6 +46,7 @@ class FinishPage extends Component
             Vector2.all(0.6),
             EffectController(
                 duration: 0, reverseDuration: 0.8, alternate: true),
+            onComplete: () => isDone = true,
           ),
         ]));
   }
@@ -55,5 +58,7 @@ class FinishPage extends Component
   }
 
   @override
-  void onTapUp(TapUpEvent event) => game.overlays.add('scorecard');
+  void onTapUp(TapUpEvent event) {
+    if (isDone) game.overlays.add('scorecard');
+  }
 }

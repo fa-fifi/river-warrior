@@ -24,7 +24,7 @@ class HelpOverlay extends StatelessWidget {
             spacing: 10,
             runSpacing: 10,
             children: List.from(plastics.map((plastic) => Image.asset(
-                'assets/images/items/${plastic.image}.png',
+                'assets/images/items/${plastic.name}.png',
                 width: 50)))),
         const SizedBox(height: 20),
         const Text('Bling Bling',
@@ -35,7 +35,7 @@ class HelpOverlay extends StatelessWidget {
             spacing: 10,
             runSpacing: 10,
             children: List.from(coins.map((coin) => Image.asset(
-                'assets/images/items/${coin.image}.png',
+                'assets/images/items/${coin.name}.png',
                 width: 50)))),
         const SizedBox(height: 20),
         const Text('Rocky Docky',
@@ -46,7 +46,7 @@ class HelpOverlay extends StatelessWidget {
             spacing: 10,
             runSpacing: 10,
             children: List.from(rocks.map((rock) => Image.asset(
-                'assets/images/items/${rock.image}.png',
+                'assets/images/items/${rock.name}.png',
                 width: 50)))),
         const SizedBox(height: 20),
         const Text(

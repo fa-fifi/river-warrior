@@ -31,7 +31,7 @@ class Cross extends SpriteGroupComponent<CrossState>
   void update(double dt) {
     super.update(dt);
     final previous = current;
-    current = parent.mistake <= count ? CrossState.grey : CrossState.red;
+    current = game.mistake <= count ? CrossState.grey : CrossState.red;
     if (previous == current) return;
     add(ScaleEffect.by(
         Vector2.all(1.2), EffectController(duration: 0.3, alternate: true)));

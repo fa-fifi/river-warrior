@@ -18,6 +18,9 @@ class RiverWarrior extends FlameGame
   int maxMistake = 3;
   double bgmVolume = 0.5;
   double sfxVolume = 0.5;
+  int mistake = 0;
+  int score = 0;
+  Map<String, int> tally = {};
 
   void restart() {
     router.popUntilNamed('start');

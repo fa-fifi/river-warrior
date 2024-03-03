@@ -1,10 +1,8 @@
 import 'package:flame/components.dart';
 import 'package:river_warrior/river_warrior.dart';
 import 'package:river_warrior/src/components/outlined_text.dart';
-import 'package:river_warrior/src/pages/play.dart';
 
-class Scoreboard extends PositionComponent
-    with ParentIsA<PlayPage>, HasGameReference<RiverWarrior> {
+class Scoreboard extends PositionComponent with HasGameReference<RiverWarrior> {
   late final OutlinedText currentScoreText;
   late final OutlinedText highScoreText;
 
@@ -20,7 +18,7 @@ class Scoreboard extends PositionComponent
   @override
   void update(double dt) {
     super.update(dt);
-    currentScoreText.text = '${parent.score}';
+    currentScoreText.text = '${game.score}';
     highScoreText.text = 'BEST: ${game.highScore}';
   }
 
@@ -34,6 +32,9 @@ class Scoreboard extends PositionComponent
   @override
   void onRemove() {
     super.onRemove();
-    if (parent.score > game.highScore) game.highScore = parent.score;
+    if (game.score > game.highScore) game.highScore = game.score;
+    game.mistake = 0;
+    game.score = 0;
+    game.tally.clear();
   }
 }

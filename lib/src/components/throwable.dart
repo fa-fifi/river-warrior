@@ -53,8 +53,8 @@ class Throwable extends SpriteComponent
     if ((position.y - size.y) > game.size.y) {
       removeFromParent();
       if (!divided && item is Plastic) {
-        parent.mistake++;
-        if (parent.mistake >= game.maxMistake) finish();
+        game.mistake++;
+        if (game.mistake >= game.maxMistake) finish();
       }
     }
   }
@@ -69,15 +69,16 @@ class Throwable extends SpriteComponent
     if (item is Rock) return finish();
 
     divided = true;
-    parent.score += item.point;
-    final currentScore = parent.score;
+    game.score += item.point;
+    game.tally.update(item.name, (value) => ++value, ifAbsent: () => 1);
+    final currentScore = game.score;
     removeFromParent();
 
-    if (parent.score >= threshold &&
-        parent.score % threshold < 10 &&
-        parent.mistake > 0 &&
+    if (game.score >= threshold &&
+        game.score % threshold < 10 &&
+        game.mistake > 0 &&
         item is! Rock) {
-      parent.mistake--;
+      game.mistake--;
     }
 
     if (item is Coin || item is Rock) {

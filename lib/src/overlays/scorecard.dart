@@ -14,13 +14,20 @@ class ScorecardOverlay extends StatelessWidget {
           ..overlays.remove('scorecard')
           ..restart(),
         child: Center(
-          child: AddToGoogleWalletButton(
-            pass: _examplePass,
-            locale: Locale.fromSubtags(
-                languageCode:
-                    Localizations.localeOf(context).languageCode == 'ja'
-                        ? 'jp'
-                        : 'en'),
+          child: Card(
+            child: Column(
+              children: [
+                Text(game.tally.toString()),
+                AddToGoogleWalletButton(
+                  pass: _examplePass,
+                  locale: Locale.fromSubtags(
+                      languageCode:
+                          Localizations.localeOf(context).languageCode == 'ja'
+                              ? 'jp'
+                              : 'en'),
+                ),
+              ],
+            ),
           ),
         ),
       );

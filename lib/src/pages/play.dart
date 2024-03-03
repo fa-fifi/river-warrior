@@ -17,8 +17,6 @@ class PlayPage extends Dojo {
   late final Button pauseButton;
   late final TimerComponent timerComponent;
   late double maxVerticalVelocity;
-  int mistake = 0;
-  int score = 0;
 
   @override
   void onLoad() {
@@ -40,7 +38,7 @@ class PlayPage extends Dojo {
             final position =
                 Vector2(Random().nextDouble() * game.size.x, game.size.y);
             add(Throwable(
-              game.images.fromCache('items/${item.image}.png'),
+              game.images.fromCache(item.image),
               position: position,
               angle: Random().nextDouble() * 6,
               scale: item.scale,

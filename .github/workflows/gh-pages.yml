@@ -13,4 +13,7 @@ jobs:
       - uses: bluefireteam/flutter-gh-pages@v8
         with:
           baseHref: /river-warrior/
-          webRenderer: canvaskit
+          customArgs: >
+            --dart-define="PASS_CLASS=${{ secrets.PASS_CLASS }}"
+            --dart-define="ISSUER_ID=${{ secrets.ISSUER_ID }}"
+            --dart-define="ISSUER_EMAIL=${{ secrets.ISSUER_EMAIL }}"

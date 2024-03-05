@@ -4,6 +4,7 @@ import 'package:flame/game.dart';
 import 'package:flame/palette.dart';
 import 'package:flame_audio/flame_audio.dart';
 import 'package:flutter/foundation.dart';
+import 'package:river_warrior/src/models/powerup.dart';
 import 'package:river_warrior/src/pages/finish.dart';
 import 'package:river_warrior/src/pages/pause.dart';
 import 'package:river_warrior/src/pages/play.dart';
@@ -22,14 +23,34 @@ class RiverWarrior extends FlameGame
   int score = 0;
   Map<String, int> tally = {};
 
+  // ignore: avoid_setters_without_getters
+  set backgroundImage(String image) =>
+      background.sprite?.image = images.fromCache('backgrounds/$image.png');
+
+  Powerup? get powerup {
+    if (score > 5000) {
+      return Powerup.neptuneTrident;
+    } else if ((tally['Rock'] ?? 0) > 100) {
+      return Powerup.crowAndPitcher;
+    } else if (score > 2000) {
+      return Powerup.riverWarrior;
+    } else if ((tally['Coin'] ?? 0) > 500) {
+      return Powerup.kingMidas;
+    } else if ((tally['Plastic'] ?? 0) > 500) {
+      return Powerup.masterShredder;
+    } else if ((tally['gold'] ?? 0) > 100) {
+      return Powerup.potOfGold;
+    } else if ((tally['straw'] ?? 0) > 100) {
+      return Powerup.goldenStraw;
+    } else {
+      return Powerup.riverWarrior;
+    }
+  }
+
   void restart() {
     router.popUntilNamed('start');
     FlameAudio.bgm.play('background-music.mp3', volume: bgmVolume);
   }
-
-  // ignore: avoid_setters_without_getters
-  set backgroundImage(String image) =>
-      background.sprite?.image = images.fromCache('backgrounds/$image.png');
 
   @override
   Future<void> onLoad() async {

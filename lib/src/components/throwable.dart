@@ -70,7 +70,10 @@ class Throwable extends SpriteComponent
 
     divided = true;
     game.score += item.point;
-    game.tally.update(item.name, (value) => ++value, ifAbsent: () => 1);
+    game.tally
+      ..update(item.name, (value) => ++value, ifAbsent: () => 1)
+      ..update(item.runtimeType.toString(), (value) => ++value,
+          ifAbsent: () => 1);
     final currentScore = game.score;
     removeFromParent();
 

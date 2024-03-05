@@ -39,13 +39,13 @@ enum Powerup {
       description: 'Unlock cove background.',
       color: Color(0xFF00807D));
 
-  final String _title;
+  final String label;
   final String requirement;
   final String rarity;
   final String description;
   final Color color;
 
-  const Powerup(this._title,
+  const Powerup(this.label,
       {required this.requirement,
       required this.rarity,
       required this.description,
@@ -88,7 +88,7 @@ enum Powerup {
             "header": {
               "defaultValue": {
                 "language": "en",
-                "value": "$_title #${index + 1}"
+                "value": "$label #${index + 1}"
               }
             },
             "barcode": {

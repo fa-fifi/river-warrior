@@ -4,6 +4,7 @@ import 'package:flame/components.dart';
 import 'package:flame/palette.dart';
 import 'package:river_warrior/src/components/outlined_text.dart';
 
+// TODO: Add some cool translation effects.
 class Countdown extends OutlinedText {
   final VoidCallback? onCompleted;
 

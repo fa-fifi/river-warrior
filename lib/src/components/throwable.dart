@@ -62,10 +62,12 @@ class Throwable extends SpriteComponent
   void touchAtPoint(Vector2 vector2) {
     if (divided) return;
     if (item is Rock) FlameAudio.play('hit-rock.mp3', volume: game.sfxVolume);
-    if (item is Plastic)
+    if (item is Plastic) {
       FlameAudio.play('whip-whoosh.mp3', volume: game.sfxVolume);
-    if (item is Coin)
+    }
+    if (item is Coin) {
       FlameAudio.play('pickup-coin.wav', volume: game.sfxVolume);
+    }
     if (item is Rock) return finish();
 
     divided = true;
@@ -102,6 +104,7 @@ class Throwable extends SpriteComponent
                 ? game.router.pushNamed('finish')
                 : pointComponent.removeFromParent())));
     } else {
+      // TODO: Improvise item cutting mechanism.
       final a = getSliceAngle(center: center, initAngle: angle, touch: vector2);
 
       if (a < 45 || (a > 135 && a < 225) || a > 315) {

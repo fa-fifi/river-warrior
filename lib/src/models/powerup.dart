@@ -52,9 +52,9 @@ enum Powerup {
       required this.color});
 
   String generatePass(int score) {
-    const passClass = const String.fromEnvironment('PASS_CLASS');
-    const issuerId = const String.fromEnvironment('ISSUER_ID');
-    const issuerEmail = const String.fromEnvironment('ISSUER_EMAIL');
+    const passClass = String.fromEnvironment('PASS_CLASS');
+    const issuerId = String.fromEnvironment('ISSUER_ID');
+    const issuerEmail = String.fromEnvironment('ISSUER_EMAIL');
 
     return '''
     {

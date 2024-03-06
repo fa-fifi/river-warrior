@@ -47,9 +47,9 @@ class _MyAppState extends State<MyApp> {
         localizationsDelegates: AppLocalizations.localizationsDelegates,
         supportedLocales: AppLocalizations.supportedLocales,
         theme: ThemeData(useMaterial3: true, colorSchemeSeed: Colors.pink),
-        home: GameWidget<RiverWarrior>.controlled(
+        home: const GameWidget<RiverWarrior>.controlled(
             gameFactory: RiverWarrior.new,
-            overlayBuilderMap: const {
+            overlayBuilderMap: {
               'about': AboutScreen.new,
               'help': HelpOverlay.new,
               'scorecard': ScorecardOverlay.new,

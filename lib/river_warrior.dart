@@ -81,11 +81,11 @@ class RiverWarrior extends FlameGame
   @override
   void onGameResize(Vector2 size) {
     super.onGameResize(size);
-    if (isMounted)
-      background
-        ..position = size / 2
-        ..size = size.x / size.y > 1.5
-            ? Vector2(size.x, size.x / 1.5)
-            : Vector2(size.y * 1.5, size.y);
+    if (!isMounted) return;
+    background
+      ..position = size / 2
+      ..size = size.x / size.y > 1.5
+          ? Vector2(size.x, size.x / 1.5)
+          : Vector2(size.y * 1.5, size.y);
   }
 }

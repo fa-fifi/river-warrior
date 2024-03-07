@@ -21,8 +21,8 @@ class Cross extends SpriteGroupComponent<CrossState>
   void onLoad() {
     super.onLoad();
     sprites = {
-      CrossState.red: Sprite(game.images.fromCache('others/red cross.png')),
-      CrossState.grey: Sprite(game.images.fromCache('others/grey cross.png')),
+      CrossState.red: Sprite(game.images.fromCache('others/red_cross.png')),
+      CrossState.grey: Sprite(game.images.fromCache('others/grey_cross.png')),
     };
     current = CrossState.red;
   }

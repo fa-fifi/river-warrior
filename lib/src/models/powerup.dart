@@ -94,11 +94,11 @@ enum Powerup {
             "barcode": {
               "type": "QR_CODE",
               "value": "https://fa-fifi.is-a.dev/river-warrior",
-              "alternateText": "#${generateRandomString(length: 8, chars: name.toUpperCase())}"
+              "alternateText": "#${generateRandomString(length: 8, chars: name.toUpperCase()).replaceRange(index, index + 1, 'X')}"
             },
             "heroImage": {
               "sourceUri": {
-                "uri": "https://raw.github.com/fa-fifi/river-warrior/main/assets/images/powerups/%23%23$index.png"
+                "uri": "https://raw.github.com/fa-fifi/river-warrior/main/assets/images/powerups/${label.replaceAll(' ', '%20')}.png"
               }
             },
             "textModulesData": [

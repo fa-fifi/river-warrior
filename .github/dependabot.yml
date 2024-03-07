@@ -15,7 +15,6 @@ updates:
       interval: "weekly"
       day: "sunday"
     ignore:
-      - dependency-name: "flutter_localizations"
       - dependency-name: "window_size"
     commit-message:
       prefix: "⬆️ "

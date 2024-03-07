@@ -2,7 +2,6 @@ import 'package:flame/flame.dart';
 import 'package:flame/game.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart' hide Route;
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:river_warrior/river_warrior.dart';
 import 'package:river_warrior/src/overlays/about.dart';
 import 'package:river_warrior/src/overlays/help.dart';
@@ -35,17 +34,9 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  Locale _locale = const Locale.fromSubtags(languageCode: 'en');
-
-  void setLocale(String code) =>
-      setState(() => _locale = Locale.fromSubtags(languageCode: code));
-
   @override
   Widget build(BuildContext context) => MaterialApp(
         title: title,
-        locale: _locale,
-        localizationsDelegates: AppLocalizations.localizationsDelegates,
-        supportedLocales: AppLocalizations.supportedLocales,
         theme: ThemeData(useMaterial3: true, colorSchemeSeed: Colors.pink),
         home: const GameWidget<RiverWarrior>.controlled(
             gameFactory: RiverWarrior.new,

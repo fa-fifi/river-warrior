@@ -19,9 +19,7 @@ dependencies:
       ref: fd519be1e8398c6b6c2062c2447bac960a71bc02
 
 dev_dependencies:
-  flutter_launcher_icons: ^0.13.1
   flutter_lints: ^3.0.1
-  flutter_native_splash: ^2.3.10
   flutter_test:
     sdk: flutter
 
@@ -39,27 +37,3 @@ flutter:
     - family: Knewave
       fonts:
         - asset: assets/fonts/Knewave-Regular.ttf
-
-flutter_launcher_icons:
-  android: "launcher_icon"
-  ios: true
-  image_path: "assets/icon.png"
-  web:
-    generate: true
-    image_path: "assets/favicon.png"
-    background_color: "#00000000"
-  windows:
-    generate: true
-    image_path: "assets/favicon.png"
-  macos:
-    generate: true
-    image_path: "assets/favicon.png"
-    
-flutter_native_splash:
-  color: "#000000"
-  image: "assets/favicon.png"
-  android_screen_orientation: landscape
-
-  android_12:
-    color: "#000000"
-    image: "assets/splash.png"

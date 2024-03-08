@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flame_audio/flame_audio.dart';
 import 'package:flutter/material.dart';
 import 'package:river_warrior/river_warrior.dart';
@@ -44,20 +45,17 @@ class _SettingsScreenState extends State<SettingsScreen> {
               onChanged: (value) =>
                   setState(() => widget.game.sfxVolume = value)),
         ]),
-        const Row(children: [
-          SizedBox(width: 16),
-          Text('Languages'),
-          Spacer(),
-          // Padding(
-          //   padding: const EdgeInsets.all(16),
-          //   child: FilledButton(
-          //       onPressed: () {
-          //         final locale = Localizations.localeOf(context).languageCode;
-          //         setState(() => MyApp.of(context)
-          //             .setLocale(locale == 'en' ? 'ja' : 'en'));
-          //       },
-          //       child: Text(AppLocalizations.of(context)!.language)),
-          // )
+        Row(children: [
+          const SizedBox(width: 16),
+          const Text('Languages'),
+          const Spacer(),
+          Padding(
+            padding: const EdgeInsets.all(16),
+            child: FilledButton(
+                onPressed: () => context.setLocale(
+                    Locale(context.locale.languageCode == 'ja' ? 'en' : 'ja')),
+                child: const Text('language').tr()),
+          )
         ]),
       ]);
 }

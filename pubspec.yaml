@@ -8,6 +8,7 @@ environment:
 
 dependencies:
   add_to_google_wallet: ^0.0.3
+  easy_localization: ^3.0.5
   flame: ^1.16.0
   flame_audio: ^2.10.0
   flutter:
@@ -33,6 +34,7 @@ flutter:
    - assets/images/items/
    - assets/images/others/
    - assets/images/powerups/
+   - assets/translations/
   fonts:
     - family: Knewave
       fonts:

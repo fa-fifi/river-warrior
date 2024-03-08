@@ -12,20 +12,16 @@ import 'package:river_warrior/src/pages/start.dart';
 
 class RiverWarrior extends FlameGame
     with SingleGameInstance, HasCollisionDetection {
-  late final RouterComponent router;
   late final SpriteComponent background;
+  late final RouterComponent router;
   Color bladeColor = BasicPalette.white.color;
+  int mistake = 0;
+  int score = 0;
   int highScore = 0;
   int maxMistake = 3;
   double bgmVolume = 0.5;
   double sfxVolume = 0.5;
-  int mistake = 0;
-  int score = 0;
   Map<String, int> tally = {};
-
-  // ignore: avoid_setters_without_getters
-  set backgroundImage(String image) =>
-      background.sprite?.image = images.fromCache('backgrounds/$image.png');
 
   Powerup? get powerup {
     if (score > 5000) {
@@ -47,6 +43,9 @@ class RiverWarrior extends FlameGame
     }
   }
 
+  set backgroundImage(String image) =>
+      background.sprite?.image = images.fromCache('backgrounds/$image.png');
+
   void restart() {
     router.popUntilNamed('start');
     FlameAudio.bgm.play('background-music.mp3', volume: bgmVolume);
@@ -60,9 +59,9 @@ class RiverWarrior extends FlameGame
     await FlameAudio.audioCache.loadAll([
       'countdown-start.wav',
       'game-over.wav',
-      'whip-whoosh.mp3',
-      'pickup-coin.wav',
       'hit-rock.mp3',
+      'pickup-coin.wav',
+      'whip-whoosh.mp3',
     ]);
     await images.loadAllImages();
     addAll([

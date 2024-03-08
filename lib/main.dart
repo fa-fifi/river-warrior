@@ -22,12 +22,11 @@ void main() async {
   }
 
   runApp(EasyLocalization(
-    supportedLocales: const [Locale('en'), Locale('ja')],
-    path: 'assets/translations',
-    fallbackLocale: const Locale('en'),
-    useOnlyLangCode: true,
-    child: const MyApp(),
-  ));
+      supportedLocales: const [Locale('en'), Locale('ja')],
+      path: 'assets/translations',
+      fallbackLocale: const Locale('en'),
+      useOnlyLangCode: true,
+      child: const MyApp()));
 }
 
 class MyApp extends StatelessWidget {
@@ -36,9 +35,9 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) => MaterialApp(
         title: title,
+        locale: context.locale,
         localizationsDelegates: context.localizationDelegates,
         supportedLocales: context.supportedLocales,
-        locale: context.locale,
         theme: ThemeData(useMaterial3: true, colorSchemeSeed: Colors.pink),
         home: const GameWidget<RiverWarrior>.controlled(
             gameFactory: RiverWarrior.new,

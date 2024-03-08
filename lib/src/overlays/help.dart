@@ -3,7 +3,7 @@ import 'package:river_warrior/river_warrior.dart';
 import 'package:river_warrior/src/models/coin.dart';
 import 'package:river_warrior/src/models/plastic.dart';
 import 'package:river_warrior/src/models/rock.dart';
-import 'package:river_warrior/src/widgets/window.dart';
+import 'package:river_warrior/src/overlays/window.dart';
 
 class HelpOverlay extends StatelessWidget {
   final BuildContext context;

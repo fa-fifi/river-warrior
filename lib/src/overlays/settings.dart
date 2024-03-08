@@ -2,7 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flame_audio/flame_audio.dart';
 import 'package:flutter/material.dart';
 import 'package:river_warrior/river_warrior.dart';
-import 'package:river_warrior/src/widgets/window.dart';
+import 'package:river_warrior/src/overlays/window.dart';
 
 class SettingsScreen extends StatefulWidget {
   final BuildContext context;

@@ -21,7 +21,7 @@ enum Powerup {
   String get rarity => 'powerup.$name.rarity'.tr();
   String get description => 'powerup.$name.description'.tr();
 
-  String generatePass(int score) {
+  String generatePass({required int score, required String passcode}) {
     const passClass = String.fromEnvironment('PASS_CLASS');
     const issuerId = String.fromEnvironment('ISSUER_ID');
     const issuerEmail = String.fromEnvironment('ISSUER_EMAIL');
@@ -64,7 +64,7 @@ enum Powerup {
             "barcode": {
               "type": "QR_CODE",
               "value": "https://fa-fifi.is-a.dev/river-warrior",
-              "alternateText": "#${generateRandomString(length: 8, chars: name.toUpperCase()).replaceRange(index, index + 1, 'X')}"
+              "alternateText": "#$passcode"
             },
             "heroImage": {
               "sourceUri": {

@@ -1,9 +1,13 @@
+import 'dart:io';
 import 'dart:math';
 
 import 'package:add_to_google_wallet/widgets/add_to_google_wallet_button.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:river_warrior/river_warrior.dart';
 import 'package:river_warrior/src/overlays/template.dart';
+import 'package:river_warrior/src/utils/helpers.dart';
 
 class ScorecardOverlay extends StatefulWidget {
   final BuildContext context;
@@ -17,6 +21,10 @@ class ScorecardOverlay extends StatefulWidget {
 
 class _ScorecardOverlayState extends State<ScorecardOverlay> {
   late final powerup = widget.game.powerup!;
+  late final passcode =
+      generateRandomString(length: 8, chars: powerup.name.toUpperCase())
+          .replaceRange(powerup.index, powerup.index + 1, 'X');
+  bool isCopied = false;
 
   double get maxHeight =>
       max(250, MediaQuery.of(widget.context).size.height / 2);
@@ -56,18 +64,30 @@ class _ScorecardOverlayState extends State<ScorecardOverlay> {
                       Text(powerup.rarity),
                       const Spacer(),
                       Container(
-                        margin: const EdgeInsets.all(10),
-                        height: maxHeight / 10,
-                        child: AddToGoogleWalletButton(
-                          onError: (e) => debugPrint(e.toString()),
-                          pass: powerup.generatePass(widget.game.score),
-                          locale: Locale.fromSubtags(
-                              languageCode: Localizations.localeOf(context)
-                                          .languageCode ==
-                                      'ja'
-                                  ? 'jp'
-                                  : 'en'),
-                        ),
+                        margin: const EdgeInsets.all(5),
+                        width: maxHeight * 0.8,
+                        child: !kIsWeb && Platform.isAndroid
+                            ? AddToGoogleWalletButton(
+                                onError: (e) => debugPrint(e.toString()),
+                                pass: powerup.generatePass(
+                                    score: widget.game.score,
+                                    passcode: passcode),
+                                locale: Locale.fromSubtags(
+                                    languageCode:
+                                        Localizations.localeOf(context)
+                                                    .languageCode ==
+                                                'ja'
+                                            ? 'jp'
+                                            : 'en'),
+                              )
+                            : FilledButton(
+                                onPressed: () async => await Clipboard.setData(
+                                        ClipboardData(text: passcode))
+                                    .then(
+                                        (_) => setState(() => isCopied = true)),
+                                child: Text(
+                                    isCopied ? 'Code Copied!' : 'Copy Code'),
+                              ),
                       ),
                     ],
                   ),

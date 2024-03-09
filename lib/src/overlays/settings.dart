@@ -2,21 +2,21 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flame_audio/flame_audio.dart';
 import 'package:flutter/material.dart';
 import 'package:river_warrior/river_warrior.dart';
-import 'package:river_warrior/src/overlays/window.dart';
+import 'package:river_warrior/src/overlays/template.dart';
 
-class SettingsScreen extends StatefulWidget {
+class SettingsOverlay extends StatefulWidget {
   final BuildContext context;
   final RiverWarrior game;
 
-  const SettingsScreen(this.context, this.game, {super.key});
+  const SettingsOverlay(this.context, this.game, {super.key});
 
   @override
-  State<SettingsScreen> createState() => _SettingsScreenState();
+  State<SettingsOverlay> createState() => _SettingsOverlayState();
 }
 
-class _SettingsScreenState extends State<SettingsScreen> {
+class _SettingsOverlayState extends State<SettingsOverlay> {
   @override
-  Widget build(BuildContext context) => Window('settings',
+  Widget build(BuildContext context) => TemplateOverlay('settings',
           game: widget.game,
           title: 'settings.title'.tr(),
           children: [

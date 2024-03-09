@@ -26,7 +26,8 @@ class FinishRoute extends Route {
 
 class FinishPage extends Component
     with TapCallbacks, HasGameReference<RiverWarrior> {
-  late OutlinedText gameoverText;
+  late final OutlinedText gameoverText;
+  late final EffectController effectController;
 
   @override
   bool containsLocalPoint(Vector2 point) => true;
@@ -42,9 +43,13 @@ class FinishPage extends Component
         anchor: Anchor.center,
         children: [
           ScaleEffect.by(
-              Vector2.all(0.6),
-              EffectController(
-                  duration: 0, reverseDuration: 1, alternate: true)),
+            Vector2.all(0.6),
+            effectController = EffectController(
+                duration: 0, reverseDuration: 1, alternate: true),
+            onComplete: () {
+              if (game.powerup != null) game.overlays.add('scorecard');
+            },
+          ),
         ]));
   }
 
@@ -55,6 +60,7 @@ class FinishPage extends Component
   }
 
   @override
-  void onTapUp(TapUpEvent event) =>
-      game.powerup != null ? game.overlays.add('scorecard') : game.restart();
+  void onTapUp(TapUpEvent event) {
+    if (effectController.completed) game.restart();
+  }
 }

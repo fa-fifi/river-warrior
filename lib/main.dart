@@ -38,14 +38,17 @@ class MyApp extends StatelessWidget {
         locale: context.locale,
         localizationsDelegates: context.localizationDelegates,
         supportedLocales: context.supportedLocales,
-        theme: ThemeData(useMaterial3: true, colorSchemeSeed: Colors.pink),
+        theme: ThemeData(
+            useMaterial3: true,
+            colorScheme: ColorScheme.fromSeed(
+                seedColor: Colors.pink, surfaceTint: Colors.amber)),
         home: const GameWidget<RiverWarrior>.controlled(
             gameFactory: RiverWarrior.new,
             overlayBuilderMap: {
-              'about': AboutScreen.new,
+              'about': AboutOverlay.new,
               'help': HelpOverlay.new,
               'scorecard': ScorecardOverlay.new,
-              'settings': SettingsScreen.new,
+              'settings': SettingsOverlay.new,
             }),
       );
 }

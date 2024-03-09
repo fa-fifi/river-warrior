@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flame/components.dart';
 import 'package:flame/extensions.dart';
 import 'package:flame/game.dart';
@@ -39,7 +41,9 @@ class RiverWarrior extends FlameGame
     } else if ((tally['straw'] ?? 0) > 100) {
       return Powerup.goldenStraw;
     } else {
-      return Powerup.riverWarrior;
+      return kDebugMode
+          ? Powerup.values[Random().nextInt(Powerup.values.length)]
+          : null;
     }
   }
 

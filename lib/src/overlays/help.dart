@@ -4,7 +4,7 @@ import 'package:river_warrior/river_warrior.dart';
 import 'package:river_warrior/src/models/coin.dart';
 import 'package:river_warrior/src/models/plastic.dart';
 import 'package:river_warrior/src/models/rock.dart';
-import 'package:river_warrior/src/overlays/window.dart';
+import 'package:river_warrior/src/overlays/template.dart';
 
 class HelpOverlay extends StatelessWidget {
   final BuildContext context;
@@ -14,7 +14,7 @@ class HelpOverlay extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) =>
-      Window('help', game: game, title: 'help.title'.tr(), children: [
+      TemplateOverlay('help', game: game, title: 'help.title'.tr(), children: [
         const Text('help.intro').tr(),
         const Text('help.step1').tr(),
         Wrap(

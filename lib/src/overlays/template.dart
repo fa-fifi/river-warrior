@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:river_warrior/river_warrior.dart';
 
-class Window extends StatelessWidget {
+class TemplateOverlay extends StatelessWidget {
   final String path;
   final String? title;
   final RiverWarrior game;
   final List<Widget> children;
 
-  const Window(this.path,
+  const TemplateOverlay(this.path,
       {super.key, this.title, required this.game, required this.children});
 
   @override
@@ -15,7 +15,6 @@ class Window extends StatelessWidget {
         titlePadding: EdgeInsets.zero,
         contentPadding: const EdgeInsets.all(10),
         clipBehavior: Clip.antiAlias,
-        surfaceTintColor: Colors.amber,
         shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(10),
             side: const BorderSide(width: 2)),

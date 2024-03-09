@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flame/components.dart';
 import 'package:flame/effects.dart';
 import 'package:flame/events.dart';
@@ -35,7 +36,7 @@ class FinishPage extends Component
     super.onLoad();
     FlameAudio.play('game-over.wav', volume: game.sfxVolume);
     add(gameoverText = OutlinedText(
-        text: 'GAME OVER',
+        text: 'end'.tr(),
         textColor: BasicPalette.red.color,
         outlineColor: BasicPalette.white.color,
         anchor: Anchor.center,

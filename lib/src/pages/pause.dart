@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flame/components.dart';
 import 'package:flame/effects.dart';
 import 'package:flame/game.dart' hide Game;
@@ -31,7 +32,7 @@ class PausePage extends Component with HasGameReference<RiverWarrior> {
     super.onLoad();
     addAll([
       pauseText =
-          OutlinedText(text: 'PAUSED', anchor: Anchor.center, children: [
+          OutlinedText(text: 'pause'.tr(), anchor: Anchor.center, children: [
         ScaleEffect.to(Vector2.all(1.1),
             EffectController(duration: 0.3, alternate: true, infinite: true)),
       ]),

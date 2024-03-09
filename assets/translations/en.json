@@ -1,3 +1,72 @@
 {
-    "language": "English"
+    "code": "en",
+    "language": "English",
+    "ready": "READY!",
+    "go": "GO!!",
+    "best": "BEST",
+    "pause": "PAUSED",
+    "end": "GAME OVER",
+    "about": {
+        "title": "About This Game",
+        "inspiration": "As you embark on this journey to defend our virtual river, it's important to understand the real-world inspiration behind this game. 'River Warrior' draws its spirit from the incredible efforts of Sungai Watch, a team of dedicated river warriors committed to stemming the tide of plastic pollution.\n\nEvery day, the members of Sungai Watch brave the elements, working tirelessly to find innovative solutions to prevent plastic waste from reaching our oceans. Their passion and dedication serve as the driving force behind 'River Warrior,' reminding us of the urgent need to protect our rivers and oceans.\n\nThrough this game, we invite you to step into the shoes of these real-life heroes, wielding your virtual sword to slash through the waves of plastic pollution threatening our waterways. With each swipe, you're not just scoring points – you're making a statement. You're standing up for our environment, advocating for cleaner rivers, and inspiring change.\n\nSo, as you embark on your 'River Warrior' journey, remember the courage and determination of Sungai Watch. Let their dedication fuel your resolve to make a difference, both in the game and in the world around you. Together, we can turn the tide against plastic pollution and protect our precious waterways for generations to come."
+    },
+    "help": {
+        "title": "How To Play",
+        "intro": "Welcome aboard, my fellow brave warrior!\nBe the savior our planet needs with these simple steps.\n",
+        "step1": "▪ Swipe through single-use plastics to cut them before they reach the body of water.\n",
+        "step2": "▪ Collect coins to boost your score. Each coin has different number of points.\n",
+        "step3": "▪ Watch out for rocks! Slashing them will break your blade and end the game.\n",
+        "outro": "Become the ultimate 'River Warrior' and defend the waters from plastic invaders.\nReady to make a difference? Dive in now!"
+    },
+    "powerup": {
+        "header": "Powerup",
+        "goldenStraw": {
+            "label": "Golden Straw",
+            "requirement": "Cut 100 plastic straws in a single game.",
+            "rarity": "Uncommon",
+            "description": "Unlock fire blade."
+        },
+        "potOfGold": {
+            "label": "Pot of Gold",
+            "requirement": "Collect 100 gold coins in a single game.",
+            "rarity": "Uncommon",
+            "description": "Unlock golden blade."
+        },
+        "masterShredder": {
+            "label": "Master Shredder",
+            "requirement": "Cut 500 plastics in a single game.",
+            "rarity": "Rare",
+            "description": "Able to collect rocks."
+        },
+        "kingMidas": {
+            "label": "King Midas",
+            "requirement": "Collect 500 coins in a single game.",
+            "rarity": "Rare",
+            "description": "Spawn gold coins only."
+        },
+        "riverWarrior": {
+            "label": "River Warrior",
+            "requirement": "Reach 2000 points.",
+            "rarity": "Epic",
+            "description": "Unlock beach background."
+        },
+        "crowAndPitcher": {
+            "label": "The Crow and The Pitcher",
+            "requirement": "Collect 500 rocks in a single game.",
+            "rarity": "Epic",
+            "description": "One extra live."
+        },
+        "neptuneTrident": {
+            "label": "Trident of Neptune",
+            "requirement": "Reach 5000 points.",
+            "rarity": "Legendary",
+            "description": "Unlock cove background."
+        }
+    },
+    "settings": {
+        "title": "Settings",
+        "bgm": "Background Music",
+        "sfx": "Sound Effects",
+        "lng": "Language"
+    }
 }

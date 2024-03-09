@@ -29,7 +29,7 @@ class _ScorecardOverlayState extends State<ScorecardOverlay>
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Image.asset(
-                    'assets/images/powerups/${widget.game.powerup!.label}.png',
+                    'assets/images/powerups/${widget.game.powerup!.index}.png',
                     height: MediaQuery.of(context).size.height / 2,
                   ),
                   Column(

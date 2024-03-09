@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flame/components.dart';
 import 'package:river_warrior/river_warrior.dart';
 import 'package:river_warrior/src/components/outlined_text.dart';
@@ -19,7 +20,7 @@ class Scoreboard extends PositionComponent with HasGameReference<RiverWarrior> {
   void update(double dt) {
     super.update(dt);
     currentScoreText.text = '${game.score}';
-    highScoreText.text = 'BEST: ${game.highScore}';
+    highScoreText.text = '${'best'.tr()}: ${game.highScore}';
   }
 
   @override

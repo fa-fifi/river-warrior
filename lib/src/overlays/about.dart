@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:river_warrior/river_warrior.dart';
 import 'package:river_warrior/src/overlays/window.dart';
@@ -10,7 +11,7 @@ class AboutScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) =>
-      Window('about', game: game, title: 'About This Game', children: [
+      Window('about', game: game, title: 'about.title'.tr(), children: [
         ClipRRect(
           borderRadius: BorderRadius.circular(8.0),
           child: Stack(
@@ -30,10 +31,6 @@ class AboutScreen extends StatelessWidget {
               ]),
         ),
         const SizedBox(height: 10),
-        const Text(
-            "As you embark on this journey to defend our virtual river, it's important to understand the real-world inspiration behind this game. 'River Warrior' draws its spirit from the incredible efforts of Sungai Watch, a team of dedicated river warriors committed to stemming the tide of plastic pollution.\n\n"
-            "Every day, the members of Sungai Watch brave the elements, working tirelessly to find innovative solutions to prevent plastic waste from reaching our oceans. Their passion and dedication serve as the driving force behind 'River Warrior,' reminding us of the urgent need to protect our rivers and oceans.\n\n"
-            "Through this game, we invite you to step into the shoes of these real-life heroes, wielding your virtual sword to slash through the waves of plastic pollution threatening our waterways. With each swipe, you're not just scoring points – you're making a statement. You're standing up for our environment, advocating for cleaner rivers, and inspiring change.\n\n"
-            "So, as you embark on your 'River Warrior' journey, remember the courage and determination of Sungai Watch. Let their dedication fuel your resolve to make a difference, both in the game and in the world around you. Together, we can turn the tide against plastic pollution and protect our precious waterways for generations to come.")
+        const Text("about.inspiration").tr()
       ]);
 }

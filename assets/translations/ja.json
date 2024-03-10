@@ -22,28 +22,28 @@
         "header": "パワーアップ",
         "goldenStraw": {
             "label": "ゴールデンストロー",
-            "requirement": "1 回のゲームでプラスチック ストローを 100 本切断します。",
+            "requirement": "1 回のゲームでプラスチック ストローを 10 本切断します。",
             "rarity": "珍しい",
             "description": "ファイアブレードを入手。",
             "message": "おめでとう！ ファイアブレードを入手しました。"
         },
         "potOfGold": {
             "label": "金のポット",
-            "requirement": "1 回のゲームで金貨を 100 枚集めます。",
+            "requirement": "1 回のゲームで金貨を 10 枚集めます。",
             "rarity": "珍しい",
             "description": "黄金の剣を入手。",
             "message": "おめでとう！ 黄金の剣を手に入れました。"
         },
         "masterShredder": {
             "label": "マスターシュレッダー",
-            "requirement": "1 回のゲームでプラスチックを 500 個切断します。",
+            "requirement": "1 回のゲームでプラスチックを 100 個切断します。",
             "rarity": "レア",
             "description": "石を集めることができる。",
             "message": "おめでとう！ 石を集めることができるようになりました。"
         },
         "kingMidas": {
             "label": "ミダス王",
-            "requirement": "1 回のゲームでコインを 500 枚集めます。",
+            "requirement": "1 回のゲームでコインを 100 枚集めます。",
             "rarity": "レア",
             "description": "ゴールドコインのみをスポーンします。",
             "message": "おめでとう！ 追加のライブを 1 つアンロックしました。"

@@ -25,17 +25,17 @@ class RiverWarrior extends FlameGame
   Map<String, int> tally = {};
 
   Powerup? get powerup {
-    if (score > 5000) {
+    if (score >= 5000) {
       return Powerup.neptuneTrident;
-    } else if (score > 2000) {
+    } else if (score >= 2000) {
       return Powerup.riverWarrior;
-    } else if ((tally['Coin'] ?? 0) > 500) {
+    } else if ((tally['Coin'] ?? 0) >= 100) {
       return Powerup.kingMidas;
-    } else if ((tally['Plastic'] ?? 0) > 500) {
+    } else if ((tally['Plastic'] ?? 0) >= 100) {
       return Powerup.masterShredder;
-    } else if ((tally['gold'] ?? 0) > 100) {
+    } else if ((tally['gold'] ?? 0) >= 10) {
       return Powerup.potOfGold;
-    } else if ((tally['straw'] ?? 0) > 100) {
+    } else if ((tally['straw'] ?? 0) >= 10) {
       return Powerup.goldenStraw;
     } else {
       return null;

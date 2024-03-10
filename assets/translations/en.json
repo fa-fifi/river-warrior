@@ -22,28 +22,28 @@
         "header": "Powerup",
         "goldenStraw": {
             "label": "Golden Straw",
-            "requirement": "Cut 100 plastic straws in a single game.",
+            "requirement": "Cut 10 plastic straws in a single game.",
             "rarity": "Uncommon",
             "description": "Unlock fire blade.",
             "message": "Congratulations! You've unlocked fire blade."
         },
         "potOfGold": {
             "label": "Pot of Gold",
-            "requirement": "Collect 100 gold coins in a single game.",
+            "requirement": "Collect 10 gold coins in a single game.",
             "rarity": "Uncommon",
             "description": "Unlock golden blade.",
             "message": "Congratulations! You've unlocked golden blade."
         },
         "masterShredder": {
             "label": "Master Shredder",
-            "requirement": "Cut 500 plastics in a single game.",
+            "requirement": "Cut 100 plastics in a single game.",
             "rarity": "Rare",
             "description": "Able to collect rocks.",
             "message": "Congratulations! You're now able to collect rocks."
         },
         "kingMidas": {
             "label": "King Midas",
-            "requirement": "Collect 500 coins in a single game.",
+            "requirement": "Collect 100 coins in a single game.",
             "rarity": "Rare",
             "description": "One extra live.",
             "message": "Congratulations! You've unlocked one extra live."

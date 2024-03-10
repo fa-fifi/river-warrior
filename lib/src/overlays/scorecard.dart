@@ -49,7 +49,7 @@ class _ScorecardOverlayState extends State<ScorecardOverlay> {
                 mainAxisSize: MainAxisSize.min,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text('${powerup.label} #${powerup.index}',
+                  Text('${powerup.label} #${powerup.index + 1}',
                       style: Theme.of(context).textTheme.headlineSmall),
                   Text(powerup.requirement),
                   const SizedBox.square(dimension: 10),

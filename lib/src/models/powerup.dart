@@ -64,7 +64,7 @@ enum Powerup {
             "barcode": {
               "type": "QR_CODE",
               "value": "https://fa-fifi.is-a.dev/river-warrior",
-              "alternateText": "#$passcode"
+              "alternateText": "$passcode"
             },
             "heroImage": {
               "sourceUri": {

@@ -68,7 +68,7 @@ class Throwable extends SpriteComponent
     if (item is Coin) {
       FlameAudio.play('pickup-coin.wav', volume: game.sfxVolume);
     }
-    if (item is Rock) return finish();
+    if (item is Rock && !game.canCollectRocks) return finish();
 
     divided = true;
     game.score += item.point;

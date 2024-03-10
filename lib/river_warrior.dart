@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:flame/components.dart';
 import 'package:flame/extensions.dart';
 import 'package:flame/game.dart';
@@ -17,6 +15,7 @@ class RiverWarrior extends FlameGame
   late final SpriteComponent background;
   late final RouterComponent router;
   Color bladeColor = BasicPalette.white.color;
+  bool canCollectRocks = false;
   int mistake = 0;
   int score = 0;
   int highScore = 0;
@@ -28,8 +27,6 @@ class RiverWarrior extends FlameGame
   Powerup? get powerup {
     if (score > 5000) {
       return Powerup.neptuneTrident;
-    } else if ((tally['Rock'] ?? 0) > 100) {
-      return Powerup.crowAndPitcher;
     } else if (score > 2000) {
       return Powerup.riverWarrior;
     } else if ((tally['Coin'] ?? 0) > 500) {
@@ -41,9 +38,7 @@ class RiverWarrior extends FlameGame
     } else if ((tally['straw'] ?? 0) > 100) {
       return Powerup.goldenStraw;
     } else {
-      return kDebugMode
-          ? Powerup.values[Random().nextInt(Powerup.values.length)]
-          : null;
+      return null;
     }
   }
 

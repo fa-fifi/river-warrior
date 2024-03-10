@@ -9,7 +9,6 @@ enum Powerup {
   masterShredder(Color(0xFF4D2200)),
   kingMidas(Color(0xFFBA9B03)),
   riverWarrior(Color(0xFF004466)),
-  crowAndPitcher(Color(0xFF000000)),
   neptuneTrident(Color(0xFF00807D));
 
   final Color color;
@@ -20,6 +19,7 @@ enum Powerup {
   String get requirement => 'powerup.$name.requirement'.tr();
   String get rarity => 'powerup.$name.rarity'.tr();
   String get description => 'powerup.$name.description'.tr();
+  String get message => 'powerup.$name.message'.tr();
 
   String generatePass({required int score, required String passcode}) {
     const passClass = String.fromEnvironment('PASS_CLASS');

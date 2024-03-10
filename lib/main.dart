@@ -6,11 +6,14 @@ import 'package:flutter/material.dart' hide Route;
 import 'package:river_warrior/river_warrior.dart';
 import 'package:river_warrior/src/overlays/about.dart';
 import 'package:river_warrior/src/overlays/help.dart';
+import 'package:river_warrior/src/overlays/powerup.dart';
 import 'package:river_warrior/src/overlays/scorecard.dart';
 import 'package:river_warrior/src/overlays/settings.dart';
 import 'package:river_warrior/src/utils/constants.dart';
 import 'package:river_warrior/src/utils/helpers.dart';
 import 'package:window_size/window_size.dart';
+
+final scaffoldMessengerKey = GlobalKey<ScaffoldMessengerState>();
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -38,17 +41,22 @@ class MyApp extends StatelessWidget {
         locale: context.locale,
         localizationsDelegates: context.localizationDelegates,
         supportedLocales: context.supportedLocales,
+        scaffoldMessengerKey: scaffoldMessengerKey,
         theme: ThemeData(
             useMaterial3: true,
             colorScheme: ColorScheme.fromSeed(
                 seedColor: Colors.pink, surfaceTint: Colors.amber)),
-        home: const GameWidget<RiverWarrior>.controlled(
-            gameFactory: RiverWarrior.new,
-            overlayBuilderMap: {
-              'about': AboutOverlay.new,
-              'help': HelpOverlay.new,
-              'scorecard': ScorecardOverlay.new,
-              'settings': SettingsOverlay.new,
-            }),
+        home: const Scaffold(
+          resizeToAvoidBottomInset: false,
+          body: GameWidget<RiverWarrior>.controlled(
+              gameFactory: RiverWarrior.new,
+              overlayBuilderMap: {
+                'about': AboutOverlay.new,
+                'help': HelpOverlay.new,
+                'powerup': PowerupOverlay.new,
+                'scorecard': ScorecardOverlay.new,
+                'settings': SettingsOverlay.new,
+              }),
+        ),
       );
 }

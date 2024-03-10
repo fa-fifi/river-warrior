@@ -30,69 +30,63 @@ class _ScorecardOverlayState extends State<ScorecardOverlay> {
       max(250, MediaQuery.of(widget.context).size.height / 2);
 
   @override
-  Widget build(BuildContext context) => TemplateOverlay('scorecard',
-          game: widget.game,
-          title: 'Congratulations!',
-          children: [
-            SizedBox(
-              height: maxHeight,
-              child: Row(
+  Widget build(BuildContext context) =>
+      TemplateOverlay(game: widget.game, title: 'Congratulations!', children: [
+        SizedBox(
+          height: maxHeight,
+          child: Row(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              ClipRRect(
+                borderRadius: BorderRadius.circular(10),
+                child: Image.asset(
+                  'assets/images/powerups/${powerup.index}.png',
+                ),
+              ),
+              const SizedBox.square(dimension: 16),
+              Column(
                 mainAxisSize: MainAxisSize.min,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  ClipRRect(
-                    borderRadius: BorderRadius.circular(10),
-                    child: Image.asset(
-                      'assets/images/powerups/${powerup.index}.png',
-                    ),
-                  ),
-                  const SizedBox.square(dimension: 16),
-                  Column(
-                    mainAxisSize: MainAxisSize.min,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text('${powerup.label} #${powerup.index}',
-                          style: Theme.of(context).textTheme.headlineSmall),
-                      Text(powerup.requirement),
-                      const SizedBox.square(dimension: 10),
-                      Text('Score',
-                          style: Theme.of(context).textTheme.titleMedium),
-                      Text(widget.game.score.toString()),
-                      const SizedBox.square(dimension: 10),
-                      Text('Rarity',
-                          style: Theme.of(context).textTheme.titleMedium),
-                      Text(powerup.rarity),
-                      const Spacer(),
-                      Container(
-                        margin: const EdgeInsets.all(5),
-                        width: maxHeight * 0.8,
-                        child: !kIsWeb && Platform.isAndroid
-                            ? AddToGoogleWalletButton(
-                                onError: (e) => debugPrint(e.toString()),
-                                pass: powerup.generatePass(
-                                    score: widget.game.score,
-                                    passcode: passcode),
-                                locale: Locale.fromSubtags(
-                                    languageCode:
-                                        Localizations.localeOf(context)
-                                                    .languageCode ==
-                                                'ja'
-                                            ? 'jp'
-                                            : 'en'),
-                              )
-                            : FilledButton(
-                                onPressed: () async => await Clipboard.setData(
-                                        ClipboardData(text: passcode))
-                                    .then(
-                                        (_) => setState(() => isCopied = true)),
-                                child: Text(
-                                    isCopied ? 'Code Copied!' : 'Copy Code'),
-                              ),
-                      ),
-                    ],
+                  Text('${powerup.label} #${powerup.index}',
+                      style: Theme.of(context).textTheme.headlineSmall),
+                  Text(powerup.requirement),
+                  const SizedBox.square(dimension: 10),
+                  Text('Score', style: Theme.of(context).textTheme.titleMedium),
+                  Text(widget.game.score.toString()),
+                  const SizedBox.square(dimension: 10),
+                  Text('Rarity',
+                      style: Theme.of(context).textTheme.titleMedium),
+                  Text(powerup.rarity),
+                  const Spacer(),
+                  Container(
+                    margin: const EdgeInsets.all(5),
+                    width: maxHeight * 0.8,
+                    child: !kIsWeb && Platform.isAndroid
+                        ? AddToGoogleWalletButton(
+                            onError: (e) => debugPrint(e.toString()),
+                            pass: powerup.generatePass(
+                                score: widget.game.score, passcode: passcode),
+                            locale: Locale.fromSubtags(
+                                languageCode: Localizations.localeOf(context)
+                                            .languageCode ==
+                                        'ja'
+                                    ? 'jp'
+                                    : 'en'),
+                          )
+                        : FilledButton(
+                            onPressed: () async => await Clipboard.setData(
+                                    ClipboardData(text: passcode))
+                                .then((_) => setState(() => isCopied = true)),
+                            child:
+                                Text(isCopied ? 'Code Copied!' : 'Copy Code'),
+                          ),
                   ),
                 ],
               ),
-            ),
-          ]);
+            ],
+          ),
+        ),
+      ]);
 }

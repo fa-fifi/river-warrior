@@ -36,7 +36,8 @@ class StartPage extends Dojo {
           ]),
       settingsButton =
           Button(id: 8, onPressed: () => game.overlays.add('settings')),
-      powerupButton = Button(id: 1),
+      powerupButton =
+          Button(id: 1, onPressed: () => game.overlays.add('powerup')),
       helpButton = Button(id: 7, onPressed: () => game.overlays.add('help')),
       aboutButton = Button(id: 2, onPressed: () => game.overlays.add('about')),
     ]);

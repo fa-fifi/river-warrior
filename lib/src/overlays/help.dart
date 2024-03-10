@@ -14,7 +14,7 @@ class HelpOverlay extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) =>
-      TemplateOverlay('help', game: game, title: 'help.title'.tr(), children: [
+      TemplateOverlay(game: game, title: 'help.title'.tr(), children: [
         const Text('help.intro').tr(),
         const Text('help.step1').tr(),
         Wrap(

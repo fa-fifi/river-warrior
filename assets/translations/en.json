@@ -24,43 +24,43 @@
             "label": "Golden Straw",
             "requirement": "Cut 100 plastic straws in a single game.",
             "rarity": "Uncommon",
-            "description": "Unlock fire blade."
+            "description": "Unlock fire blade.",
+            "message": "Congratulations! You've unlocked fire blade."
         },
         "potOfGold": {
             "label": "Pot of Gold",
             "requirement": "Collect 100 gold coins in a single game.",
             "rarity": "Uncommon",
-            "description": "Unlock golden blade."
+            "description": "Unlock golden blade.",
+            "message": "Congratulations! You've unlocked golden blade."
         },
         "masterShredder": {
             "label": "Master Shredder",
             "requirement": "Cut 500 plastics in a single game.",
             "rarity": "Rare",
-            "description": "Able to collect rocks."
+            "description": "Able to collect rocks.",
+            "message": "Congratulations! You're now able to collect rocks."
         },
         "kingMidas": {
             "label": "King Midas",
             "requirement": "Collect 500 coins in a single game.",
             "rarity": "Rare",
-            "description": "Spawn gold coins only."
+            "description": "One extra live.",
+            "message": "Congratulations! You've unlocked one extra live."
         },
         "riverWarrior": {
             "label": "River Warrior",
             "requirement": "Reach 2000 points.",
             "rarity": "Epic",
-            "description": "Unlock beach background."
-        },
-        "crowAndPitcher": {
-            "label": "The Crow and The Pitcher",
-            "requirement": "Collect 500 rocks in a single game.",
-            "rarity": "Epic",
-            "description": "One extra live."
+            "description": "Unlock beach background.",
+            "message": "Congratulations! You've unlocked beach background."
         },
         "neptuneTrident": {
             "label": "Trident of Neptune",
             "requirement": "Reach 5000 points.",
             "rarity": "Legendary",
-            "description": "Unlock cove background."
+            "description": "Unlock cove background.",
+            "message": "Congratulations! You've unlocked cove background."
         }
     },
     "settings": {

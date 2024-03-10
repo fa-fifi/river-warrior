@@ -24,43 +24,43 @@
             "label": "ゴールデンストロー",
             "requirement": "1 回のゲームでプラスチック ストローを 100 本切断します。",
             "rarity": "珍しい",
-            "description": "ファイアブレードを入手。"
+            "description": "ファイアブレードを入手。",
+            "message": "おめでとう！ ファイアブレードを入手しました。"
         },
         "potOfGold": {
             "label": "金のポット",
             "requirement": "1 回のゲームで金貨を 100 枚集めます。",
             "rarity": "珍しい",
-            "description": "黄金の剣を入手。"
+            "description": "黄金の剣を入手。",
+            "message": "おめでとう！ 黄金の剣を手に入れました。"
         },
         "masterShredder": {
             "label": "マスターシュレッダー",
             "requirement": "1 回のゲームでプラスチックを 500 個切断します。",
             "rarity": "レア",
-            "description": "石を集めることができる。"
+            "description": "石を集めることができる。",
+            "message": "おめでとう！ 石を集めることができるようになりました。"
         },
         "kingMidas": {
             "label": "ミダス王",
             "requirement": "1 回のゲームでコインを 500 枚集めます。",
             "rarity": "レア",
-            "description": "ゴールドコインのみをスポーンします。"
+            "description": "ゴールドコインのみをスポーンします。",
+            "message": "おめでとう！ 追加のライブを 1 つアンロックしました。"
         },
         "riverWarrior": {
             "label": "川の戦士",
             "requirement": "2000ポイントに到達する。",
             "rarity": "エピッ",
-            "description": "「ビーチ」背景を取得します。"
-        },
-        "crowAndPitcher": {
-            "label": "カラスとピッチャー",
-            "requirement": "1 回のゲームで石を 500 個集めます。",
-            "rarity": "エピッ",
-            "description": "エクストラライブ1回。"
+            "description": "「ビーチ」背景を取得します。",
+            "message": "おめでとう！ 「ビーチ」背景のロックを解除しました。"
         },
         "neptuneTrident": {
             "label": "ネプチューンのトライデント",
             "requirement": "5000ポイントに到達する。",
             "rarity": "伝説の",
-            "description": "「入り江」の背景を取得します。"
+            "description": "「入り江」の背景を取得します。",
+            "message": "おめでとう！ 「入り江」の背景のロックを解除しました。"
         }
     },
     "settings": {

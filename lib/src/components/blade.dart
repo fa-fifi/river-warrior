@@ -6,11 +6,9 @@ import 'package:river_warrior/river_warrior.dart';
 class Blade extends Component with HasGameReference<RiverWarrior> {
   final Vector2 origin;
   final int width;
-  final bool hasGlow;
   final double vanishInterval;
 
-  Blade(this.origin,
-      {this.width = 15, this.hasGlow = false, this.vanishInterval = 0.01});
+  Blade(this.origin, {this.width = 15, this.vanishInterval = 0.01});
 
   late final _paths = <Path>[Path()..moveTo(origin.x, origin.y)];
   final _opacities = <double>[1];
@@ -27,15 +25,6 @@ class Blade extends Component with HasGameReference<RiverWarrior> {
       final opacity = _opacities[i];
 
       if (opacity > 0) {
-        if (hasGlow) {
-          final glowPaint = Paint()
-            ..style = PaintingStyle.stroke
-            ..color = game.bladeColor.brighten(0.1).withOpacity(opacity)
-            ..strokeWidth = width * opacity + 4
-            ..maskFilter = const MaskFilter.blur(BlurStyle.normal, 5);
-
-          canvas.drawPath(path, glowPaint);
-        }
         final outlinePaint = Paint()
           ..style = PaintingStyle.stroke
           ..color = game.bladeColor.darken(0.3).withOpacity(opacity)

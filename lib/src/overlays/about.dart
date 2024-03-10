@@ -10,29 +10,27 @@ class AboutOverlay extends StatelessWidget {
   const AboutOverlay(this.context, this.game, {super.key});
 
   @override
-  Widget build(BuildContext context) => TemplateOverlay('about',
-          game: game,
-          title: 'about.title'.tr(),
-          children: [
-            ClipRRect(
-              borderRadius: BorderRadius.circular(8.0),
-              child: Stack(
-                  fit: StackFit.passthrough,
+  Widget build(BuildContext context) =>
+      TemplateOverlay(game: game, title: 'about.title'.tr(), children: [
+        ClipRRect(
+          borderRadius: BorderRadius.circular(8.0),
+          child: Stack(
+              fit: StackFit.passthrough,
+              alignment: Alignment.bottomRight,
+              children: [
+                Image.network(
+                    'https://sungai.watch/cdn/shop/files/DSC03735_2_4216x.jpg',
+                    height: MediaQuery.of(context).size.height / 3,
+                    fit: BoxFit.cover),
+                Container(
                   alignment: Alignment.bottomRight,
-                  children: [
-                    Image.network(
-                        'https://sungai.watch/cdn/shop/files/DSC03735_2_4216x.jpg?v=1694485166',
-                        height: MediaQuery.of(context).size.height / 3,
-                        fit: BoxFit.cover),
-                    Container(
-                      alignment: Alignment.bottomRight,
-                      padding: const EdgeInsets.all(8),
-                      child: Text('@sungai.watch',
-                          style: Theme.of(context).primaryTextTheme.labelSmall),
-                    ),
-                  ]),
-            ),
-            const SizedBox(height: 10),
-            const Text("about.inspiration").tr()
-          ]);
+                  padding: const EdgeInsets.all(8),
+                  child: Text('@sungai.watch',
+                      style: Theme.of(context).primaryTextTheme.labelSmall),
+                ),
+              ]),
+        ),
+        const SizedBox(height: 10),
+        const Text("about.inspiration").tr()
+      ]);
 }

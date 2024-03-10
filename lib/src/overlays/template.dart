@@ -2,13 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:river_warrior/river_warrior.dart';
 
 class TemplateOverlay extends StatelessWidget {
-  final String path;
-  final String? title;
+  final String title;
   final RiverWarrior game;
   final List<Widget> children;
 
-  const TemplateOverlay(this.path,
-      {super.key, this.title, required this.game, required this.children});
+  const TemplateOverlay(
+      {super.key,
+      required this.title,
+      required this.game,
+      required this.children});
 
   @override
   Widget build(BuildContext context) => AlertDialog(
@@ -21,11 +23,11 @@ class TemplateOverlay extends StatelessWidget {
         title: Container(
           color: Colors.black,
           padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-          child: Text(title ?? path[0].toUpperCase() + path.substring(1),
+          child: Text(title,
               style: Theme.of(context).primaryTextTheme.labelMedium),
         ),
         content: TapRegion(
-            onTapOutside: (_) => game.overlays.remove(path),
+            onTapOutside: (_) => game.overlays.clear(),
             child: SingleChildScrollView(
                 child: Column(
                     crossAxisAlignment: CrossAxisAlignment.stretch,

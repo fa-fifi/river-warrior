@@ -16,7 +16,7 @@ class SettingsOverlay extends StatefulWidget {
 
 class _SettingsOverlayState extends State<SettingsOverlay> {
   @override
-  Widget build(BuildContext context) => TemplateOverlay('settings',
+  Widget build(BuildContext context) => TemplateOverlay(
           game: widget.game,
           title: 'settings.title'.tr(),
           children: [

@@ -20,6 +20,7 @@
     },
     "powerup": {
         "header": "Powerup",
+        "hintText": "Enter code to unlock powerups",
         "goldenStraw": {
             "label": "Golden Straw",
             "requirement": "Cut 10 plastic straws in a single game.",

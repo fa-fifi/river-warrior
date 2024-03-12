@@ -15,7 +15,7 @@ class RiverWarrior extends FlameGame
   late final SpriteComponent background;
   late final RouterComponent router;
   Color bladeColor = BasicPalette.white.color;
-  bool canCollectRocks = false;
+  bool canCutRocks = false;
   int mistake = 0;
   int score = 0;
   int highScore = 0;

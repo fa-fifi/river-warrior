@@ -65,7 +65,7 @@ class _PowerupOverlayState extends State<PowerupOverlay> {
                       widget.game.bladeColor = BasicPalette.orange.color;
                       break;
                     case 2:
-                      widget.game.canCollectRocks = true;
+                      widget.game.canCutRocks = true;
                       break;
                     case 3:
                       widget.game.maxMistake = 4;

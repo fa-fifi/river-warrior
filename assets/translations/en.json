@@ -39,8 +39,8 @@
             "label": "Master Shredder",
             "requirement": "Cut 100 plastics in a single game.",
             "rarity": "Rare",
-            "description": "Able to collect rocks.",
-            "message": "Congratulations! You're now able to collect rocks."
+            "description": "Ability to cut rocks.",
+            "message": "Congratulations! You're now able to cut rocks."
         },
         "kingMidas": {
             "label": "King Midas",

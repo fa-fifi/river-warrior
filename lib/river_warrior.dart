@@ -43,7 +43,7 @@ class RiverWarrior extends FlameGame
   }
 
   set backgroundImage(String image) =>
-      background.sprite?.image = images.fromCache('backgrounds/$image.png');
+      background.sprite?.image = images.fromCache('backgrounds/$image.jpg');
 
   void restart() {
     router.popUntilNamed('start');
@@ -65,7 +65,7 @@ class RiverWarrior extends FlameGame
     await images.loadAllImages();
     addAll([
       background = SpriteComponent.fromImage(
-          images.fromCache('backgrounds/river.png'),
+          images.fromCache('backgrounds/river.jpg'),
           anchor: Anchor.center),
       router = RouterComponent(initialRoute: 'start', routes: {
         'start': Route(StartPage.new),

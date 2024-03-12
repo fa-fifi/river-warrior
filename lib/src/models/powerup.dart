@@ -68,7 +68,7 @@ enum Powerup {
             },
             "heroImage": {
               "sourceUri": {
-                "uri": "https://raw.github.com/fa-fifi/river-warrior/main/assets/images/powerups/$index.png"
+                "uri": "https://raw.github.com/fa-fifi/river-warrior/main/assets/images/powerups/$index.jpg"
               }
             },
             "textModulesData": [

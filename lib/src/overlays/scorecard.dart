@@ -41,7 +41,7 @@ class _ScorecardOverlayState extends State<ScorecardOverlay> {
               ClipRRect(
                 borderRadius: BorderRadius.circular(10),
                 child: Image.asset(
-                  'assets/images/powerups/${powerup.index}.png',
+                  'assets/images/powerups/${powerup.index}.jpg',
                 ),
               ),
               const SizedBox.square(dimension: 16),
